@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第1回：Rの基本操作 I ― RとRStudioの導入・インストール – 応用ファイナンス1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lessons/02/index.html" rel="next">
+<link href="../../index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37294f0e61b532b0f7ebd5ccc0471b30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c2e880a5cb14d7a116eba1e73095a7f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/01/index.html">第1回：Rの基本操作 I ― RとRStudioの導入・インストール</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">応用ファイナンス1</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ガイダンス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">第1回：Rの基本操作 I ― RとRStudioの導入・インストール</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第2回：Rの基本操作 II ― RStudioとRの基本操作</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第3回：Rの基本操作 III ― Rのデータ構造</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：演習：現在価値・NPV・IRR</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流データ分析</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">付録</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../appendices/A-r-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R基礎事項</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">参考文献</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#chapter-1rとrstudioとは" id="toc-chapter-1rとrstudioとは" class="nav-link" data-scroll-target="#chapter-1rとrstudioとは">Chapter 1｜RとRStudioとは</a>
+  <ul class="collapse">
+  <li><a href="#rとは何か" id="toc-rとは何か" class="nav-link" data-scroll-target="#rとは何か">Rとは何か</a></li>
+  <li><a href="#rstudioとは何か" id="toc-rstudioとは何か" class="nav-link" data-scroll-target="#rstudioとは何か">RStudioとは何か</a></li>
+  </ul></li>
+  <li><a href="#chapter-2rのダウンロードとインストール" id="toc-chapter-2rのダウンロードとインストール" class="nav-link" data-scroll-target="#chapter-2rのダウンロードとインストール">Chapter 2｜Rのダウンロードとインストール</a>
+  <ul class="collapse">
+  <li><a href="#パソコンの種類を確認する" id="toc-パソコンの種類を確認する" class="nav-link" data-scroll-target="#パソコンの種類を確認する">1. パソコンの種類を確認する</a></li>
+  <li><a href="#rの配布サイトを開く" id="toc-rの配布サイトを開く" class="nav-link" data-scroll-target="#rの配布サイトを開く">2. Rの配布サイトを開く</a></li>
+  <li><a href="#使用するosに沿ってインストールする" id="toc-使用するosに沿ってインストールする" class="nav-link" data-scroll-target="#使用するosに沿ってインストールする">3. 使用するOSに沿ってインストールする</a></li>
+  <li><a href="#インストールの完了を確認する" id="toc-インストールの完了を確認する" class="nav-link" data-scroll-target="#インストールの完了を確認する">4. インストールの完了を確認する</a></li>
+  </ul></li>
+  <li><a href="#chapter-3rstudioのダウンロードとインストール" id="toc-chapter-3rstudioのダウンロードとインストール" class="nav-link" data-scroll-target="#chapter-3rstudioのダウンロードとインストール">Chapter 3｜RStudioのダウンロードとインストール</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-desktopをダウンロードする" id="toc-rstudio-desktopをダウンロードする" class="nav-link" data-scroll-target="#rstudio-desktopをダウンロードする">1. RStudio Desktopをダウンロードする</a></li>
+  <li><a href="#rstudioをインストールして起動する" id="toc-rstudioをインストールして起動する" class="nav-link" data-scroll-target="#rstudioをインストールして起動する">2. RStudioをインストールして起動する</a></li>
+  <li><a href="#起動状態を確認する" id="toc-起動状態を確認する" class="nav-link" data-scroll-target="#起動状態を確認する">3. 起動状態を確認する</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第1回：Rの基本操作 I ― RとRStudioの導入・インストール</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="到達目標" class="level2">
+<h2 class="anchored" data-anchor-id="到達目標">到達目標</h2>
+<ul>
+<li>RとRStudioの役割の違いを説明できる</li>
+<li>使用するパソコンに対応したインストーラーを選択できる</li>
+<li>R、RStudioの順にインストールできる</li>
+<li>RStudioを起動し、R本体が認識されていることを確認できる</li>
+</ul>
+</section>
+<section id="chapter-1rとrstudioとは" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1rとrstudioとは">Chapter 1｜RとRStudioとは</h2>
+<section id="rとは何か" class="level3">
+<h3 class="anchored" data-anchor-id="rとは何か">Rとは何か</h3>
+<p><span class="key-term">R</span>は、データの整理、計算、グラフの作成に用いるプログラミング言語であり、それらを実行する環境でもある。特に統計分析に広く用いられる。</p>
+<p>Rでは、処理の指示を<strong>コード</strong>として記述する。コードを残すことで、同じ分析手順を繰り返し利用できる。具体的な記述方法と実行操作は第2回で扱う。</p>
+<p>Rで行う主な作業には、次のようなものがある。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>作業</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>計算</td>
+<td>テストの平均点を求める</td>
+</tr>
+<tr class="even">
+<td>データの整理</td>
+<td>アンケート回答から必要な行や列を取り出す</td>
+</tr>
+<tr class="odd">
+<td>作図</td>
+<td>気温の変化を折れ線グラフにする</td>
+</tr>
+<tr class="even">
+<td>分析の反復</td>
+<td>新しいデータに同じ集計手順を適用する</td>
+</tr>
+</tbody>
+</table>
+<p>Rは無料で利用でき、Windows、macOS、Linuxで動作する。<a href="https://www.r-project.org/about.html">R Project：What is R?</a></p>
+<details>
+<summary>
+補足：パッケージによる機能の追加
+</summary>
+<p>Rはパッケージを追加することで機能を拡張できる。パッケージの具体的な使用方法は第4回で扱う。</p>
+</details>
+</section>
+<section id="rstudioとは何か" class="level3">
+<h3 class="anchored" data-anchor-id="rstudioとは何か">RStudioとは何か</h3>
+<p><span class="key-term">RStudio</span>は、コードの編集、Rによる実行、結果の確認、ファイルの管理を一つの画面で行うためのアプリケーションである。このように、作業に必要な機能をまとめた環境を<strong>統合開発環境（IDE）</strong>という。</p>
+<p>RStudioには複数の提供形態がある。ここで使用するのは、各自のパソコンにインストールする無料の<strong>RStudio Desktop（Open Source）</strong>である。開発元はPositであり、ダウンロード先にも「Posit」と表示される。<a href="https://docs.posit.co/ide/user/">Posit：RStudio IDE User Guide</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/r-and-rstudio.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="RStudioはコードの編集と結果表示を担当し、Rは計算を実行する。Rを先に、RStudioを後にインストールする。"></p>
+</figure>
+</div>
+<p>RStudioでRのコードを実行するには、R本体を別途インストールする必要がある。導入後は通常、RStudioを起動すればRを利用できるため、毎回両方のアプリケーションを個別に起動する必要はない。</p>
+<div class="chapter-summary">
+<ul>
+<li>Rはデータ処理や計算を実行する言語・環境である。</li>
+<li>RStudioは、Rを用いた作業を支援するアプリケーションである。</li>
+<li>Rのインストール、RStudioのインストール、RStudioでの動作確認の順に進める。</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="chapter-2rのダウンロードとインストール" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2rのダウンロードとインストール">Chapter 2｜Rのダウンロードとインストール</h2>
+<section id="パソコンの種類を確認する" class="level3">
+<h3 class="anchored" data-anchor-id="パソコンの種類を確認する">1. パソコンの種類を確認する</h3>
+<p>はじめに、使用するパソコンがWindowsかMacかを確認する。Macの場合は、搭載されているチップの種類も確認する必要がある。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>確認するもの</th>
+<th>確認する場所</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windowsのバージョン・システムの種類</td>
+<td>スタート → 設定 → システム → バージョン情報</td>
+</tr>
+<tr class="even">
+<td>macOSのバージョン・チップ</td>
+<td>画面左上のAppleメニュー → このMacについて</td>
+</tr>
+</tbody>
+</table>
+<p>Macで「チップ：Apple M1、M2、M3…」などと表示される場合はApple silicon、「プロセッサ：Intel…」と表示される場合はIntelである。この区別は、Rのインストーラーを選択する際に必要となる。</p>
+<p>使用するOSのバージョンを確認し、Macの場合はチップの種類も記録する。これらの情報を、次のダウンロードで使用する。</p>
+</section>
+<section id="rの配布サイトを開く" class="level3">
+<h3 class="anchored" data-anchor-id="rの配布サイトを開く">2. Rの配布サイトを開く</h3>
+<p>Rは<strong>CRAN（Comprehensive R Archive Network）</strong>から入手できる。ブラウザで<a href="https://cran.r-project.org/">Rの公式配布サイト：CRAN</a>を開く。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/r-download-map.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="WindowsではDownload R for Windows、base、Download Rの順に進む。MacではDownload R for macOSから、Apple silicon用のarm64またはIntel用のx86_64のpkgを選択する。"></p>
+</figure>
+</div>
+</section>
+<section id="使用するosに沿ってインストールする" class="level3">
+<h3 class="anchored" data-anchor-id="使用するosに沿ってインストールする">3. 使用するOSに沿ってインストールする</h3>
+<p>以下でWindowsまたはMacを選択し、該当する手順を実行する。インストール後は、タブの下にある「インストールの完了を確認する」へ進む。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lesson01-os">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Mac</a></li></ul>
+<div class="tab-content" data-group="lesson01-os">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li>ダウンロード後、ブラウザのダウンロード一覧または「ダウンロード」フォルダから<code>.exe</code>ファイルを開く。</li>
+<li>インストール画面の言語を選択し、説明を確認して<strong>次へ（Next）</strong>で進む。保存先や起動オプションは、特に指定がなければ初期設定を使用する。</li>
+<li><strong>完了（Finish）</strong>を選択する。</li>
+</ol>
+<details>
+<summary>
+補足：base・contrib・Rtoolsの違い
+</summary>
+<p>通常のインストールには<code>base</code>を使用する。<code>contrib</code>は追加パッケージ、<code>Rtools</code>は主にソースコードからのビルドに用いるものであり、最初の動作確認には必要ない。詳細は<a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html">R for Windows FAQ</a>で確認できる。</p>
+</details>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>まず、記録したチップの種類と、次の図に示すファイル名の対応を確認する。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mac-chip-choice.svg" class="img-fluid figure-img" style="width:90.0%" alt="Apple Mシリーズではarm64.pkg、Intelではx86_64.pkgを選択する。併せて、各ファイルに記載されたmacOSの条件を確認する。"></p>
+<figcaption>MacのチップとRインストーラーの対応</figcaption>
+</figure>
+</div>
+<p><strong>確認：</strong> Apple siliconのMacでは、Rのどの種類の<code>.pkg</code>を選択するか。</p>
+<details>
+<summary>
+解答例
+</summary>
+<p>名前に<code>arm64</code>を含み、使用中のmacOSに対応する<code>.pkg</code>を選択する。</p>
+</details>
+<ol type="1">
+<li>CRANの<strong>Download R for macOS</strong>を選択する。直接アクセスする場合は<a href="https://cran.r-project.org/bin/macosx/">macOS用Rのダウンロードページ</a>を開く。</li>
+<li><strong>Latest release</strong>付近で、使用するチップとmacOSに対応したファイルを確認する。</li>
+<li>Apple siliconの場合は名前に<strong>arm64</strong>を含む<code>.pkg</code>、Intelの場合は名前に<strong>x86_64</strong>を含む<code>.pkg</code>を選択する。</li>
+<li>ダウンロードした<code>.pkg</code>を開く。</li>
+<li><strong>続ける → 使用許諾の確認 → インストール</strong>と進み、認証が求められた場合は画面の案内に従う。</li>
+<li>インストールが完了したら、インストーラーを閉じる。</li>
+</ol>
+<details>
+<summary>
+補足：.pkgと.tar.gzの違い
+</summary>
+<p><code>.tar.gz</code>はソースコードなどの配布に使われる形式である。通常のMacへのインストールでは、チップとOSに対応した<code>.pkg</code>を選択する。</p>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="インストールの完了を確認する" class="level3">
+<h3 class="anchored" data-anchor-id="インストールの完了を確認する">4. インストールの完了を確認する</h3>
+<p>WindowsではスタートメニューでRを検索し、MacではFinderの「アプリケーション」にRが追加されたことを確認する。ダウンロードしたインストーラーではなく、インストール済みのアプリケーションがあることを確認する。</p>
+<details>
+<summary>
+インストールできない場合の確認事項
+</summary>
+<ul>
+<li>Macでは、<code>.pkg</code>のarm64 / x86_64とチップの種類が対応しているか、macOSの動作条件を満たすか確認する。</li>
+<li>管理者の認証を求められた場合は、設定変更の権限を持つ端末か確認する。大学の管理端末では管理担当者に相談する。</li>
+<li>古いOSやWindowsのARM機などで判断が難しい場合は、OS名とシステムの種類を教員に伝える。</li>
+</ul>
+</details>
+<p>R本体のインストールが完了したら、続いてRStudioを導入する。</p>
+</section>
+</section>
+<section id="chapter-3rstudioのダウンロードとインストール" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3rstudioのダウンロードとインストール">Chapter 3｜RStudioのダウンロードとインストール</h2>
+<section id="rstudio-desktopをダウンロードする" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-desktopをダウンロードする">1. RStudio Desktopをダウンロードする</h3>
+<p><a href="https://posit.co/download/rstudio-desktop/">PositのRStudio Desktopダウンロード入口</a>を開く。公式ガイドに案内された場合は、<strong>Install Links</strong>または<strong>Direct Downloads (Open Source)</strong>から、使用するOSに対応した<strong>RStudio Desktop</strong>を選択する。<a href="https://docs.posit.co/ide/user/#direct-downloads-open-source">公式ガイドのダウンロード一覧</a>からもアクセスできる。</p>
+<p>Windowsでは<code>.exe</code>、Macでは<code>.dmg</code>を選択する。OSの対応条件を確認し、通常の安定版をダウンロードする。Open Source版は無料であり、今回の作業に有料版の契約は必要ない。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-install-map.svg" class="img-fluid figure-img" style="width:100.0%" alt="R本体のインストール後、PositでRStudio Desktop Open Sourceを選択する。Windowsではexeを実行し、Macではdmgを開いてRStudioをApplicationsへドラッグする。その後、RStudioを起動する。"></p>
+<figcaption>RStudio Desktopのダウンロードとインストールの手順</figcaption>
+</figure>
+</div>
+<p>図はインストール手順の模式図である。配布ページの構成やボタン名は変更される場合がある。</p>
+</section>
+<section id="rstudioをインストールして起動する" class="level3">
+<h3 class="anchored" data-anchor-id="rstudioをインストールして起動する">2. RStudioをインストールして起動する</h3>
+<p>使用するOSの手順を実行する。起動後は、タブの下にある「起動状態を確認する」へ進む。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="lesson01-os">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Windows</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Mac</a></li></ul>
+<div class="tab-content" data-group="lesson01-os">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ol type="1">
+<li>ダウンロードしたRStudioの<code>.exe</code>を開く。</li>
+<li><strong>Next</strong>で進み、インストール先を確認する。特に指定がなければ初期設定を使用する。</li>
+<li><strong>Install</strong>を選択し、処理が完了したら<strong>Finish</strong>を選択する。</li>
+<li>スタートメニューから<strong>RStudio</strong>を起動する。</li>
+</ol>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<ol type="1">
+<li>ダウンロードしたRStudioの<code>.dmg</code>を開く。</li>
+<li>表示されたウィンドウで、<strong>RStudioのアイコンをApplications（アプリケーション）へドラッグ</strong>する。</li>
+<li>コピー完了後、Finderの「アプリケーション」から<strong>RStudio</strong>を起動する。</li>
+<li>初回起動の確認が表示された場合は、公式サイトから取得したアプリであることを確認して開く。</li>
+</ol>
+<p><code>.dmg</code>を開いたウィンドウ内のアイコンと、コピー済みのアプリケーションは区別する必要がある。通常は「アプリケーション」内のRStudioを使用する。</p>
+</div>
+</div>
+</div>
+<p>Rの選択画面が表示された場合は、先にインストールしたRを指定する。</p>
+<details>
+<summary>
+RStudioがRを認識しない場合
+</summary>
+<p>R本体のインストールが完了しているか確認する。Windowsではスタートメニュー、Macでは「アプリケーション」からRを単独で起動し、起動メッセージが表示されるか確認する。その後Rを終了し、RStudioを開き直す。Rを終了する際、この段階では作業領域を保存する必要はない。</p>
+</details>
+</section>
+<section id="起動状態を確認する" class="level3">
+<h3 class="anchored" data-anchor-id="起動状態を確認する">3. 起動状態を確認する</h3>
+<p>RStudioのウィンドウが開き、Consoleと表示された領域にRのバージョンや起動メッセージが表示されることを確認する。Rが見つからないというエラーがなければ、インストールは完了である。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../index.html" class="pagination-link" aria-label="ガイダンス">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ガイダンス</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lessons/02/index.html" class="pagination-link" aria-label="第2回：Rの基本操作 II ― RStudioとRの基本操作">
+        <span class="nav-page-text">第2回：Rの基本操作 II ― RStudioとRの基本操作</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

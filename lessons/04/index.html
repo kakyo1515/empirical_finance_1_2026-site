@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図 – 応用ファイナンス1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lessons/05/index.html" rel="next">
+<link href="../../lessons/03/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37294f0e61b532b0f7ebd5ccc0471b30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c2e880a5cb14d7a116eba1e73095a7f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/04/index.html">第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">応用ファイナンス1</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ガイダンス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第1回：Rの基本操作 I ― RとRStudioの導入・インストール</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第2回：Rの基本操作 II ― RStudioとRの基本操作</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第3回：Rの基本操作 III ― Rのデータ構造</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：演習：現在価値・NPV・IRR</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流データ分析</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">付録</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../appendices/A-r-basics.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">R基礎事項</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">参考文献</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#chapter-1関数を作成する" id="toc-chapter-1関数を作成する" class="nav-link" data-scroll-target="#chapter-1関数を作成する">Chapter 1｜関数を作成する</a>
+  <ul class="collapse">
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
+  <li><a href="#計算式を関数にまとめる" id="toc-計算式を関数にまとめる" class="nav-link" data-scroll-target="#計算式を関数にまとめる">1. 計算式を関数にまとめる</a></li>
+  <li><a href="#ベクトルを引数に渡す" id="toc-ベクトルを引数に渡す" class="nav-link" data-scroll-target="#ベクトルを引数に渡す">2. ベクトルを引数に渡す</a></li>
+  <li><a href="#複数の引数と既定値" id="toc-複数の引数と既定値" class="nav-link" data-scroll-target="#複数の引数と既定値">3. 複数の引数と既定値</a></li>
+  <li><a href="#条件に応じて処理を分ける" id="toc-条件に応じて処理を分ける" class="nav-link" data-scroll-target="#条件に応じて処理を分ける">4. 条件に応じて処理を分ける</a></li>
+  </ul></li>
+  <li><a href="#chapter-2csvを読み込みデータを確認する" id="toc-chapter-2csvを読み込みデータを確認する" class="nav-link" data-scroll-target="#chapter-2csvを読み込みデータを確認する">Chapter 2｜CSVを読み込み、データを確認する</a>
+  <ul class="collapse">
+  <li><a href="#データファイルを準備する" id="toc-データファイルを準備する" class="nav-link" data-scroll-target="#データファイルを準備する">1. データファイルを準備する</a></li>
+  <li><a href="#projectを基準にパスを指定する" id="toc-projectを基準にパスを指定する" class="nav-link" data-scroll-target="#projectを基準にパスを指定する">2. Projectを基準にパスを指定する</a></li>
+  <li><a href="#read.csvで読み込む" id="toc-read.csvで読み込む" class="nav-link" data-scroll-target="#read.csvで読み込む">3. read.csv()で読み込む</a></li>
+  <li><a href="#構造と欠損値を確認する" id="toc-構造と欠損値を確認する" class="nav-link" data-scroll-target="#構造と欠損値を確認する">4. 構造と欠損値を確認する</a></li>
+  <li><a href="#必要な行と列を取り出す" id="toc-必要な行と列を取り出す" class="nav-link" data-scroll-target="#必要な行と列を取り出す">5. 必要な行と列を取り出す</a></li>
+  </ul></li>
+  <li><a href="#chapter-3外部パッケージを利用する" id="toc-chapter-3外部パッケージを利用する" class="nav-link" data-scroll-target="#chapter-3外部パッケージを利用する">Chapter 3｜外部パッケージを利用する</a>
+  <ul class="collapse">
+  <li><a href="#機能を追加する" id="toc-機能を追加する" class="nav-link" data-scroll-target="#機能を追加する">1. 機能を追加する</a></li>
+  <li><a href="#インストールと読み込みを区別する" id="toc-インストールと読み込みを区別する" class="nav-link" data-scroll-target="#インストールと読み込みを区別する">2. インストールと読み込みを区別する</a></li>
+  <li><a href="#readrで同じcsvを読む" id="toc-readrで同じcsvを読む" class="nav-link" data-scroll-target="#readrで同じcsvを読む">3. readrで同じCSVを読む</a></li>
+  <li><a href="#パッケージ名を明示する" id="toc-パッケージ名を明示する" class="nav-link" data-scroll-target="#パッケージ名を明示する">4. パッケージ名を明示する</a></li>
+  </ul></li>
+  <li><a href="#chapter-4グラフを作成し保存する" id="toc-chapter-4グラフを作成し保存する" class="nav-link" data-scroll-target="#chapter-4グラフを作成し保存する">Chapter 4｜グラフを作成し、保存する</a>
+  <ul class="collapse">
+  <li><a href="#確認したい内容とグラフの種類" id="toc-確認したい内容とグラフの種類" class="nav-link" data-scroll-target="#確認したい内容とグラフの種類">1. 確認したい内容とグラフの種類</a></li>
+  <li><a href="#散布図を作成する" id="toc-散布図を作成する" class="nav-link" data-scroll-target="#散布図を作成する">2. 散布図を作成する</a></li>
+  <li><a href="#ヒストグラムを作成する" id="toc-ヒストグラムを作成する" class="nav-link" data-scroll-target="#ヒストグラムを作成する">3. ヒストグラムを作成する</a></li>
+  <li><a href="#図を保存する" id="toc-図を保存する" class="nav-link" data-scroll-target="#図を保存する">4. 図を保存する</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="到達目標" class="level2">
+<h2 class="anchored" data-anchor-id="到達目標">到達目標</h2>
+<ul>
+<li>複数の処理を関数にまとめ、引数と返り値を指定できる</li>
+<li>Projectを基準としたパスでCSVを読み込み、データの構造と欠損値を確認できる</li>
+<li>外部パッケージのインストールと読み込みを区別できる</li>
+<li>Rの標準機能で図を作成し、ファイルに保存できる</li>
+</ul>
+</section>
+<section id="chapter-1関数を作成する" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1関数を作成する">Chapter 1｜関数を作成する</h2>
+<section id="作業の準備" class="level3">
+<h3 class="anchored" data-anchor-id="作業の準備">作業の準備</h3>
+<ol type="1">
+<li><code>empirical_finance.Rproj</code>を開く。</li>
+<li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson04.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
+<li>Filesペインで、第2回に保存した<code>data/data_lesson02.csv</code>があることを確認する。結果の保存用に、Project直下に<code>output</code>フォルダを作成する。すでにある場合はそのまま使用する。</li>
+</ol>
+<p>以下のコードは<code>script/lesson04.R</code>に順に記述し、実行して結果を確認する。前回のオブジェクトは自動復元されるが、ここで使うデータと関数は改めて作成する。パッケージの導入はChapter 3で扱う。</p>
+</section>
+<section id="計算式を関数にまとめる" class="level3">
+<h3 class="anchored" data-anchor-id="計算式を関数にまとめる">1. 計算式を関数にまとめる</h3>
+<p>第2回では<code>sqrt()</code>や<code>round()</code>を使い、第3回ではベクトルの平均を<code>mean()</code>で求めた。Rでは、こうした既存の関数を利用するだけでなく、自分で処理を定義できる。</p>
+<p>まず、得点に5点を加える関数を作成する。関数の定義には<code>function()</code>を使う。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>add_five <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>add_five</code>は関数名、<code>x</code>は引数である。<code>{ }</code>の中に処理を記述し、<code>return()</code>で返り値を指定する。このコードを実行した段階では、関数が定義されるだけであり、具体的な得点の計算はまだ行われない。</p>
+<p>定義した関数を呼び出すときに、引数に値を渡す。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_five</span>(<span class="dv">72</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77</code></pre>
+</div>
+</div>
+<p>結果は77となる。同じ処理を別の値にも適用でき、処理を変更する場合も関数の定義を修正すればよい。</p>
+</section>
+<section id="ベクトルを引数に渡す" class="level3">
+<h3 class="anchored" data-anchor-id="ベクトルを引数に渡す">2. ベクトルを引数に渡す</h3>
+<p>次のベクトルを、この関数に渡してみよう。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">68</span>, <span class="dv">77</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>adjusted_scores <span class="ot">&lt;-</span> <span class="fu">add_five</span>(scores)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>adjusted_scores</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77 90 96 73 82</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scores</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 72 85 91 68 77</code></pre>
+</div>
+</div>
+<p><code>x + 5</code>は各要素に対して計算されるため、5人分の結果がまとめて返る。返り値を<code>adjusted_scores</code>に保存しても、元の<code>scores</code>は変わらない。</p>
+<details>
+<summary>
+補足：return()を省略する書き方
+</summary>
+<p>Rでは、関数内で最後に評価された値が返される。このため、次のように書くこともできる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>add_five_short <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">add_five_short</span>(<span class="dv">72</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77</code></pre>
+</div>
+</div>
+</details>
+<p><strong>練習</strong>：摂氏を華氏へ変換する<code>celsius_to_fahrenheit()</code>を作成し、摂氏20度と30度を変換しなさい。変換式は<span class="math inline">\(F = 1.8C + 32\)</span>とする。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>celsius_to_fahrenheit <span class="ot">&lt;-</span> <span class="cf">function</span>(celsius) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">1.8</span> <span class="sc">*</span> celsius <span class="sc">+</span> <span class="dv">32</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">celsius_to_fahrenheit</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>結果は68度と86度である。</p>
+</details>
+</section>
+<section id="複数の引数と既定値" class="level3">
+<h3 class="anchored" data-anchor-id="複数の引数と既定値">3. 複数の引数と既定値</h3>
+<p>第2回の総合点の計算を関数にする。小テストと期末テストの得点に加え、小テストの比重も引数として受け取る。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>calculate_score <span class="ot">&lt;-</span> <span class="cf">function</span>(quiz, exam, <span class="at">quiz_weight =</span> <span class="fl">0.40</span>) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> quiz <span class="sc">*</span> quiz_weight <span class="sc">+</span> exam <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> quiz_weight)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="at">quiz =</span> <span class="dv">78</span>, <span class="at">exam =</span> <span class="dv">92</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 86.4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="at">quiz =</span> <span class="dv">78</span>, <span class="at">exam =</span> <span class="dv">92</span>, <span class="at">quiz_weight =</span> <span class="fl">0.50</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 85</code></pre>
+</div>
+</div>
+<p>結果は順に86.4点と85点となる。<code>quiz_weight = 0.40</code>は<strong>既定値</strong>であり、呼び出し時に省略すると0.40が使われる。この例では、二つの比重の合計が1になるように記述している。</p>
+<p>引数名を省略した場合は位置で対応する。引数名を記述すれば、順序を変えても対応は明確になる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="dv">78</span>, <span class="dv">92</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 86.4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="at">exam =</span> <span class="dv">92</span>, <span class="at">quiz =</span> <span class="dv">78</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 86.4</code></pre>
+</div>
+</div>
+<p><strong>練習</strong>：小テスト70点、期末テスト90点について、小テストの比重を0.30として総合点を求めなさい。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="at">quiz =</span> <span class="dv">70</span>, <span class="at">exam =</span> <span class="dv">90</span>, <span class="at">quiz_weight =</span> <span class="fl">0.30</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>結果は84点である。</p>
+</details>
+</section>
+<section id="条件に応じて処理を分ける" class="level3">
+<h3 class="anchored" data-anchor-id="条件に応じて処理を分ける">4. 条件に応じて処理を分ける</h3>
+<p>比較演算子は条件を満たすかどうかを論理値で返す。<code>if</code>と<code>else</code>を使うと、その結果によって実行する処理を分けられる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>judge_result <span class="ot">&lt;-</span> <span class="cf">function</span>(score) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (score <span class="sc">&gt;=</span> <span class="dv">60</span>) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"合格"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"不合格"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">judge_result</span>(<span class="dv">82</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "合格"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">judge_result</span>(<span class="dv">48</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "不合格"</code></pre>
+</div>
+</div>
+<p>条件が<code>TRUE</code>なら<code>if</code>側、<code>FALSE</code>なら<code>else</code>側が実行される。この関数は、欠損していない一つの得点を受け取るものとする。<code>if</code>の条件には、<code>NA</code>ではない一つの論理値が必要である。</p>
+<p>ベクトルの各要素について結果を返す場合は、<code>ifelse()</code>を使える。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(scores <span class="sc">&gt;=</span> <span class="dv">80</span>, <span class="st">"80点以上"</span>, <span class="st">"80点未満"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "80点未満" "80点以上" "80点以上" "80点未満" "80点未満"</code></pre>
+</div>
+</div>
+<p>第1引数が条件、第2引数が条件を満たす場合の値、第3引数が満たさない場合の値である。</p>
+<details>
+<summary>
+補足：関数内のオブジェクトとリストの返り値
+</summary>
+<p>関数内の代入は、通常、外側の同名のオブジェクトを書き換えない。必要な値を引数で受け取り、結果を返り値として取り出すように記述する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>center_scores <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  average <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> average</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">center_scores</span>(scores)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  -6.6   6.4  12.4 -10.6  -1.6</code></pre>
+</div>
+</div>
+<p>複数の結果を返す場合は、第3回で学んだリストを使える。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>describe_scores <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">average =</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>score_summary <span class="ot">&lt;-</span> <span class="fu">describe_scores</span>(scores)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>score_summary<span class="sc">$</span>average</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 78.6</code></pre>
+</div>
+</div>
+</details>
+<details>
+<summary>
+補足：for文による繰り返し
+</summary>
+<p><code>for</code>はベクトルから値を順に取り出し、<code>{ }</code>内の処理を繰り返す。ここでは、欠損のない得点を一つずつ判定する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (one_score <span class="cf">in</span> scores) {</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">judge_result</span>(one_score))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "合格"
+[1] "合格"
+[1] "合格"
+[1] "合格"
+[1] "合格"</code></pre>
+</div>
+</div>
+<p>この処理では、<code>judge_result()</code>に渡る値は毎回一つである。<code>ifelse()</code>でベクトルを一度に処理する方法との違いを確認する。</p>
+</details>
+</section>
+</section>
+<section id="chapter-2csvを読み込みデータを確認する" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2csvを読み込みデータを確認する">Chapter 2｜CSVを読み込み、データを確認する</h2>
+<section id="データファイルを準備する" class="level3">
+<h3 class="anchored" data-anchor-id="データファイルを準備する">1. データファイルを準備する</h3>
+<p>第3回では、<code>data.frame()</code>に値を記述して表を作成した。観測数の多いデータを扱う場合は、ファイルから読み込む。<strong>CSV</strong>は、値をカンマで区切って表を保存するテキスト形式であり、通常は先頭行に列名が記載されている。</p>
+<p>ここでは、第2回にLETUSからダウンロードし、Project内の<code>data</code>フォルダに保存した<code>data_lesson02.csv</code>を使用する。このファイルには、学生12人の学習時間や得点が記録されている。<strong>Files</strong>ペインで<code>data</code>フォルダを開き、ファイルが保存されていることを確認する。</p>
+<p>CSVの先頭部分は、次のようになっている。</p>
+<pre class="text"><code>student_id,class,study_hours,score,attendance,passed
+S001,A,6.5,82,0.96,TRUE
+S002,A,4.0,68,0.88,TRUE</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>列名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>student_id</code></td>
+<td>学生ID</td>
+</tr>
+<tr class="even">
+<td><code>class</code></td>
+<td>所属クラス</td>
+</tr>
+<tr class="odd">
+<td><code>study_hours</code></td>
+<td>1週間の学習時間（時間）</td>
+</tr>
+<tr class="even">
+<td><code>score</code></td>
+<td>テストの得点</td>
+</tr>
+<tr class="odd">
+<td><code>attendance</code></td>
+<td>出席率（0〜1）</td>
+</tr>
+<tr class="even">
+<td><code>passed</code></td>
+<td>合否（TRUE / FALSE）</td>
+</tr>
+</tbody>
+</table>
+<p>結果は、作業の準備で作成した<code>output</code>フォルダに保存する。使用するファイルの位置は次のとおりである。</p>
+<pre class="text"><code>empirical_finance/
+├── empirical_finance.Rproj
+├── data/
+│   └── data_lesson02.csv
+├── script/
+│   └── lesson04.R
+└── output/</code></pre>
+</section>
+<section id="projectを基準にパスを指定する" class="level3">
+<h3 class="anchored" data-anchor-id="projectを基準にパスを指定する">2. Projectを基準にパスを指定する</h3>
+<p><code>empirical_finance.Rproj</code>を開いた状態では、Projectフォルダが作業ディレクトリになる。したがって、CSVは<code>"data/data_lesson02.csv"</code>と指定する。<code>script/lesson04.R</code>を編集していても、パスの基準はRスクリプトを置いたフォルダではない。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">"data"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>getwd()</code>は作業ディレクトリ、<code>list.files()</code>は指定したフォルダ内のファイル名を表示する。<code>data_lesson02.csv</code>が見つからない場合は、開いているProject、保存先、ファイル名を確認する。<a href="https://docs.posit.co/ide/user/ide/guide/code/projects.html#opening-projects">Posit：RStudio Projects</a></p>
+</section>
+<section id="read.csvで読み込む" class="level3">
+<h3 class="anchored" data-anchor-id="read.csvで読み込む">3. read.csv()で読み込む</h3>
+<p><code>read.csv()</code>は、CSVをデータフレームとして読み込む関数である。追加パッケージを導入しなくても使用できる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson02.csv"</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>  student_id class study_hours score attendance passed
+1       S001     A         6.5    82       0.96   TRUE
+2       S002     A         4.0    68       0.88   TRUE
+3       S003     A         2.5    55       0.74  FALSE
+4       S004     A         7.0    91       0.98   TRUE
+5       S005     B         5.5    76       0.90   TRUE
+6       S006     B         3.0    61       0.82   TRUE</code></pre>
+</div>
+</div>
+<p>第1引数はファイルのパスである。<code>na.strings</code>には、欠損値として読み込む表記を指定する。ここでは空欄と<code>NA</code>を欠損値として扱う。</p>
+<p>ファイルをフォルダに置く操作と、Rのオブジェクトとして読み込む操作は異なる。読み込み後は、<code>students</code>を使ってデータを処理する。</p>
+</section>
+<section id="構造と欠損値を確認する" class="level3">
+<h3 class="anchored" data-anchor-id="構造と欠損値を確認する">4. 構造と欠損値を確認する</h3>
+<p>読み込んだ表にも、第3回で学んだ確認方法をそのまま使える。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12  6</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "student_id"  "class"       "study_hours" "score"       "attendance" 
+[6] "passed"     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   12 obs. of  6 variables:
+ $ student_id : chr  "S001" "S002" "S003" "S004" ...
+ $ class      : chr  "A" "A" "A" "A" ...
+ $ study_hours: num  6.5 4 2.5 7 5.5 3 1.5 8 4.5 NA ...
+ $ score      : int  82 68 55 91 76 61 48 95 72 64 ...
+ $ attendance : num  0.96 0.88 0.74 0.98 0.9 0.82 0.65 1 0.86 0.78 ...
+ $ passed     : logi  TRUE TRUE FALSE TRUE TRUE TRUE ...</code></pre>
+</div>
+</div>
+<p>このデータは12行6列であり、1行が1人の学生を表す。数値として計算する列と、文字列や論理値として扱う列を確認する。</p>
+<p>続いて欠損値を調べる。<code>is.na()</code>の結果は論理値であり、<code>sum()</code>では<code>TRUE</code>が1、<code>FALSE</code>が0として数えられる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(students<span class="sc">$</span>score))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(students))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> student_id       class study_hours       score  attendance      passed 
+          0           0           1           1           0           0 </code></pre>
+</div>
+</div>
+<p><code>colSums()</code>は列ごとの合計を返す。得点と学習時間に、それぞれ1件の欠損値がある。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(students<span class="sc">$</span>score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 72.45455</code></pre>
+</div>
+</div>
+<p>この平均は、得点が記録されている学生だけを対象としている。</p>
+<details>
+<summary>
+補足：文字化けや型の誤認がある場合
+</summary>
+<p>日本語が文字化けする場合は、配布ファイルの文字コードを確認する。UTF-8のファイルなら、次のように指定できる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/data_lesson02.csv"</span>, <span class="at">fileEncoding =</span> <span class="st">"UTF-8"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>数値の列が文字列になっている場合は、数値以外の記号などが混ざっていないか確認する。型の変換だけで済ませず、元の表記と欠損値の扱いを確かめる。</p>
+</details>
+</section>
+<section id="必要な行と列を取り出す" class="level3">
+<h3 class="anchored" data-anchor-id="必要な行と列を取り出す">5. 必要な行と列を取り出す</h3>
+<p>欠損値を除いたうえで、80点以上の学生についてIDと得点を取り出す。<code>[行, 列]</code>による指定は、手入力で作成したデータフレームと同じである。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>high_scores <span class="ot">&lt;-</span> students[</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">is.na</span>(students<span class="sc">$</span>score) <span class="sc">&amp;</span> students<span class="sc">$</span>score <span class="sc">&gt;=</span> <span class="dv">80</span>,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"score"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>high_scores</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   student_id score
+1        S001    82
+4        S004    91
+8        S008    95
+12       S012    85</code></pre>
+</div>
+</div>
+<p><strong>練習</strong>：出席率が0.90以上の学生について、IDと出席率を取り出しなさい。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>students[</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  students<span class="sc">$</span>attendance <span class="sc">&gt;=</span> <span class="fl">0.90</span>,</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"attendance"</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<p>処理結果を保存するには、<code>write.csv()</code>を使う。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  high_scores,</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"output/high-scores.csv"</span>,</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>row.names = FALSE</code>は行番号を別の列として書き出さない指定である。元のCSVと区別できる名前で保存する。同名のファイルが既にある場合は上書きされるため、保存先を確認してから実行する。</p>
+</section>
+</section>
+<section id="chapter-3外部パッケージを利用する" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3外部パッケージを利用する">Chapter 3｜外部パッケージを利用する</h2>
+<section id="機能を追加する" class="level3">
+<h3 class="anchored" data-anchor-id="機能を追加する">1. 機能を追加する</h3>
+<p>ここまで使った<code>read.csv()</code>や<code>mean()</code>は、Rの標準的な機能として利用できる。<strong>パッケージ</strong>は、関数、データ、説明文書などをまとめたものであり、追加することでRの機能を拡張できる。</p>
+<p>例えば、データの読み込み、統計モデルの推定、図表の作成など、目的に応じた処理がパッケージとして提供されている。必要なパッケージを利用すれば、すべての処理を自分で一から記述する必要はない。ただし、関数に渡すデータや引数、返される結果の意味は、利用者が確認する必要がある。</p>
+<p>Rの主要な配布サイトである<strong>CRAN</strong>には、<strong>24,908個</strong>のパッケージが掲載されている（2026年9月時点）。統計分析だけでなく、金融、医療、地理情報、文章の分析など、幅広い分野の機能が公開されている。<a href="https://cran.r-project.org/web/packages/">CRAN：Contributed Packages</a>すべてのパッケージを導入する必要はなく、分析の目的に応じて必要なものを選び、利用すればよい。</p>
+<p>金融・会計分野の特定の用途に向けて開発されたパッケージには、例えば次のようなものがある。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>パッケージ</th>
+<th>主な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/package=quantmod">quantmod</a></td>
+<td>株価などの金融データの取得・分析</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/package=PerformanceAnalytics">PerformanceAnalytics</a></td>
+<td>投資の運用成果とリスクの評価</td>
+</tr>
+<tr class="odd">
+<td><a href="https://cran.r-project.org/package=PortfolioAnalytics">PortfolioAnalytics</a></td>
+<td>ポートフォリオの分析・最適化</td>
+</tr>
+<tr class="even">
+<td><a href="https://cran.r-project.org/package=edgarWebR">edgarWebR</a></td>
+<td>米国SECに提出された企業の開示書類情報の取得・解析</td>
+</tr>
+</tbody>
+</table>
+<section id="この回で使用するパッケージ" class="level4">
+<h4 class="anchored" data-anchor-id="この回で使用するパッケージ">この回で使用するパッケージ</h4>
+<p>ここではCSVの読み込みに<code>readr</code>を使う。readrはtidyverseを構成するパッケージの一つであり、単独でも導入できる。複数の関数をパイプでつなぐデータ処理は第6回で扱う。作図にはRの標準機能を用いる。</p>
+</section>
+</section>
+<section id="インストールと読み込みを区別する" class="level3">
+<h3 class="anchored" data-anchor-id="インストールと読み込みを区別する">2. インストールと読み込みを区別する</h3>
+<p>パッケージは、まずパソコンにインストールする。以下は未導入の場合にConsoleで実行する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>すでにインストール済みであれば、ここは省略する。続いて、現在のRセッションで使えるように<code>library()</code>で読み込む。以下の行は<code>script/lesson04.R</code>に記述する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>操作</th>
+<th>関数</th>
+<th>実行する時期</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>導入</td>
+<td><code>install.packages()</code></td>
+<td>未導入のとき、または更新・再導入が必要なとき</td>
+</tr>
+<tr class="even">
+<td>読み込み</td>
+<td><code>library()</code></td>
+<td>新しいRセッションで、そのパッケージを使うとき</td>
+</tr>
+</tbody>
+</table>
+<p>Projectのオブジェクトが自動復元されても、使用するパッケージの読み込みはRスクリプトに記述しておく。Projectを開き直した後にパッケージの関数を使う場合は、該当する<code>library()</code>の行を実行する。毎回の作業でインストールからやり直す必要はない。</p>
+<details>
+<summary>
+補足：導入状況とバージョンを確認する
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">requireNamespace</span>(<span class="st">"readr"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"readr"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '2.1.5'</code></pre>
+</div>
+</div>
+<p>最初の結果が<code>TRUE</code>なら、<code>readr</code>を利用できる。関数の説明は<code>?readr::read_csv</code>などで確認できる。</p>
+</details>
+</section>
+<section id="readrで同じcsvを読む" class="level3">
+<h3 class="anchored" data-anchor-id="readrで同じcsvを読む">3. readrで同じCSVを読む</h3>
+<p>同じファイルを<code>read_csv()</code>で読み込み、先ほどの<code>students</code>と比較する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>students_readr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson02.csv"</span>,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(students_readr)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(students_readr)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  student_id class study_hours score attendance passed
+  &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt; 
+1 S001       A             6.5    82       0.96 TRUE  
+2 S002       A             4      68       0.88 TRUE  
+3 S003       A             2.5    55       0.74 FALSE 
+4 S004       A             7      91       0.98 TRUE  
+5 S005       B             5.5    76       0.9  TRUE  
+6 S006       B             3      61       0.82 TRUE  </code></pre>
+</div>
+</div>
+<p><code>read_csv()</code>は、データフレームを拡張した<strong>tibble</strong>を返す。<code>show_col_types = FALSE</code>は、読み込み時の列型の案内を非表示にする設定であり、データの型そのものを変更するものではない。<a href="https://readr.tidyverse.org/reference/read_delim.html">readr：read_csv()</a></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(students_readr)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12  6</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(students_readr<span class="sc">$</span>score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 72.45455</code></pre>
+</div>
+</div>
+<p>行数・列数と平均点が、<code>read.csv()</code>で読み込んだ結果と一致することを確認する。以降の例では、引き続き<code>students</code>を使う。</p>
+</section>
+<section id="パッケージ名を明示する" class="level3">
+<h3 class="anchored" data-anchor-id="パッケージ名を明示する">4. パッケージ名を明示する</h3>
+<p><code>パッケージ名::関数名</code>と書くと、関数の所属を明示できる。パッケージがインストール済みであれば、<code>library()</code>を実行する前でも、その関数を呼び出せる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/data_lesson02.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>::</code>はインストールの代わりにはならない。未導入のパッケージは、先に<code>install.packages()</code>で導入する。</p>
+<p><strong>確認</strong>：すでにreadrをインストールしたパソコンで、Projectを開き直して<code>read_csv()</code>を使う。通常、どの操作を行えばよいか。</p>
+<details>
+<summary>
+解答例
+</summary>
+<p><code>library(readr)</code>を実行する。再インストールは不要である。<code>readr::read_csv()</code>のように所属を明示して呼び出す方法もある。</p>
+</details>
+<details>
+<summary>
+補足：readrでCSVを書き出す
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">write_csv</span>(high_scores, <span class="st">"output/high-scores-readr.csv"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>write_csv()</code>は行名を書き出さないため、<code>row.names = FALSE</code>の指定は不要である。</p>
+</details>
+</section>
+</section>
+<section id="chapter-4グラフを作成し保存する" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4グラフを作成し保存する">Chapter 4｜グラフを作成し、保存する</h2>
+<section id="確認したい内容とグラフの種類" class="level3">
+<h3 class="anchored" data-anchor-id="確認したい内容とグラフの種類">1. 確認したい内容とグラフの種類</h3>
+<p>データの構造を確認したら、分布や変数間の関係を図で確かめる。ここでは、同じ学生データを使い、Rの標準機能で作図する。追加のパッケージは必要ない。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>確認したいこと</th>
+<th>グラフ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>学習時間と得点の関係</td>
+<td>散布図</td>
+</tr>
+<tr class="even">
+<td>得点の分布</td>
+<td>ヒストグラム</td>
+</tr>
+<tr class="odd">
+<td>クラスごとの得点の分布</td>
+<td>箱ひげ図</td>
+</tr>
+<tr class="even">
+<td>合否別の人数</td>
+<td>棒グラフ</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="散布図を作成する" class="level3">
+<h3 class="anchored" data-anchor-id="散布図を作成する">2. 散布図を作成する</h3>
+<p>学習時間を横軸、得点を縦軸に置く。二つの値がそろっている学生だけを対象とするため、第3回で学んだ条件抽出を使う。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> students[</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">is.na</span>(students<span class="sc">$</span>study_hours) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(students<span class="sc">$</span>score),</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(plot_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>対象は10人である。<code>plot()</code>に横軸と縦軸のベクトルを渡して描く。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> plot_data<span class="sc">$</span>study_hours,</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> plot_data<span class="sc">$</span>score,</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Study hours per week"</span>,</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Study hours and score"</span>,</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"steelblue"</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-study-score-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-study-score-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-study-score-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-study-score-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;1: 学習時間と得点
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>xlab</code>と<code>ylab</code>は軸名、<code>main</code>はタイトル、<code>pch</code>は点の形、<code>col</code>は色を指定する。RStudioでは図が<strong>Plots</strong>ペインに表示される。</p>
+<p>このデータでは、学習時間が長い学生ほど得点も高い傾向が見られる。ただし、この図だけから学習時間が得点の差を生んだと断定することはできない。</p>
+<details>
+<summary>
+補足：基準線と文字を追加する
+</summary>
+<p><code>abline()</code>と<code>text()</code>は、作成済みの図に線や文字を追加する。次のコードを、上の<code>plot()</code>を実行した直後に実行する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">80</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"grey50"</span>)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">83</span>, <span class="at">labels =</span> <span class="st">"Score = 80"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>h</code>は水平線の高さ、<code>lty = 2</code>は破線の指定である。</p>
+</details>
+<p><strong>練習</strong>：上の散布図の点を濃い緑色に変更し、タイトルを<code>"Weekly study hours and score"</code>にしなさい。</p>
+<details>
+<summary>
+解答例
+</summary>
+<p><code>plot()</code>の<code>col</code>を<code>"darkgreen"</code>、<code>main</code>を<code>"Weekly study hours and score"</code>に変更して再実行する。</p>
+</details>
+</section>
+<section id="ヒストグラムを作成する" class="level3">
+<h3 class="anchored" data-anchor-id="ヒストグラムを作成する">3. ヒストグラムを作成する</h3>
+<p><code>hist()</code>は、数値を区間に分け、各区間に含まれる件数を表示する。得点の分布には、学習時間の欠損は関係しないため、得点が記録されている11人を使用する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>score_values <span class="ot">&lt;-</span> students<span class="sc">$</span>score[<span class="sc">!</span><span class="fu">is.na</span>(students<span class="sc">$</span>score)]</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(score_values)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  score_values,</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">40</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>),</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"skyblue3"</span>,</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Distribution of scores"</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-score-hist-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-score-hist-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-score-hist-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-score-hist-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2: 得点のヒストグラム
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>breaks</code>に区切りを指定すると、この例では40から100までを10点幅に分けられる。区間の幅によって分布の見え方が変わるため、図を読む際は区切りも確認する。</p>
+<details>
+<summary>
+補足：箱ひげ図・棒グラフ・折れ線グラフ
+</summary>
+<p><code>boxplot()</code>は中央値や散らばりを示し、クラスごとの分布の比較に使える。<code>score ~ class</code>は、得点をクラスで分けるという指定である。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  score <span class="sc">~</span> class,</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> students,</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Class"</span>,</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#9ecae1"</span>, <span class="st">"#6baed6"</span>, <span class="st">"#3182bd"</span>)</span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-score-box-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-score-box-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-score-box-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-score-box-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3: クラス別得点の箱ひげ図
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>table()</code>でカテゴリごとの人数を数え、<code>barplot()</code>で棒グラフにできる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>pass_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(students<span class="sc">$</span>passed)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  pass_counts,</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">"Not passed"</span>, <span class="st">"Passed"</span>),</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#e07a5f"</span>, <span class="st">"#3d8b82"</span>),</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Number of students"</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-pass-bar-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pass-bar-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-pass-bar-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pass-bar-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4: 合否別の人数
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>時間の順序に意味があるデータでは、折れ線グラフを使える。<code>type = "o"</code>は点と線を重ねる指定である。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>weeks <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>weekly_hours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  weeks, weekly_hours,</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"o"</span>,</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Week"</span>,</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Study hours"</span>,</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">19</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-weekly-hours-base" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weekly-hours-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-weekly-hours-base-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-weekly-hours-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;5: ある学生の学習時間の推移
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>学生IDのように順序自体に意味がない値を、同じように線で結ぶ必要はない。</p>
+</details>
+</section>
+<section id="図を保存する" class="level3">
+<h3 class="anchored" data-anchor-id="図を保存する">4. 図を保存する</h3>
+<p>Chapter 2で作成した<code>output</code>フォルダに、散布図をPNG形式で保存する。<code>png()</code>で保存先を指定し、作図のコードを実行した後、<code>dev.off()</code>でファイルへの出力を終了する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">"output/study-score.png"</span>, <span class="at">width =</span> <span class="dv">1120</span>, <span class="at">height =</span> <span class="dv">720</span>, <span class="at">res =</span> <span class="dv">160</span>)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> plot_data<span class="sc">$</span>study_hours,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> plot_data<span class="sc">$</span>score,</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Study hours per week"</span>,</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Study hours and score"</span>,</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"steelblue"</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>width</code>と<code>height</code>は画像の幅と高さ（ピクセル）、<code>res</code>は解像度を指定する。<code>png()</code>は、すでにPlotsペインに表示された図を保存する関数ではない。<code>png()</code>から<code>dev.off()</code>までを順に実行し、その間に図を描く必要がある。</p>
+<p>同名のファイルがある場合は上書きされる。保存後は<strong>Files</strong>ペインで<code>output</code>を開き、画像を確認する。</p>
+<p><strong>練習</strong>：同じ手順で得点のヒストグラムを<code>output/score-histogram.png</code>に保存しなさい。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">"output/score-histogram.png"</span>, <span class="at">width =</span> <span class="dv">1120</span>, <span class="at">height =</span> <span class="dv">720</span>, <span class="at">res =</span> <span class="dv">160</span>)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  score_values,</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">40</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">10</span>),</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">"skyblue3"</span>,</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Distribution of scores"</span></span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+<p>作業を終えるときは、Rスクリプトを保存してProjectを閉じる。</p>
+<!--{{< include 05-homework.qmd >}}-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lessons/03/index.html" class="pagination-link" aria-label="第3回：Rの基本操作 III ― Rのデータ構造">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">第3回：Rの基本操作 III ― Rのデータ構造</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../lessons/05/index.html" class="pagination-link" aria-label="第5回：演習：現在価値・NPV・IRR">
+        <span class="nav-page-text">第5回：演習：現在価値・NPV・IRR</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
