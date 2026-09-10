@@ -4,27 +4,97 @@
     "href": "index.html",
     "title": "応用ファイナンス1",
     "section": "",
-    "text": "ガイダンス\n本書は、「応用ファイナンス1」の講義内容とRによる実装を一体化したオンライン教材である。理論を数式だけで終わらせず、同じページ上でコードを実行し、得られた数値や図を解釈することを目的とする。",
+    "text": "ガイダンス",
     "crumbs": [
       "ガイダンス"
     ]
   },
   {
-    "objectID": "index.html#学習目標",
-    "href": "index.html#学習目標",
+    "objectID": "index.html#講義の時限と場所",
+    "href": "index.html#講義の時限と場所",
     "title": "応用ファイナンス1",
-    "section": "学習目標",
-    "text": "学習目標\n本書を通じて、学生が次の能力を身につけることを目指す。\n\n\n\n\n\n\n\n領域\n到達目標\n\n\n\n\nファイナンス理論\nリターン、リスク、分散、共分散などの概念を説明できる\n\n\n数学\n定義式を読み、数値例と結びつけられる\n\n\nR\n金融データを加工し、統計量と図を作成できる\n\n\n解釈\n計算結果を投資判断の言葉で説明できる",
+    "section": "講義の時限と場所",
+    "text": "講義の時限と場所\n\n\n\n項目\n内容\n\n\n\n\n時限\n後期・金曜日・3時限（2組は4時限）\n\n\n授業形態\n対面講義\n\n\n場所\n富士見301\n\n\n\n\nオフィスアワー\n\n水曜日4時限（6階619室 何研究室）。事前に予約すること。\n授業前後のほか、メールやLETUS上でも随時質問を受け付ける。",
     "crumbs": [
       "ガイダンス"
     ]
   },
   {
-    "objectID": "index.html#本書の読み方",
-    "href": "index.html#本書の読み方",
+    "objectID": "index.html#講義の概要",
+    "href": "index.html#講義の概要",
     "title": "応用ファイナンス1",
-    "section": "本書の読み方",
-    "text": "本書の読み方\n\n章の冒頭にある「問い」を確認する。\n数式では、記号が何を意味しているかを言葉で説明する。\nRコードを実行し、コードと出力の対応を確認する。\n図表から読み取れる内容を文章にする。\n章末問題で理解を確認する。\n\n現在は第1回から第6回を公開している。各回は一つのページにまとまり、その中に複数のChapterが並ぶ。\n最初は第1回：Rの基本操作 I ― RとRStudioの導入・インストールで二つのソフトウェアの役割を理解し、自分のパソコンにインストールして動作を確認する。続く第2回：Rの基本操作 II ― RStudioとRの基本操作、第3回：Rの基本操作 III ― Rのデータ構造、第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図では、Rによるデータ分析の基礎を身につける。第5回：現在価値・NPV・IRRでは、これらの操作をファイナンス理論の計算へ応用する。第6回：tidyverse流データ分析では、同じNPV・IRRの例を使い、複数の投資案のデータ整理、集計、可視化を学ぶ。\n\n\n\n\n\n\nノートデータについて\n\n\n\n本書のsample-prices.csvおよびdata/reference内のデータは教材説明用の仮想データであり、実在する金融商品や企業の数値ではない。実際の投資判断には使用しないこと。",
+    "section": "講義の概要",
+    "text": "講義の概要\n本講義では、実証会計およびファイナンスへの応用に関心を持つ学生を対象に、R言語の基礎からデータ分析への応用までを扱う。会計・ファイナンスの理論とRによる実装を段階的に学び、データを用いた演習を通じて、理論と分析手法の理解を深める。\n前半では、RとRStudioの基本操作をはじめ、関数の作成、データの読み込み、tidyverseを用いたデータの整理・集計・可視化を学ぶ。後半では、財務データ・株式データの分析に加え、ポートフォリオ理論やファクター・モデルなどの会計・ファイナンス理論を学ぶ。実データと演習用データを用い、分析手法を修得するとともに、得られた結果の意味や解釈上の限界を検討する。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#講義の目的",
+    "href": "index.html#講義の目的",
+    "title": "応用ファイナンス1",
+    "section": "講義の目的",
+    "text": "講義の目的\n本講義の目的は、実際のプログラミングを通じて、実証会計・ファイナンスの理論と分析方法を修得することである。理論上の概念をデータや計算手順と結び付け、分析結果を根拠として説明する力を養う。\nまた、本講義は、本学科のディプロマ・ポリシーのうち、次の事項の実現に資する科目である。\n\nビジネス環境で発生している諸々の問題に対して自然科学及び社会科学の知識を活用して解明するという基本的方針の下で理論的かつ実践的な考え方を身に付けている。\n経営学研究に必要な基礎学力を修得するとともに、分野毎に設定された専門領域科目を包括的に学ぶ。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#講義の到達度目標",
+    "href": "index.html#講義の到達度目標",
+    "title": "応用ファイナンス1",
+    "section": "講義の到達度目標",
+    "text": "講義の到達度目標\n\n会計・ファイナンスの基礎的な理論を理解し、その考え方を説明できる。\nRを用いてデータを分析し、会計・ファイナンスに関する問題を検討できる。\n分析結果を適切に解釈し、その意義と限界を踏まえて、自らの考察を論理的に説明できる。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#講義のスケジュール",
+    "href": "index.html#講義のスケジュール",
+    "title": "応用ファイナンス1",
+    "section": "講義のスケジュール",
+    "text": "講義のスケジュール\n\n\n\n回\n開講日\n内容\n\n\n\n\n01\n9月11日\nRの基本操作 I\n\n\n02\n9月18日\nRの基本操作 II\n\n\n03\n9月25日\nRの基本操作 III\n\n\n04\n10月02日\nRの基本操作 IV\n\n\n05\n10月09日\nRの基本操作：演習\n\n\n06\n10月16日\ntidyverse流による財務・株式データ分析\n\n\n07\n10月23日\n財務データ分析 I\n\n\n08\n10月30日\n財務データ分析 II\n\n\n09\n11月06日\n休講\n\n\n10\n11月13日\n財務データ分析 III\n\n\n11\n11月27日\n株式データ分析 I\n\n\n12\n12月04日\n株式データ分析 II\n\n\n13\n12月11日\nファクター・モデル I\n\n\n14\n12月18日\nファクター・モデル II\n\n\n15\n12月18日以降\n補講：tidyverse流による財務・株式データ分析：演習\n\n\n16\n1月（未定）\n最終レポートに関する質疑応答",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#教科書参考書籍",
+    "href": "index.html#教科書参考書籍",
+    "title": "応用ファイナンス1",
+    "section": "教科書・参考書籍",
+    "text": "教科書・参考書籍\n\n教科書\n本ウェブサイトを教科書として使用する。\n\n\n参考書籍\n学習の補助として、次の書籍を参考にされたい。購入は必須ではない。\n笠原晃恭・村宮克彦（著）『実証会計・ファイナンス：Rによる財務・株式データの分析』、ライブラリ データ分析への招待 5、新世社、2022年。\n\n書影出典：出版社の書籍紹介ページ。書名または表紙から詳細を確認できる。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#成績評価",
+    "href": "index.html#成績評価",
+    "title": "応用ファイナンス1",
+    "section": "成績評価",
+    "text": "成績評価\n小課題（50%）、平常点（10%）、最終レポート（40%）により評価する。\n\n\n\n\n\n\n\n\n評価項目\n配点\n内容\n\n\n\n\n小課題\n50%\n単元の区切りごとに小課題を課す。5回程度を予定しているが、授業の進行状況により多少増減する。\n\n\n平常点\n10%\n授業への参加・取組みを確認するため、毎授業後にコメントシートの提出を求める。\n\n\n最終レポート\n40%\nRを用いて、会計・ファイナンスに関する具体的な課題を分析・解決する実践的な課題を課す。テーマの詳細は後日提示する。\n\n\n\n授業運営に有意義な意見や助言を提供した場合、授業内容について有意義な質問をした場合、授業への参加度が高い場合には、上記の点数に上限5点のボーナス点を加算する。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#出席",
+    "href": "index.html#出席",
+    "title": "応用ファイナンス1",
+    "section": "出席",
+    "text": "出席\n\n出席の認定：モバイル出欠管理での出席登録と、授業後のコメントシートの提出の双方を行った場合に限り、出席を認める。いずれか一方を行わなかった場合は、欠席とみなす。\n遅刻の扱い：指定時刻までに着席していない場合は遅刻とし、遅刻1回を0.5回分の欠席に換算する。\n欠席の扱い：欠席1回につき5点を減点する。4回以上欠席した場合は、単位修得の意思がないものとみなし、「履修放棄」とする。\n公欠の扱い：流行性の病気や大けがなどについては、医師の診断書のコピーを提出することで、公欠と認める場合がある。公欠に該当する場合を除き、電車の遅延、就職活動、部活動の試合、課題の提出忘れ、ネット接続障害、パソコンの不調など、いかなる事情も遅刻・欠席の扱いを変更する理由として認めない。\n出席に関する相談には一切応じない。",
+    "crumbs": [
+      "ガイダンス"
+    ]
+  },
+  {
+    "objectID": "index.html#履修上の注意",
+    "href": "index.html#履修上の注意",
+    "title": "応用ファイナンス1",
+    "section": "履修上の注意",
+    "text": "履修上の注意\n\n前提知識：「会計学入門および演習」「ファイナンス入門および演習」などの導入科目を履修済みであることが望ましい。ただし、未履修であっても、自学により関連知識を身に付ける意欲があれば差し支えない。授業中にも必要に応じて関連知識の復習を行う。\nパソコンとファイルの管理：Rを用いた課題の提出があるため、基本的に各自のパソコンを使用する。教員から指示があった場合は、ノートパソコンを持参すること。やむを得ず生協などから借用する場合は、作成したファイルや提出物をクラウドストレージやUSBメモリにも保存すること。\nLETUSの確認：講義資料や注意事項などはLETUSに掲載するため、必ず確認すること。\nURL・掲載内容の取扱い：著作権保護のため、本ウェブサイトのURLおよび掲載内容を、履修者以外の第三者に共有したり、授業外で公開・転載・再配布したりすることを禁止する。",
     "crumbs": [
       "ガイダンス"
     ]
@@ -32,387 +102,61 @@
   {
     "objectID": "lessons/01/index.html",
     "href": "lessons/01/index.html",
-    "title": "第1回：Rの基本操作 I ― RとRStudioの導入・インストール",
+    "title": "第1回：Rの基本操作 I",
     "section": "",
     "text": "到達目標",
     "crumbs": [
-      "第1回：Rの基本操作 I ― RとRStudioの導入・インストール"
+      "第1回：Rの基本操作 I"
     ]
   },
   {
     "objectID": "lessons/01/index.html#到達目標",
     "href": "lessons/01/index.html#到達目標",
-    "title": "第1回：Rの基本操作 I ― RとRStudioの導入・インストール",
+    "title": "第1回：Rの基本操作 I",
     "section": "",
-    "text": "RとRStudioの役割の違いを説明できる\n使用するパソコンに対応したインストーラーを選択できる\nR、RStudioの順にインストールできる\nRStudioを起動し、R本体が認識されていることを確認できる",
+    "text": "Rの特徴と、データ分析における用途を理解する。\nRとRStudioそれぞれの役割と、両者の関係を理解する。\nRとRStudioを導入し、学習に必要な環境を整える。",
     "crumbs": [
-      "第1回：Rの基本操作 I ― RとRStudioの導入・インストール"
+      "第1回：Rの基本操作 I"
     ]
   },
   {
     "objectID": "lessons/01/index.html#chapter-1rとrstudioとは",
     "href": "lessons/01/index.html#chapter-1rとrstudioとは",
-    "title": "第1回：Rの基本操作 I ― RとRStudioの導入・インストール",
+    "title": "第1回：Rの基本操作 I",
     "section": "Chapter 1｜RとRStudioとは",
-    "text": "Chapter 1｜RとRStudioとは\n\nRとは何か\nRは、データの整理、計算、グラフの作成に用いるプログラミング言語であり、それらを実行する環境でもある。特に統計分析に広く用いられる。\nRでは、処理の指示をコードとして記述する。コードを残すことで、同じ分析手順を繰り返し利用できる。具体的な記述方法と実行操作は第2回で扱う。\nRで行う主な作業には、次のようなものがある。\n\n\n\n作業\n例\n\n\n\n\n計算\nテストの平均点を求める\n\n\nデータの整理\nアンケート回答から必要な行や列を取り出す\n\n\n作図\n気温の変化を折れ線グラフにする\n\n\n分析の反復\n新しいデータに同じ集計手順を適用する\n\n\n\nRは無料で利用でき、Windows、macOS、Linuxで動作する。R Project：What is R?\n\n\n補足：パッケージによる機能の追加\n\nRはパッケージを追加することで機能を拡張できる。パッケージの具体的な使用方法は第4回で扱う。\n\n\n\nRStudioとは何か\nRStudioは、コードの編集、Rによる実行、結果の確認、ファイルの管理を一つの画面で行うためのアプリケーションである。このように、作業に必要な機能をまとめた環境を統合開発環境（IDE）という。\nRStudioには複数の提供形態がある。ここで使用するのは、各自のパソコンにインストールする無料のRStudio Desktop（Open Source）である。開発元はPositであり、ダウンロード先にも「Posit」と表示される。Posit：RStudio IDE User Guide\n\n\n\n\n\nRStudioでRのコードを実行するには、R本体を別途インストールする必要がある。導入後は通常、RStudioを起動すればRを利用できるため、毎回両方のアプリケーションを個別に起動する必要はない。\n\n\nRはデータ処理や計算を実行する言語・環境である。\nRStudioは、Rを用いた作業を支援するアプリケーションである。\nRのインストール、RStudioのインストール、RStudioでの動作確認の順に進める。",
+    "text": "Chapter 1｜RとRStudioとは\n\nRとは何か\nRは、データの整理、計算、グラフの作成に用いるプログラミング言語であり、それらを実行する環境でもある。特に統計分析に広く用いられる。\nRでは、処理の指示をコードとして記述する。コードを残すことで、同じ分析手順を繰り返し利用できる。Rで行う主な作業には、次のようなものがある。\n\n\n\n作業\n例\n\n\n\n\n計算\nテストの平均点を求める\n\n\nデータの整理\nアンケート回答から必要な行や列を取り出す\n\n\n作図\n気温の変化を折れ線グラフにする\n\n\n分析の反復\n新しいデータに同じ集計手順を適用する\n\n\n\nRは無料で利用でき、Windows、macOS、Linuxで動作する。R Project：What is R?\n\n\n補足：パッケージによる機能の追加\n\nRはパッケージを追加することで機能を拡張できる。パッケージの具体的な使用方法は第4回で扱う。\n\n\nRとPythonの比較\nデータ分析に用いられる言語には、RのほかにPythonもある。Rは統計計算とグラフの作成を中心に設計された言語である。一方、Pythonはデータ分析だけでなく、Webアプリケーションの開発や作業の自動化など、幅広い目的に用いられる汎用的な言語である。R Project：What is R?、Python：Applications for Python\nどちらを用いても、データの整理、統計分析、可視化を行うことができる。そのため、単純に優劣を決めるのではなく、分析の目的や利用する機能、共同作業の環境に応じて選ぶことが重要である。\n\n\n\nRStudioとは何か\nRStudioは、コードの編集、Rによる実行、結果の確認、ファイルの管理を一つの画面で行うためのアプリケーションである。このように、作業に必要な機能をまとめた環境を統合開発環境（IDE）という。\nRStudioには複数の提供形態がある。ここで使用するのは、各自のパソコンにインストールする無料のRStudio Desktop（Open Source）である。開発元はPositであり、ダウンロード先にも「Posit」と表示される。Posit：RStudio IDE User Guide\n\n\n\n\n\nRStudioでRのコードを実行するには、R本体を別途インストールする必要がある。導入後は通常、RStudioを起動すればRを利用できるため、毎回両方のアプリケーションを個別に起動する必要はない。\n\n\nRはデータ処理や計算を実行する言語・環境である。\nRStudioは、Rを用いた作業を支援するアプリケーションである。",
     "crumbs": [
-      "第1回：Rの基本操作 I ― RとRStudioの導入・インストール"
+      "第1回：Rの基本操作 I"
     ]
   },
   {
     "objectID": "lessons/01/index.html#chapter-2rのダウンロードとインストール",
     "href": "lessons/01/index.html#chapter-2rのダウンロードとインストール",
-    "title": "第1回：Rの基本操作 I ― RとRStudioの導入・インストール",
+    "title": "第1回：Rの基本操作 I",
     "section": "Chapter 2｜Rのダウンロードとインストール",
-    "text": "Chapter 2｜Rのダウンロードとインストール\n\n1. パソコンの種類を確認する\nはじめに、使用するパソコンがWindowsかMacかを確認する。Macの場合は、搭載されているチップの種類も確認する必要がある。\n\n\n\n\n\n\n\n確認するもの\n確認する場所\n\n\n\n\nWindowsのバージョン・システムの種類\nスタート → 設定 → システム → バージョン情報\n\n\nmacOSのバージョン・チップ\n画面左上のAppleメニュー → このMacについて\n\n\n\nMacで「チップ：Apple M1、M2、M3…」などと表示される場合はApple silicon、「プロセッサ：Intel…」と表示される場合はIntelである。この区別は、Rのインストーラーを選択する際に必要となる。\n使用するOSのバージョンを確認し、Macの場合はチップの種類も記録する。これらの情報を、次のダウンロードで使用する。\n\n\n2. Rの配布サイトを開く\nRはCRAN（Comprehensive R Archive Network）から入手できる。ブラウザでRの公式配布サイト：CRANを開く。\n\n\n\n\n\n\n\n3. 使用するOSに沿ってインストールする\n以下でWindowsまたはMacを選択し、該当する手順を実行する。インストール後は、タブの下にある「インストールの完了を確認する」へ進む。\n\nWindowsMac\n\n\n\nダウンロード後、ブラウザのダウンロード一覧または「ダウンロード」フォルダから.exeファイルを開く。\nインストール画面の言語を選択し、説明を確認して次へ（Next）で進む。保存先や起動オプションは、特に指定がなければ初期設定を使用する。\n完了（Finish）を選択する。\n\n\n\n補足：base・contrib・Rtoolsの違い\n\n通常のインストールにはbaseを使用する。contribは追加パッケージ、Rtoolsは主にソースコードからのビルドに用いるものであり、最初の動作確認には必要ない。詳細はR for Windows FAQで確認できる。\n\n\n\nまず、記録したチップの種類と、次の図に示すファイル名の対応を確認する。\n\n\n\nMacのチップとRインストーラーの対応\n\n\n確認： Apple siliconのMacでは、Rのどの種類の.pkgを選択するか。\n\n\n解答例\n\n名前にarm64を含み、使用中のmacOSに対応する.pkgを選択する。\n\n\nCRANのDownload R for macOSを選択する。直接アクセスする場合はmacOS用Rのダウンロードページを開く。\nLatest release付近で、使用するチップとmacOSに対応したファイルを確認する。\nApple siliconの場合は名前にarm64を含む.pkg、Intelの場合は名前にx86_64を含む.pkgを選択する。\nダウンロードした.pkgを開く。\n続ける → 使用許諾の確認 → インストールと進み、認証が求められた場合は画面の案内に従う。\nインストールが完了したら、インストーラーを閉じる。\n\n\n\n補足：.pkgと.tar.gzの違い\n\n.tar.gzはソースコードなどの配布に使われる形式である。通常のMacへのインストールでは、チップとOSに対応した.pkgを選択する。\n\n\n\n\n\n\n4. インストールの完了を確認する\nWindowsではスタートメニューでRを検索し、MacではFinderの「アプリケーション」にRが追加されたことを確認する。ダウンロードしたインストーラーではなく、インストール済みのアプリケーションがあることを確認する。\n\n\nインストールできない場合の確認事項\n\n\nMacでは、.pkgのarm64 / x86_64とチップの種類が対応しているか、macOSの動作条件を満たすか確認する。\n管理者の認証を求められた場合は、設定変更の権限を持つ端末か確認する。大学の管理端末では管理担当者に相談する。\n古いOSやWindowsのARM機などで判断が難しい場合は、OS名とシステムの種類を教員に伝える。\n\n\nR本体のインストールが完了したら、続いてRStudioを導入する。",
+    "text": "Chapter 2｜Rのダウンロードとインストール\n\n1. パソコンの種類を確認する\nはじめに、使用するOSのバージョンと、Windowsではシステムの種類、Macではチップの種類を確認する。\n\n\n\n\n\n\n\n確認するもの\n確認する場所\n\n\n\n\nWindowsのバージョン・システムの種類\nスタート → 設定 → システム → バージョン情報\n\n\nmacOSのバージョン・チップ\n画面左上のAppleメニュー → このMacについて\n\n\n\nWindowsで「システムの種類」に「64ビット オペレーティング システム、x64ベース プロセッサ」と表示される場合は、通常のWindows用64ビット版Rを使用する。「ARMベース プロセッサ」や「32ビット オペレーティング システム」と表示される場合は、対応状況が異なるため、インストール前に教員に確認する。R for Windows FAQ\nMacで「チップ：Apple M1、M2、M3…」などと表示される場合はApple silicon、「プロセッサ：Intel…」と表示される場合はIntelである。この区別は、Rのインストーラーを選択する際に必要となる。\nOSのバージョンは、RとRStudioの動作条件を満たしているかを確認するために用いる。Windowsでは「Windowsの仕様」でWindows 10・11などの表示を確認する。OSのバージョンとシステム・チップの種類を記録し、ダウンロード時にそれぞれの配布ページの動作条件と照合する。\n\n\n2. Rの配布サイトを開く\nRはCRAN（Comprehensive R Archive Network）から入手できる。ブラウザでRの公式配布サイト：CRANを開く。\n\n\n\n\n\n\n\n3. 使用するOSに沿ってインストールする\n以下でWindowsまたはMacを選択し、該当する手順を実行する。インストール後は、タブの下にある「インストールの完了を確認する」へ進む。\n\nWindowsMac\n\n\n\nダウンロード後、ブラウザのダウンロード一覧または「ダウンロード」フォルダから.exeファイルを開く。\nインストール画面の言語を選択し、説明を確認して次へ（Next）で進む。保存先や起動オプションは、特に指定がなければ初期設定を使用する。\n完了（Finish）を選択する。\n\n\n\n補足：base・contrib・Rtoolsの違い\n\n通常のインストールにはbaseを使用する。contribは追加パッケージ、Rtoolsは主にソースコードからのビルドに用いるものであり、最初の動作確認には必要ない。詳細はR for Windows FAQで確認できる。\n\n\n\nまず、記録したチップの種類と、次の図に示すファイル名の対応を確認する。\n\n\n\nMacのチップとRインストーラーの対応\n\n\n確認： Apple siliconのMacでは、Rのどの種類の.pkgを選択するか。\n\n\n解答例\n\n名前にarm64を含み、使用中のmacOSに対応する.pkgを選択する。\n\n\nCRANのDownload R for macOSを選択する。直接アクセスする場合はmacOS用Rのダウンロードページを開く。\nLatest release付近で、使用するチップとmacOSに対応したファイルを確認する。\nApple siliconの場合は名前にarm64を含む.pkg、Intelの場合は名前にx86_64を含む.pkgを選択する。\nダウンロードした.pkgを開く。\n続ける → 使用許諾の確認 → インストールと進み、認証が求められた場合は画面の案内に従う。\nインストールが完了したら、インストーラーを閉じる。\n\n\n\n補足：.pkgと.tar.gzの違い\n\n.tar.gzはソースコードなどの配布に使われる形式である。通常のMacへのインストールでは、チップとOSに対応した.pkgを選択する。\n\n\n\n\n\n\n4. インストールの完了を確認する\nWindowsではスタートメニューでRを検索し、MacではFinderの「アプリケーション」にRが追加されたことを確認する。ダウンロードしたインストーラーではなく、インストール済みのアプリケーションがあることを確認する。\n\n\nインストールできない場合の確認事項\n\n\nMacでは、.pkgのarm64 / x86_64とチップの種類が対応しているか、macOSの動作条件を満たすか確認する。\n管理者の認証を求められた場合は、設定変更の権限を持つ端末か確認する。大学の管理端末では管理担当者に相談する。\n古いOSやWindowsのARM機などで判断が難しい場合は、OS名とシステムの種類を教員に伝える。\n\n\nR本体のインストールが完了したら、続いてRStudioを導入する。",
     "crumbs": [
-      "第1回：Rの基本操作 I ― RとRStudioの導入・インストール"
+      "第1回：Rの基本操作 I"
     ]
   },
   {
     "objectID": "lessons/01/index.html#chapter-3rstudioのダウンロードとインストール",
     "href": "lessons/01/index.html#chapter-3rstudioのダウンロードとインストール",
-    "title": "第1回：Rの基本操作 I ― RとRStudioの導入・インストール",
+    "title": "第1回：Rの基本操作 I",
     "section": "Chapter 3｜RStudioのダウンロードとインストール",
-    "text": "Chapter 3｜RStudioのダウンロードとインストール\n\n1. RStudio Desktopをダウンロードする\nPositのRStudio Desktopダウンロード入口を開く。公式ガイドに案内された場合は、Install LinksまたはDirect Downloads (Open Source)から、使用するOSに対応したRStudio Desktopを選択する。公式ガイドのダウンロード一覧からもアクセスできる。\nWindowsでは.exe、Macでは.dmgを選択する。OSの対応条件を確認し、通常の安定版をダウンロードする。Open Source版は無料であり、今回の作業に有料版の契約は必要ない。\n\n\n\nRStudio Desktopのダウンロードとインストールの手順\n\n\n図はインストール手順の模式図である。配布ページの構成やボタン名は変更される場合がある。\n\n\n2. RStudioをインストールして起動する\n使用するOSの手順を実行する。起動後は、タブの下にある「起動状態を確認する」へ進む。\n\nWindowsMac\n\n\n\nダウンロードしたRStudioの.exeを開く。\nNextで進み、インストール先を確認する。特に指定がなければ初期設定を使用する。\nInstallを選択し、処理が完了したらFinishを選択する。\nスタートメニューからRStudioを起動する。\n\n\n\n\nダウンロードしたRStudioの.dmgを開く。\n表示されたウィンドウで、RStudioのアイコンをApplications（アプリケーション）へドラッグする。\nコピー完了後、Finderの「アプリケーション」からRStudioを起動する。\n初回起動の確認が表示された場合は、公式サイトから取得したアプリであることを確認して開く。\n\n.dmgを開いたウィンドウ内のアイコンと、コピー済みのアプリケーションは区別する必要がある。通常は「アプリケーション」内のRStudioを使用する。\n\n\n\nRの選択画面が表示された場合は、先にインストールしたRを指定する。\n\n\nRStudioがRを認識しない場合\n\nR本体のインストールが完了しているか確認する。Windowsではスタートメニュー、Macでは「アプリケーション」からRを単独で起動し、起動メッセージが表示されるか確認する。その後Rを終了し、RStudioを開き直す。Rを終了する際、この段階では作業領域を保存する必要はない。\n\n\n\n3. 起動状態を確認する\nRStudioのウィンドウが開き、Consoleと表示された領域にRのバージョンや起動メッセージが表示されることを確認する。Rが見つからないというエラーがなければ、インストールは完了である。",
+    "text": "Chapter 3｜RStudioのダウンロードとインストール\n\n1. RStudio Desktopをダウンロードする\nPositのRStudio Desktopダウンロード入口を開く。次に、Install LinksまたはDirect Downloads (Open Source)から、使用するOSに対応したRStudio Desktopを選択する。公式ガイドのダウンロード一覧からもアクセスできる。\nWindowsでは.exe、Macでは.dmgを選択する。OSの対応条件を確認し、通常の安定版をダウンロードする。Open Source版は無料であり、今回の作業に有料版の契約は必要ない。\n\n\n\nRStudio Desktopのダウンロードとインストールの手順\n\n\n図はインストール手順の模式図である。配布ページの構成やボタン名は変更される場合がある。\n\n\n2. RStudioをインストールして起動する\n使用するOSの手順を実行する。起動後は、タブの下にある「起動状態を確認する」へ進む。\n\nWindowsMac\n\n\n\nダウンロードしたRStudioの.exeを開く。\nNextで進み、インストール先を確認する。特に指定がなければ初期設定を使用する。\nInstallを選択し、処理が完了したらFinishを選択する。\nスタートメニューからRStudioを起動する。\n\n\n\n\nダウンロードしたRStudioの.dmgを開く。\n表示されたウィンドウで、RStudioのアイコンをApplications（アプリケーション）へドラッグする。\nコピー完了後、Finderの「アプリケーション」からRStudioを起動する。\n初回起動の確認が表示された場合は、公式サイトから取得したアプリであることを確認して開く。\n\n.dmgを開いたウィンドウ内のアイコンと、コピー済みのアプリケーションは区別する必要がある。通常は「アプリケーション」内のRStudioを使用する。\n\n\n\nRの選択画面が表示された場合は、先にインストールしたRを指定する。\n\n\nRStudioがRを認識しない場合\n\nR本体のインストールが完了しているか確認する。Windowsではスタートメニュー、Macでは「アプリケーション」からRを単独で起動し、起動メッセージが表示されるか確認する。その後Rを終了し、RStudioを開き直す。Rを終了する際、この段階では作業領域を保存する必要はない。\n\n\n\n3. 起動状態を確認する\nRStudioのウィンドウが開き、Consoleと表示された領域にRのバージョンや起動メッセージが表示されることを確認する。Rが見つからないというエラーがなければ、インストールは完了である。",
     "crumbs": [
-      "第1回：Rの基本操作 I ― RとRStudioの導入・インストール"
+      "第1回：Rの基本操作 I"
     ]
   },
   {
-    "objectID": "lessons/02/index.html",
-    "href": "lessons/02/index.html",
-    "title": "第2回：Rの基本操作 II ― RStudioとRの基本操作",
-    "section": "",
-    "text": "到達目標",
+    "objectID": "lessons/01/index.html#授業外課題",
+    "href": "lessons/01/index.html#授業外課題",
+    "title": "第1回：Rの基本操作 I",
+    "section": "授業外課題",
+    "text": "授業外課題\nRとRStudioをインストールし、RStudioを起動した画面のスクリーンショットを提出しなさい。RStudioのウィンドウ全体と、Consoleに表示されたRのバージョン・起動メッセージが読める状態で撮影すること。\n\n提出方法・締切\n\n\n\n\n\n\n\n項目\n指示\n\n\n\n\n提出先\nLETUSの当該科目ページにある「第1回授業外課題（提出）」\n\n\n提出物\nRStudioの起動画面のスクリーンショット1枚（PNGまたはJPEG形式）\n\n\nファイル名\n学籍番号_氏名_第1回授業外課題.拡張子\n\n\n締切\n9月17日（木）23:59まで\n\n\n\nファイル名の例：1234567_山田太郎_第1回授業外課題.png\n学籍番号と氏名は自分のものに置き換え、区切りには半角のアンダースコア（_）を用いる。拡張子は画像の形式に応じて.png、.jpg、.jpegのいずれかとする。\n保存した画像をLETUSにアップロードし、提出操作を完了する。提出後は、ファイル名と提出状況を確認すること。\n\n\nヒント：スクリーンショットの撮影と保存\nRStudioを手前に表示し、次の手順で撮影する。ほかのアプリや個人情報が写り込まないよう、RStudioのウィンドウを撮影範囲に収める。\n\nWindowsMac\n\n\n\nWindowsキー＋Shift＋Sを押す。\n「四角形」の切り取りを選び、RStudioのウィンドウ全体をドラッグして囲む。\n撮影後の通知をクリックして画像を開き、保存ボタンから、指定のファイル名でPNG形式の画像を保存する。\n\n操作の詳細：Microsoft：Snipping Toolによるスクリーンショットの撮影\n\n\n\nShift＋Command（⌘）＋4を押し、続けてスペースキーを押す。\nポインタがカメラの形に変わったら、RStudioのウィンドウをクリックする。\n通常はデスクトップにPNG形式で保存される。保存された画像を選択し、Returnキーを押して、指定のファイル名に変更する。\n\n操作の詳細：Apple：Macでスクリーンショットを撮る",
     "crumbs": [
-      "第2回：Rの基本操作 II ― RStudioとRの基本操作"
-    ]
-  },
-  {
-    "objectID": "lessons/02/index.html#到達目標",
-    "href": "lessons/02/index.html#到達目標",
-    "title": "第2回：Rの基本操作 II ― RStudioとRの基本操作",
-    "section": "",
-    "text": "RStudioの各ペインを使い、Projectとスクリプトを作成できる\n計算、代入、関数の利用、条件の判定をコードで記述できる\n数値・文字列・論理値を区別し、データ型を確認できる\n複数の条件を組み合わせて判定し、結果を保存できる\nProjectの作業領域を保存・復元し、前回の状態から作業を再開できる",
-    "crumbs": [
-      "第2回：Rの基本操作 II ― RStudioとRの基本操作"
-    ]
-  },
-  {
-    "objectID": "lessons/02/index.html#chapter-1rstudioでコードを実行する",
-    "href": "lessons/02/index.html#chapter-1rstudioでコードを実行する",
-    "title": "第2回：Rの基本操作 II ― RStudioとRの基本操作",
-    "section": "Chapter 1｜RStudioでコードを実行する",
-    "text": "Chapter 1｜RStudioでコードを実行する\n\n作業の準備\n\n第1回でインストールしたRStudioを起動する。\nLETUSの科目ページからdata_lesson02.csvをダウンロードする。保存先は、以下でProjectを作成した後に指定する。\n\nこの回では、画面の使い方を確認しながら、Projectとscript/lesson02.Rを作成する。追加パッケージのインストールは不要である。\n\n\n1. 画面と各ペインの役割\nRStudioの画面は複数の領域に分かれており、それぞれをペイン（pane）と呼ぶ。まず、図と自分の画面を対応させて各ペインを確認する。\n初回起動時にはSourceが表示されず、3領域に見えることがある。Sourceはスクリプトを開くと表示される。配置は設定によって変わるため、位置と併せてタブ名を確認する。\n\n\n\nRStudioの主要なペイン\n\n\n出典：Posit, Get Started — RStudio Panes。\n\n\n\n\n\n\n\nペイン\n主な役割\n\n\n\n\nSource\nRスクリプトを編集する\n\n\nConsole\nコードを実行し、結果やエラーを確認する\n\n\nEnvironment / History\n作成したオブジェクトや実行履歴を確認する\n\n\nFiles / Plots / Packages / Help\nファイル、図、パッケージ、ヘルプを確認する\n\n\n\n\n\n2. Projectを作成する\nProjectは、分析に使うスクリプト、データ、出力を一つのフォルダにまとめて管理する仕組みである。作業を始める際にProjectを開くと、そのフォルダを基準にファイルを扱える。\n\nFile → New Project → New Directory → New Projectを選択する。\nDirectory nameにempirical_financeを入力し、保存先を指定する。\nCreate Projectを選択する。\n画面右上のProject名がempirical_financeになっていることを確認する。\n\n同名のProjectが既にある場合は、その.Rprojファイルから開く。以後のコードは、このProjectのscriptフォルダ内に作成するlesson02.Rに順に記録する。\n演習：Projectとフォルダの準備\n全員、次の作業を行い、授業で使用するProjectとデータを準備しなさい。\n\n上の手順に従って、empirical_financeという名前のProjectを作成する。既に作成した場合は、そのProjectを開く。\nProjectフォルダ直下に、データを保存するdataフォルダと、Rスクリプトを保存するscriptフォルダを作成する。RStudioのFilesペインでProjectフォルダを表示し、New Folderからそれぞれ作成する。\nダウンロードしたdata_lesson02.csvを、作成したdataフォルダに移す。\nFilesペインでdataフォルダを開き、data_lesson02.csvがあることを確認する。\n\n作業後のフォルダ構成は、次のようになる。\nempirical_finance/\n├── empirical_finance.Rproj\n├── data/\n│   └── data_lesson02.csv\n└── script/\n\n\n3. スクリプトを作成し、最初の式を実行する\nRのコードを記録したファイルをRスクリプトという。File → New File → R Scriptを選択すると、Sourceペインに新しいRスクリプトの編集タブが開く。\n#から行末まではコメントであり、計算として実行されない。Rスクリプトに次のコードを記述する。\n\n# 基本的な計算\n1 + 2\n\n[1] 3\n\n\n1 + 2の行にカーソルを置き、Runを選択する。WindowsではCtrl + Enter、MacではCommand + Enterでも実行できる。複数行を選択した場合は、その範囲が実行される。\nConsoleに[1] 3が表示される。3が計算結果であり、[1]は表示行の先頭の値が結果の第1要素であることを示す。\nFile → Save Asで、Project内のscriptフォルダを選び、lesson02.Rという名前で保存する。Projectを基準とした保存先はscript/lesson02.Rとなる。以降も同じファイルにコードを追加し、WindowsではCtrl + S、MacではCommand + Sで変更を保存する。\n保存と実行は別の操作である。コードを実行しても、その変更がファイルに保存されるとは限らない。\n\n\n4. Consoleへの直接入力\nConsoleにはコードを直接入力することもできる。&gt;は入力を受け付ける状態を示す記号であり、コードの一部として入力しない。\nConsoleで半角の10 / 4を入力し、Enterで実行する。結果は次のようになる。\n&gt; 10 / 4\n[1] 2.5\n直接入力は短い確認に便利だが、残す必要のある処理はRスクリプトに記述する。以降の例と演習はlesson02.Rに追加して実行する。\n\n\n入力・実行時の確認事項\n\n\nConsoleが+のままになる場合は、括弧や引用符の閉じ忘れを確認する。Escで入力を取り消し、式を修正する。\n数値や演算記号には半角文字を使う。\nRスクリプトにコードを記述しても結果が出ない場合は、Runまたは実行用ショートカットで実行したか確認する。\n\n\n操作確認： lesson02.Rに(8 + 4) / 2を追加し、実行してから保存しなさい。\n\n\n解答例\n\n計算結果は6である。Rスクリプトに行を追加し、実行後に保存する。",
-    "crumbs": [
-      "第2回：Rの基本操作 II ― RStudioとRの基本操作"
-    ]
-  },
-  {
-    "objectID": "lessons/02/index.html#chapter-2計算代入関数",
-    "href": "lessons/02/index.html#chapter-2計算代入関数",
-    "title": "第2回：Rの基本操作 II ― RStudioとRの基本操作",
-    "section": "Chapter 2｜計算・代入・関数",
-    "text": "Chapter 2｜計算・代入・関数\n\n1. 計算式を記述する\nRでは、加減乗除やべき乗を演算子で記述する。以下の表で記号を確認し、コードを実行する。\n\n\n\n演算子\n意味\n例\n\n\n\n\n+、-\n加算、減算\n10 - 4\n\n\n*、/\n乗算、除算\n3 * 5\n\n\n^\nべき乗\n2^3\n\n\n\n\n10 - 4\n\n[1] 6\n\n3 * 5\n\n[1] 15\n\n2^3\n\n[1] 8\n\n(2 + 3) * 4\n\n[1] 20\n\n\n結果は順に6、15、8、20となる。括弧を用いると、先に計算する範囲を明示できる。\n\n\n補足：余りと整数除算\n\n%%は除算の余り、%/%は整数除算の結果を返す。\n\n10 %% 3\n\n[1] 1\n\n10 %/% 3\n\n[1] 3\n\n\n結果はそれぞれ1と3である。\n\n\n\n2. 値に名前を付ける\nデータや計算結果を保存し、名前を使って再利用するには、代入演算子&lt;-を用いる。Rで扱う値やデータなどをオブジェクトという。\n\nscore &lt;- 82\nscore\n\n[1] 82\n\n\nscore &lt;- 82は、右側の値を左側の名前に代入する操作である。代入だけでは通常、結果は表示されない。名前を実行すると値が表示され、Environmentにもscoreが追加される。\n\nscore + 5\n\n[1] 87\n\nscore\n\n[1] 82\n\n\n最初の結果は87だが、score自体は82のままである。値を変更するには、計算結果を再び代入する。\n\nscore &lt;- score + 5\nprint(score)\n\n[1] 87\n\n\nここではscoreが87に更新される。print()は値を表示する関数であり、オブジェクト名を直接実行する代わりに使用できる。\n名前にはscoreやaverage_scoreのように内容を表す英字名を使うと読みやすい。大文字と小文字は区別されるため、scoreとScoreは別の名前である。空白や、TRUE、FALSE、functionなどの予約語は使わない。\n演習： study_hoursに6を代入し、2を加えた結果を表示しなさい。その後、study_hours自体を8に更新しなさい。\n\n\n解答例\n\n\nstudy_hours &lt;- 6\nstudy_hours + 2\nstudy_hours &lt;- study_hours + 2\nstudy_hours\n\n単に加算した段階では元の値は変わらず、再代入によって更新される。\n\n\n\n3. 関数と引数\n関数は、値を受け取り、決められた処理を行って結果を返す仕組みである。関数名の後ろに括弧を書き、処理対象や設定を指定する。関数に渡す情報を引数という。\n\nsqrt(16)\n\n[1] 4\n\nabs(-8)\n\n[1] 8\n\nround(3.1415926, digits = 3)\n\n[1] 3.142\n\n\nsqrt()は平方根、abs()は絶対値を求める。round()は数値を丸め、digits = 3は小数点以下の桁数を指定する。この例の結果は4、8、3.142である。\n\n\n補足：対数と指数\n\nlog()は自然対数、exp()は自然対数の底を用いた指数関数である。\n\nlog(10)\n\n[1] 2.302585\n\nexp(2)\n\n[1] 7.389056\n\n\n\n使い方を確認する場合は、Helpを利用する。次のいずれかを実行すると、round()の説明が開く。\n\n?round\nhelp(round)\n\nHelpのUsageで書式、Argumentsで引数、Valueで返り値、Examplesで使用例を確認する。引数の書式だけを表示するにはargs(round)、使用例を実行するにはexample(round)を使う。\n演習： sqrt(50)を計算し、その結果を小数第2位まで表示しなさい。\n\n\n解答例\n\n\nroot_value &lt;- sqrt(50)\nround(root_value, digits = 2)\n\n結果は7.07である。関数を自作する方法は第4回で扱う。\n\n\n\n4. データ型を確認する\nデータ型とは、値を数値、文字列、論理値などのどの種類として扱うかを示すものである。Rでは、データ型によって適用できる演算や関数の処理が異なる。見た目が同じ数字でも、文字列として保存されていると、そのままでは足し算や平均の計算に使えない。\n例えば、82は数値なので、次の足し算の結果は87となる。\n\n82 + 5\n\n[1] 87\n\n\n一方、引用符で囲んだ\"82\"は文字列である。次の式を実行すると、数値ではない値に算術演算を適用したことを示すエラーになり、87は得られない。\n\n\"82\" + 5\n\nこのように、見た目だけでは計算に使えるかどうかを判断できない。計算やデータの加工に進む前に、値が意図した型になっているかを確認することが重要である。\nまず、基本となる数値、文字列、論理値を確認する。文字列は引用符で囲み、論理値はTRUEまたはFALSEで表す。class()を使うと型を確認できる。\n\nstudent_name &lt;- \"Aiko\"\nscore &lt;- 82\nattendance &lt;- 0.94\npassed &lt;- TRUE\n\nclass(student_name)\n\n[1] \"character\"\n\nclass(score)\n\n[1] \"numeric\"\n\nclass(passed)\n\n[1] \"logical\"\n\n\n出力は順に\"character\"、\"numeric\"、\"logical\"となる。82は数値だが、\"82\"は文字列である。\n\n\n補足：型の変換と警告\n\nas.numeric()、as.character()、as.logical()などで型を変換できる。\n\nas.numeric(\"12.5\")\n\n[1] 12.5\n\nas.character(100)\n\n[1] \"100\"\n\nas.logical(1)\n\n[1] TRUE\n\nas.numeric(FALSE)\n\n[1] 0\n\n\n数値として解釈できない文字列を変換すると、欠損値を表すNAになり、警告が表示される。\n\nas.numeric(\"twelve\")\n\nWarning: NAs introduced by coercion\n\n\n[1] NA\n\n\nこの警告は変換できなかったことを示している。NAの確認と集計方法は、第3回でベクトルとともに扱う。\n\n\n\n5. 条件を判定する\n比較演算子を使うと、条件を満たすかどうかがTRUEまたはFALSEで返される。\n\nscore &gt;= 80\n\n[1] TRUE\n\nscore == 82\n\n[1] TRUE\n\nscore != 70\n\n[1] TRUE\n\n\n\n\n\n演算子\n意味\n\n\n\n\n&gt; / &lt;\nより大きい／より小さい\n\n\n&gt;= / &lt;=\n以上／以下\n\n\n== / !=\n等しい／等しくない\n\n\n&\nかつ\n\n\n\\|\nまたは\n\n\n!\n否定\n\n\n\n代入には&lt;-、値が等しいかの判定には==を用いる。複数の条件は、論理演算子で組み合わせる。\n\nscore &gt;= 60 & attendance &gt;= 0.80\n\n[1] TRUE\n\nscore &gt;= 90 | attendance == 1\n\n[1] FALSE\n\n!(score &lt; 60)\n\n[1] TRUE\n\n\n得点82、出席率0.94なので、結果は順にTRUE、FALSE、TRUEとなる。\n演習： scoreが80以上、かつattendanceが0.90以上かどうかを判定しなさい。\n\n\n解答例\n\n\nscore &gt;= 80 & attendance &gt;= 0.90\n\n結果はTRUEである。\n\n\n\n補足：エラー・警告・メッセージ\n\n\n\n\n表示\n意味\n\n\n\n\nError\nその式の処理が完了しなかった\n\n\nWarning\n処理は行われたが、結果の確認が必要である\n\n\nMessage\n関数やパッケージからの情報である\n\n\n\nエラーが出た場合は、オブジェクト名の綴り、大文字と小文字、括弧、引用符、カンマを確認する。原因を確認できない場合は、実行したコードとメッセージを併せて教員に伝える。",
-    "crumbs": [
-      "第2回：Rの基本操作 II ― RStudioとRの基本操作"
-    ]
-  },
-  {
-    "objectID": "lessons/02/index.html#chapter-3基本操作の演習と作業の保存",
-    "href": "lessons/02/index.html#chapter-3基本操作の演習と作業の保存",
-    "title": "第2回：Rの基本操作 II ― RStudioとRの基本操作",
-    "section": "Chapter 3｜基本操作の演習と作業の保存",
-    "text": "Chapter 3｜基本操作の演習と作業の保存\n\n1. 演習：計算・代入・条件判断\nある学生の小テストの得点は78点、期末テストの得点は92点、出席率は0.85である。総合点を「小テストの40%と期末テストの60%の合計」とし、総合点が80点以上、かつ出席率が0.80以上の場合を合格とする。\n次の処理をscript/lesson02.Rに記述しなさい。\n\n得点をquiz_scoreとexam_score、出席率をattendance_rateに代入する。\n総合点を計算し、final_scoreに代入する。\n総合点を小数第1位まで表示する。\n合格条件を判定し、その結果をis_passedに代入する。\nclass()でfinal_scoreとis_passedの型を確認する。\n\n\n\n解答例\n\n\nquiz_score &lt;- 78\nexam_score &lt;- 92\nattendance_rate &lt;- 0.85\n\nfinal_score &lt;- quiz_score * 0.40 + exam_score * 0.60\nround(final_score, digits = 1)\n\nis_passed &lt;- final_score &gt;= 80 & attendance_rate &gt;= 0.80\nis_passed\n\nclass(final_score)\nclass(is_passed)\n\n総合点は86.4点であり、出席率も基準を満たすため、is_passedはTRUEとなる。型はそれぞれ\"numeric\"、\"logical\"である。\n\n\n\n2. Projectの作業領域を自動保存・復元する\nEnvironmentに表示されるオブジェクトをまとめたものを作業領域（workspace）という。作業領域を保存すると、作成したデータや計算結果を次にProjectを開いたときに復元できる。授業では、前回の状態から作業を続けられるよう、自動保存と自動復元を有効にする。\nempirical_financeを開いた状態で、Tools → Project Options → Generalを選択し、次のように設定してOKで確定する。\n\n\n\n設定項目\n選択する値\n\n\n\n\nRestore .RData into workspace at startup\nYes\n\n\nSave workspace to .RData on exit\nAlways\n\n\n\nProjectごとの設定はGlobal Optionsより優先される。このProjectでは、上の値を明示的に選択する。\nProjectを通常の手順で閉じると、作業領域がProjectフォルダ直下の.RDataに保存される。次にempirical_finance.Rprojを開くと、このファイルが読み込まれ、Environmentにオブジェクトが復元される。Posit：RStudio Projects\nただし、.RDataが保存するのはオブジェクトであり、Rスクリプトの変更ではない。script/lesson02.Rも別途保存する。また、CSVをdataフォルダに置くだけで、その内容が自動的に読み込まれるわけではない。\n\n\n3. Projectを開き直し、復元を確認する\n\nscript/lesson02.Rを保存する。\nConsoleで次のコードを実行し、現在の値を確認する。\nFile → Close ProjectでProjectを閉じる。\nempirical_finance.Rprojを開き直す。\nRスクリプトを実行する前に、Environmentにfinal_scoreやis_passedが復元されていることを確認する。\nConsoleで同じコードを実行し、閉じる前と同じ値が表示されることを確認する。\n\n\nprint(final_score)\nprint(is_passed)\n\n追加確認まで実行した場合、総合点は86.4、合格判定はFALSEの状態で保存される。ここではRスクリプトを自動実行しているのではなく、終了時に保存したオブジェクトを復元している。\n次回以降も、同じProjectを開けば保存した状態から作業を再開できる。Rスクリプトを編集するときは、scriptフォルダのlesson02.Rを開く。",
-    "crumbs": [
-      "第2回：Rの基本操作 II ― RStudioとRの基本操作"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html",
-    "href": "lessons/03/index.html",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "",
-    "text": "到達目標",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#到達目標",
-    "href": "lessons/03/index.html#到達目標",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "",
-    "text": "ベクトル、行列、配列、データフレーム、リストの違いを説明できる\n各データ構造を作成し、位置や名前、条件で要素を取り出せる\n欠損値を確認し、計算対象に注意して集計できる\nデータの内容に応じた構造を選び、Rスクリプトに処理を記録できる",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#chapter-1ベクトル",
-    "href": "lessons/03/index.html#chapter-1ベクトル",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "Chapter 1｜ベクトル",
-    "text": "Chapter 1｜ベクトル\n\n作業の準備\n\n第2回に作成したempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、Project内のscriptフォルダにlesson03.Rという名前で保存する。すでに作成している場合は、そのファイルを開く。\n\n以下のコードはscript/lesson03.Rに順に記述し、実行して結果を確認する。必要なデータはコード内で作成するため、データファイルや追加パッケージの準備は不要である。\n\n\n1. 複数の値をまとめる\n複数の学生の得点を扱うとき、学生ごとに別のオブジェクトを作る必要はない。ベクトルを使えば、同じ型の値をひとまとめにできる。c()は、引数に指定した値を順に結合する関数である。\n\nscores &lt;- c(72, 85, 91, 68, 77)\nstudent_names &lt;- c(\"Aiko\", \"Ken\", \"Mei\", \"Sora\", \"Yuki\")\n\nscores\n\n[1] 72 85 91 68 77\n\nstudent_names\n\n[1] \"Aiko\" \"Ken\"  \"Mei\"  \"Sora\" \"Yuki\"\n\n\nlength()で要素数、class()でデータ型を確認する。\n\nlength(scores)\n\n[1] 5\n\nclass(scores)\n\n[1] \"numeric\"\n\nclass(student_names)\n\n[1] \"character\"\n\n\n規則的な並びには専用の記法や関数がある。:は連続する整数、seq()は等間隔の数列、rep()は同じ値の繰り返しを作る。\n\n1:5\n\n[1] 1 2 3 4 5\n\nseq(from = 0, to = 10, by = 2)\n\n[1]  0  2  4  6  8 10\n\nrep(\"A\", times = 4)\n\n[1] \"A\" \"A\" \"A\" \"A\"\n\n\n練習：50から100まで、10刻みのベクトルを作りなさい。\n\n\n解答例\n\n\nseq(from = 50, to = 100, by = 10)\n\nseq(from = 0, to = 1, length.out = 6)のように、間隔ではなく要素数を指定することもできる。\n\n\n\n2. ベクトルを使って計算する\nベクトルに数値を足したり、割ったりすると、それぞれの要素に計算が適用される。次のコードでは、得点に5点を加えた値と、100で割った値を求める。scores自体は書き換わらない。\n\nscores + 5\n\n[1] 77 90 96 73 82\n\nscores / 100\n\n[1] 0.72 0.85 0.91 0.68 0.77\n\n\n合計や平均は、ベクトルを関数に渡して求める。\n\nsum(scores)\n\n[1] 393\n\nmean(scores)\n\n[1] 78.6\n\nmin(scores)\n\n[1] 68\n\nmax(scores)\n\n[1] 91\n\n\n平均は78.6点である。このように、複数の値を一度に処理できることがRの特徴の一つである。\n同じ長さのベクトル同士では、同じ位置の要素が計算される。2回の小テストの合計点と平均点を求めてみよう。\n\nquiz_1 &lt;- c(8, 7, 9, 6)\nquiz_2 &lt;- c(7, 9, 8, 8)\n\nquiz_1 + quiz_2\n\n[1] 15 16 17 14\n\n(quiz_1 + quiz_2) / 2\n\n[1] 7.5 8.0 8.5 7.0\n\n\n\n\n補足：長さの異なるベクトル\n\n長さの異なるベクトルを計算すると、短い側の値が繰り返し使われる。これをリサイクル規則という。scores + 5も、すべての得点に同じ5を加える例である。ただし、二つのデータを対応させて計算するときには、length()で長さを確認する。長さが異なっていても、必ず警告が出るとは限らない。\n\n\n\n3. 必要な要素を取り出す\nベクトルの後ろに角括弧[]を付け、取り出す位置を指定する。Rでは、先頭の位置を1で表す。\n\nscores[1]\n\n[1] 72\n\nscores[c(1, 3, 5)]\n\n[1] 72 91 77\n\nscores[2:4]\n\n[1] 85 91 68\n\n\n条件による抽出もできる。まず、条件式だけを実行して結果を確認する。\n\nscores &gt;= 80\n\n[1] FALSE  TRUE  TRUE FALSE FALSE\n\n\n各得点について、条件を満たす位置にTRUE、満たさない位置にFALSEが返る。この結果を[]に入れると、TRUEに対応する要素が選ばれる。\n\nscores[scores &gt;= 80]\n\n[1] 85 91\n\n\n抽出されるのは85点と91点である。要素に名前を付けると、位置だけでなく名前でも指定できる。\n\nnames(scores) &lt;- student_names\n\nscores\n\nAiko  Ken  Mei Sora Yuki \n  72   85   91   68   77 \n\nscores[\"Mei\"]\n\nMei \n 91 \n\n\n同じ記法で、指定した要素を書き換えられる。ここでは元の得点を残すため、コピーを作ってからKenの得点を修正する。\n\nrevised_scores &lt;- scores\nrevised_scores[\"Ken\"] &lt;- 88\nrevised_scores\n\nAiko  Ken  Mei Sora Yuki \n  72   88   91   68   77 \n\n\n練習：scoresから80点以上の得点を取り出し、該当する学生の名前も確認しなさい。\n\n\n解答例\n\n\nscores[scores &gt;= 80]\nnames(scores[scores &gt;= 80])\n\nKenとMeiが該当する。\n\n\n\n4. 欠損値を扱う\n値が記録されていない場合、Rでは通常NAで表す。欠損値は0とは異なる。次のデータでは、4人のうち1人の得点が不明である。\n\nscores_missing &lt;- c(70, 85, NA, 90)\n\nmean(scores_missing)\n\n[1] NA\n\n\n得点が一つでも不明なため、そのままでは平均もNAになる。欠損値を除いて計算する場合は、na.rm = TRUEを指定する。\n\nmean(scores_missing, na.rm = TRUE)\n\n[1] 81.66667\n\n\nこれは得点が記録されている3人の平均であり、4人全員の平均ではない。欠損値を除くときは、計算対象が変わることに注意する。\n欠損値の位置は、is.na()で調べる。== NAでは判定できない。\n\nis.na(scores_missing)\n\n[1] FALSE FALSE  TRUE FALSE\n\nscores_missing[!is.na(scores_missing)]\n\n[1] 70 85 90\n\n\n!は条件を反転させるため、!is.na()は「欠損していない」という条件になる。\n練習：scores_missingの欠損値を除いた合計を求めなさい。\n\n\n解答例\n\n\nsum(scores_missing, na.rm = TRUE)\n\n結果は245となる。",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#chapter-2行列matrix",
-    "href": "lessons/03/index.html#chapter-2行列matrix",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "Chapter 2｜行列（matrix）",
-    "text": "Chapter 2｜行列（matrix）\n\n1. 行と列を持つデータを作成する\n行列は、同じ型の値を行と列に並べた二次元のデータ構造である。例えば、3人の学生が受けた2回のテストの得点を、行が学生、列がテストとなるように整理できる。\nmatrix()のnrowで行数を指定する。byrow = TRUEは、値を行方向に順に並べる指定である。\n\nscore_matrix &lt;- matrix(\n  c(80, 75,\n    68, 72,\n    91, 88),\n  nrow = 3,\n  byrow = TRUE\n)\n\nscore_matrix\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\n\n1行目には80と75、2行目には68と72、3行目には91と88が入る。byrowを指定しない場合は、列方向に並ぶ。\n\nmatrix(1:6, nrow = 3)\n\n     [,1] [,2]\n[1,]    1    4\n[2,]    2    5\n[3,]    3    6\n\nmatrix(1:6, nrow = 3, byrow = TRUE)\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n\n\n同じ値でも並べ方によって位置が変わることを確認する。dim()は行数と列数、nrow()は行数、ncol()は列数を返す。\n\ndim(score_matrix)\n\n[1] 3 2\n\nnrow(score_matrix)\n\n[1] 3\n\nncol(score_matrix)\n\n[1] 2\n\n\n\n\n2. 行名・列名を付け、要素を取り出す\nrownames()とcolnames()で行と列に名前を付ける。\n\nrownames(score_matrix) &lt;- c(\"Aiko\", \"Ken\", \"Mei\")\ncolnames(score_matrix) &lt;- c(\"Test1\", \"Test2\")\nscore_matrix\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\n\n\n行列の要素は[行, 列]で指定する。片方を空欄にすると、その方向のすべてを選ぶ。\n\nscore_matrix[2, 1]\n\n[1] 68\n\nscore_matrix[\"Ken\", \"Test1\"]\n\n[1] 68\n\nscore_matrix[, \"Test2\"]\n\nAiko  Ken  Mei \n  75   72   88 \n\nscore_matrix[1:2, ]\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\n\n\n最初の二つはどちらもKenのTest1の得点、68を返す。\n\n\n補足：1列を行列のまま取り出す\n\n通常、1列だけを取り出すとベクトルになる。行列の構造を保つにはdrop = FALSEを指定する。\n\nscore_matrix[, \"Test2\", drop = FALSE]\n\n     Test2\nAiko    75\nKen     72\nMei     88\n\n\n\n\n\n3. 行・列ごとに計算する\nrowMeans()は行ごと、colMeans()は列ごとの平均を求める。この例では、それぞれ学生別、テスト別の平均になる。\n\nrowMeans(score_matrix)\n\nAiko  Ken  Mei \n77.5 70.0 89.5 \n\ncolMeans(score_matrix)\n\n   Test1    Test2 \n79.66667 78.33333 \n\n\nrbind()は上下、cbind()は左右に結合する。次のコードでは、学生を1人追加した表と、平均点の列を追加した表をそれぞれ表示する。元のscore_matrixは書き換わらない。\n\nrbind(score_matrix, Yuki = c(76, 81))\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\nYuki    76    81\n\ncbind(score_matrix, Average = rowMeans(score_matrix))\n\n     Test1 Test2 Average\nAiko    80    75    77.5\nKen     68    72    70.0\nMei     91    88    89.5\n\n\n練習：1から6までの値を行方向に並べた3行2列の行列を作り、行名と列名を付けなさい。その後、2行目を取り出し、各列の平均を求めなさい。\n\n\n解答例\n\n\nm &lt;- matrix(1:6, nrow = 3, byrow = TRUE)\nrownames(m) &lt;- c(\"row1\", \"row2\", \"row3\")\ncolnames(m) &lt;- c(\"col1\", \"col2\")\n\nm[2, ]\ncolMeans(m)\n\n2行目は3と4、列の平均は3と4である。\n\n\n\n補足：要素ごとの演算と行列積\n\n行列への加算や乗算は、通常は要素ごとに行われる。t()は行と列を入れ替える転置である。\n\nscore_matrix + 5\n\n     Test1 Test2\nAiko    85    80\nKen     73    77\nMei     96    93\n\nscore_matrix * 2\n\n     Test1 Test2\nAiko   160   150\nKen    136   144\nMei    182   176\n\nt(score_matrix)\n\n      Aiko Ken Mei\nTest1   80  68  91\nTest2   75  72  88\n\n\n二つの行列の*は対応する要素同士の積、%*%は行列積である。行列積では、左側の列数と右側の行数が一致する必要がある。\n\nm1 &lt;- matrix(1:4, nrow = 2, byrow = TRUE)\nm2 &lt;- matrix(c(2, 0, 1, 3), nrow = 2, byrow = TRUE)\nm1 * m2\n\n     [,1] [,2]\n[1,]    2    0\n[2,]    3   12\n\nm1 %*% m2\n\n     [,1] [,2]\n[1,]    4    6\n[2,]   10   12",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#chapter-3配列array",
-    "href": "lessons/03/index.html#chapter-3配列array",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "Chapter 3｜配列（array）",
-    "text": "Chapter 3｜配列（array）\n\n1. 三つ以上の次元を持つデータ\n配列は、同じ型の値を複数の次元に沿って並べたデータ構造である。行列は二次元の配列に当たり、array()を使うと三次元以上にも拡張できる。\n例えば、「学生 × テスト × 週」の得点を考える。3人が毎週2回のテストを受け、その記録が2週分あれば、3行2列の行列を2枚重ねた構造として表せる。\n\nscore_array &lt;- array(\n  c(80, 68, 91, 75, 72, 88,\n    84, 70, 93, 78, 76, 90),\n  dim = c(3, 2, 2)\n)\n\nscore_array\n\n, , 1\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\n, , 2\n\n     [,1] [,2]\n[1,]   84   78\n[2,]   70   76\n[3,]   93   90\n\n\ndim = c(3, 2, 2)は、学生3人、テスト2回、週2つに対応する。値は第1次元から順に埋まるため、最初の3個が第1週のTest1、次の3個が第1週のTest2となり、残りの6個が第2週に入る。matrix(..., byrow = TRUE)とは並べ方が異なる点に注意する。\n\ndim(score_array)\n\n[1] 3 2 2\n\nlength(score_array)\n\n[1] 12\n\n\ndim()の結果は3 2 2、要素数は3 × 2 × 2 = 12である。\n\n\n2. 次元ごとに位置を指定する\n三次元配列では、[学生, テスト, 週]の順に指定する。省略した次元では、すべての要素を選ぶ。\n\nscore_array[2, 1, 2]\n\n[1] 70\n\nscore_array[, , 1]\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\nscore_array[1, , ]\n\n     [,1] [,2]\n[1,]   80   84\n[2,]   75   78\n\n\n最初の式は、2人目の学生の第2週・Test1の得点70を返す。次の式は第1週の全得点、最後の式は1人目の学生についてテストと週を並べた表を返す。\n\n\n3. 一部を取り出して集計する\n第2週を取り出すと行列になるため、rowMeans()など、行列で学んだ関数を利用できる。\n\nweek2_scores &lt;- score_array[, , 2]\nrowMeans(week2_scores)\n\n[1] 81.0 73.0 91.5\n\nmean(week2_scores)\n\n[1] 81.83333\n\n\n学生別平均は81、73、91.5点である。全体の平均は、第2週の6個の得点を対象としている。\n練習：第2週のTest2の得点を取り出し、その平均を求めなさい。\n\n\n解答例\n\n\nweek2_test2 &lt;- score_array[, 2, 2]\nweek2_test2\nmean(week2_test2)\n\n得点は78、76、90、平均は約81.33点となる。",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#chapter-4データフレーム",
-    "href": "lessons/03/index.html#chapter-4データフレーム",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "Chapter 4｜データフレーム",
-    "text": "Chapter 4｜データフレーム\n\n1. 表形式のデータを作成する\n氏名、所属クラス、得点、出席率を一つの表にまとめるには、データフレームを使う。データフレームは列ごとに異なる型を持てる。ここでは、1行が1人の学生、1列が一つの項目に対応する。\n\nstudent_data &lt;- data.frame(\n  name = student_names,\n  class = c(\"A\", \"A\", \"B\", \"B\", \"A\"),\n  score = c(72, 85, 91, 68, 77),\n  attendance = c(0.90, 0.95, 1.00, 0.75, 0.88)\n)\n\nstudent_data\n\n  name class score attendance\n1 Aiko     A    72       0.90\n2  Ken     A    85       0.95\n3  Mei     B    91       1.00\n4 Sora     B    68       0.75\n5 Yuki     A    77       0.88\n\n\ndata.frame()の各引数で列名と値を指定している。文字列の列と数値の列が、同じ表に含まれていることを確認しよう。\n表を扱う前に、行数・列数、列名、各列の型を確認する。dim()は行数と列数、names()は列名、str()は全体の構造を表示する。\n\ndim(student_data)\n\n[1] 5 4\n\nnames(student_data)\n\n[1] \"name\"       \"class\"      \"score\"      \"attendance\"\n\nstr(student_data)\n\n'data.frame':   5 obs. of  4 variables:\n $ name      : chr  \"Aiko\" \"Ken\" \"Mei\" \"Sora\" ...\n $ class     : chr  \"A\" \"A\" \"B\" \"B\" ...\n $ score     : num  72 85 91 68 77\n $ attendance: num  0.9 0.95 1 0.75 0.88\n\n\n行数だけならnrow()、列数だけならncol()を使う。head()は先頭の行を表示する関数で、行数の多いデータの確認に用いる。\n\nnrow(student_data)\n\n[1] 5\n\nncol(student_data)\n\n[1] 4\n\nhead(student_data, n = 3)\n\n  name class score attendance\n1 Aiko     A    72       0.90\n2  Ken     A    85       0.95\n3  Mei     B    91       1.00\n\n\n\n\n2. 列・行・条件による抽出\n一つの列を取り出すには、データフレーム名$列名と書く。取り出した得点の列はベクトルなので、先ほどと同じ関数を使って平均を求められる。\n\nstudent_data$score\n\n[1] 72 85 91 68 77\n\nmean(student_data$score)\n\n[1] 78.6\n\n\n行と列を同時に指定する場合は、[行, 列]と書く。片方を空欄にすると、その方向のすべてを選ぶ。\n\nstudent_data[2, 3]\n\n[1] 85\n\nstudent_data[2, ]\n\n  name class score attendance\n2  Ken     A    85       0.95\n\nstudent_data[, c(\"name\", \"score\")]\n\n  name score\n1 Aiko    72\n2  Ken    85\n3  Mei    91\n4 Sora    68\n5 Yuki    77\n\n\n順に、2行3列目の値、2行目の全項目、全学生の氏名と得点を取り出している。行の指定には条件式も使える。\n\nstudent_data[\n  student_data$score &gt;= 80,\n  c(\"name\", \"score\")\n]\n\n  name score\n2  Ken    85\n3  Mei    91\n\n\nコンマの前が行の条件、後ろが列の指定である。コードが複数行に分かれていても、[]全体で一つの処理になる。\n\n\n3. 列を追加する\n$と代入を組み合わせると、新しい列を追加できる。60点以上を合格とし、判定結果をpassed列に保存する。\n\nstudent_data$passed &lt;- student_data$score &gt;= 60\nstudent_data\n\n  name class score attendance passed\n1 Aiko     A    72       0.90   TRUE\n2  Ken     A    85       0.95   TRUE\n3  Mei     B    91       1.00   TRUE\n4 Sora     B    68       0.75   TRUE\n5 Yuki     A    77       0.88   TRUE\n\n\n練習：出席率が0.90以上の学生について、氏名と出席率を取り出しなさい。\n\n\n解答例\n\n\nstudent_data[\n  student_data$attendance &gt;= 0.90,\n  c(\"name\", \"attendance\")\n]\n\nAiko、Ken、Meiの3人が該当する。\n\n\n\nfactorとDate：カテゴリと日付を表す\n\n所属クラスなどのカテゴリにはfactor、日付にはDateという型を使うことがある。as.factor()とas.Date()で変換できる。元の表を残し、コピーのクラス列を変換してみよう。\n\nstudent_typed &lt;- student_data\nstudent_typed$class &lt;- as.factor(student_typed$class)\n\nclass(student_typed$class)\n\n[1] \"factor\"\n\nlevels(student_typed$class)\n\n[1] \"A\" \"B\"\n\nclass_dates &lt;- as.Date(c(\"2026-04-10\", \"2026-04-17\", \"2026-04-24\"))\nclass(class_dates)\n\n[1] \"Date\"\n\nclass_dates\n\n[1] \"2026-04-10\" \"2026-04-17\" \"2026-04-24\"\n\n\nlevels()はカテゴリの水準を返す。日付は\"年-月-日\"の形式で記述する。",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/03/index.html#chapter-5リストlist",
-    "href": "lessons/03/index.html#chapter-5リストlist",
-    "title": "第3回：Rの基本操作 III ― Rのデータ構造",
-    "section": "Chapter 5｜リスト（list）",
-    "text": "Chapter 5｜リスト（list）\n\n1. 異なる構造のデータをまとめる\nベクトル、行列、配列では、ここまで同じ型の値を扱ってきた。一方、分析結果には、説明文、表、行列などをまとめて保存したい場合がある。リストは、このように型や構造、大きさの異なるオブジェクトを一つにまとめるデータ構造である。\nlist()の各引数に名前を付けて、これまでに作成したデータをまとめる。\n\ncourse_result &lt;- list(\n  course = \"R入門\",\n  students = student_data,\n  test_scores = score_matrix,\n  weekly_scores = score_array\n)\n\nnames(course_result)\n\n[1] \"course\"        \"students\"      \"test_scores\"   \"weekly_scores\"\n\nstr(course_result)\n\nList of 4\n $ course       : chr \"R入門\"\n $ students     :'data.frame':  5 obs. of  5 variables:\n  ..$ name      : chr [1:5] \"Aiko\" \"Ken\" \"Mei\" \"Sora\" ...\n  ..$ class     : chr [1:5] \"A\" \"A\" \"B\" \"B\" ...\n  ..$ score     : num [1:5] 72 85 91 68 77\n  ..$ attendance: num [1:5] 0.9 0.95 1 0.75 0.88\n  ..$ passed    : logi [1:5] TRUE TRUE TRUE TRUE TRUE\n $ test_scores  : num [1:3, 1:2] 80 68 91 75 72 88\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:3] \"Aiko\" \"Ken\" \"Mei\"\n  .. ..$ : chr [1:2] \"Test1\" \"Test2\"\n $ weekly_scores: num [1:3, 1:2, 1:2] 80 68 91 75 72 88 84 70 93 78 ...\n\n\ncourseは文字列、studentsはデータフレーム、test_scoresは行列、weekly_scoresは三次元配列である。同じリストの中でも、それぞれの構造は保たれる。\n\n\n2. リストから取り出す\n$または[[ ]]を使うと、要素そのものを取り出せる。\n\ncourse_result$course\n\n[1] \"R入門\"\n\ncourse_result[[\"test_scores\"]]\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\n\ncourse_result[[1]]\n\n[1] \"R入門\"\n\n\n[[1]]は第1要素であるcourseの中身を返す。[]との違いを、データフレームを取り出して確認する。\n\nclass(course_result[\"students\"])\n\n[1] \"list\"\n\nclass(course_result[[\"students\"]])\n\n[1] \"data.frame\"\n\n\ncourse_result[\"students\"]は要素を一つ含むリスト、course_result[[\"students\"]]は要素の中身であるデータフレームを返す。取り出した表を計算に使う場合は、後者を使用する。\n\nresult_students &lt;- course_result[[\"students\"]]\nmean(result_students$score)\n\n[1] 78.6\n\n\n\n\n3. 要素を追加する\n$と代入で、新しい要素を追加できる。\n\ncourse_result$average_score &lt;- mean(student_data$score)\ncourse_result$average_score\n\n[1] 78.6\n\nnames(course_result)\n\n[1] \"course\"        \"students\"      \"test_scores\"   \"weekly_scores\"\n[5] \"average_score\"\n\n\nデータフレームの各列は同じ行数に対応する必要があるが、リストにはその制約がない。ここでは5人分の表と、平均点という一つの値を同時に保持している。\n練習：データフレームstudent_data、行列score_matrix、説明文\"練習結果\"をリストpractice_resultにまとめなさい。その後、行列を取り出し、Test2の平均を求めなさい。\n\n\n解答例\n\n\npractice_result &lt;- list(\n  data = student_data,\n  matrix = score_matrix,\n  note = \"練習結果\"\n)\npractice_matrix &lt;- practice_result[[\"matrix\"]]\nmean(practice_matrix[, \"Test2\"])\n\n平均は約78.33点である。",
-    "crumbs": [
-      "第3回：Rの基本操作 III ― Rのデータ構造"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html",
-    "href": "lessons/04/index.html",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "",
-    "text": "到達目標",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html#到達目標",
-    "href": "lessons/04/index.html#到達目標",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "",
-    "text": "複数の処理を関数にまとめ、引数と返り値を指定できる\nProjectを基準としたパスでCSVを読み込み、データの構造と欠損値を確認できる\n外部パッケージのインストールと読み込みを区別できる\nRの標準機能で図を作成し、ファイルに保存できる",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html#chapter-1関数を作成する",
-    "href": "lessons/04/index.html#chapter-1関数を作成する",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "Chapter 1｜関数を作成する",
-    "text": "Chapter 1｜関数を作成する\n\n作業の準備\n\nempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、script/lesson04.Rとして保存する。すでに作成している場合は、そのファイルを開く。\nFilesペインで、第2回に保存したdata/data_lesson02.csvがあることを確認する。結果の保存用に、Project直下にoutputフォルダを作成する。すでにある場合はそのまま使用する。\n\n以下のコードはscript/lesson04.Rに順に記述し、実行して結果を確認する。前回のオブジェクトは自動復元されるが、ここで使うデータと関数は改めて作成する。パッケージの導入はChapter 3で扱う。\n\n\n1. 計算式を関数にまとめる\n第2回ではsqrt()やround()を使い、第3回ではベクトルの平均をmean()で求めた。Rでは、こうした既存の関数を利用するだけでなく、自分で処理を定義できる。\nまず、得点に5点を加える関数を作成する。関数の定義にはfunction()を使う。\n\nadd_five &lt;- function(x) {\n  result &lt;- x + 5\n  return(result)\n}\n\nadd_fiveは関数名、xは引数である。{ }の中に処理を記述し、return()で返り値を指定する。このコードを実行した段階では、関数が定義されるだけであり、具体的な得点の計算はまだ行われない。\n定義した関数を呼び出すときに、引数に値を渡す。\n\nadd_five(72)\n\n[1] 77\n\n\n結果は77となる。同じ処理を別の値にも適用でき、処理を変更する場合も関数の定義を修正すればよい。\n\n\n2. ベクトルを引数に渡す\n次のベクトルを、この関数に渡してみよう。\n\nscores &lt;- c(72, 85, 91, 68, 77)\nadjusted_scores &lt;- add_five(scores)\nadjusted_scores\n\n[1] 77 90 96 73 82\n\nscores\n\n[1] 72 85 91 68 77\n\n\nx + 5は各要素に対して計算されるため、5人分の結果がまとめて返る。返り値をadjusted_scoresに保存しても、元のscoresは変わらない。\n\n\n補足：return()を省略する書き方\n\nRでは、関数内で最後に評価された値が返される。このため、次のように書くこともできる。\n\nadd_five_short &lt;- function(x) {\n  x + 5\n}\nadd_five_short(72)\n\n[1] 77\n\n\n\n練習：摂氏を華氏へ変換するcelsius_to_fahrenheit()を作成し、摂氏20度と30度を変換しなさい。変換式は\\(F = 1.8C + 32\\)とする。\n\n\n解答例\n\n\ncelsius_to_fahrenheit &lt;- function(celsius) {\n  1.8 * celsius + 32\n}\ncelsius_to_fahrenheit(c(20, 30))\n\n結果は68度と86度である。\n\n\n\n3. 複数の引数と既定値\n第2回の総合点の計算を関数にする。小テストと期末テストの得点に加え、小テストの比重も引数として受け取る。\n\ncalculate_score &lt;- function(quiz, exam, quiz_weight = 0.40) {\n  result &lt;- quiz * quiz_weight + exam * (1 - quiz_weight)\n  return(result)\n}\n\ncalculate_score(quiz = 78, exam = 92)\n\n[1] 86.4\n\ncalculate_score(quiz = 78, exam = 92, quiz_weight = 0.50)\n\n[1] 85\n\n\n結果は順に86.4点と85点となる。quiz_weight = 0.40は既定値であり、呼び出し時に省略すると0.40が使われる。この例では、二つの比重の合計が1になるように記述している。\n引数名を省略した場合は位置で対応する。引数名を記述すれば、順序を変えても対応は明確になる。\n\ncalculate_score(78, 92)\n\n[1] 86.4\n\ncalculate_score(exam = 92, quiz = 78)\n\n[1] 86.4\n\n\n練習：小テスト70点、期末テスト90点について、小テストの比重を0.30として総合点を求めなさい。\n\n\n解答例\n\n\ncalculate_score(quiz = 70, exam = 90, quiz_weight = 0.30)\n\n結果は84点である。\n\n\n\n4. 条件に応じて処理を分ける\n比較演算子は条件を満たすかどうかを論理値で返す。ifとelseを使うと、その結果によって実行する処理を分けられる。\n\njudge_result &lt;- function(score) {\n  if (score &gt;= 60) {\n    return(\"合格\")\n  } else {\n    return(\"不合格\")\n  }\n}\n\njudge_result(82)\n\n[1] \"合格\"\n\njudge_result(48)\n\n[1] \"不合格\"\n\n\n条件がTRUEならif側、FALSEならelse側が実行される。この関数は、欠損していない一つの得点を受け取るものとする。ifの条件には、NAではない一つの論理値が必要である。\nベクトルの各要素について結果を返す場合は、ifelse()を使える。\n\nifelse(scores &gt;= 80, \"80点以上\", \"80点未満\")\n\n[1] \"80点未満\" \"80点以上\" \"80点以上\" \"80点未満\" \"80点未満\"\n\n\n第1引数が条件、第2引数が条件を満たす場合の値、第3引数が満たさない場合の値である。\n\n\n補足：関数内のオブジェクトとリストの返り値\n\n関数内の代入は、通常、外側の同名のオブジェクトを書き換えない。必要な値を引数で受け取り、結果を返り値として取り出すように記述する。\n\ncenter_scores &lt;- function(x) {\n  average &lt;- mean(x, na.rm = TRUE)\n  x - average\n}\ncenter_scores(scores)\n\n[1]  -6.6   6.4  12.4 -10.6  -1.6\n\n\n複数の結果を返す場合は、第3回で学んだリストを使える。\n\ndescribe_scores &lt;- function(x) {\n  list(\n    n = sum(!is.na(x)),\n    average = mean(x, na.rm = TRUE)\n  )\n}\nscore_summary &lt;- describe_scores(scores)\nscore_summary$average\n\n[1] 78.6\n\n\n\n\n\n補足：for文による繰り返し\n\nforはベクトルから値を順に取り出し、{ }内の処理を繰り返す。ここでは、欠損のない得点を一つずつ判定する。\n\nfor (one_score in scores) {\n  print(judge_result(one_score))\n}\n\n[1] \"合格\"\n[1] \"合格\"\n[1] \"合格\"\n[1] \"合格\"\n[1] \"合格\"\n\n\nこの処理では、judge_result()に渡る値は毎回一つである。ifelse()でベクトルを一度に処理する方法との違いを確認する。",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html#chapter-2csvを読み込みデータを確認する",
-    "href": "lessons/04/index.html#chapter-2csvを読み込みデータを確認する",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "Chapter 2｜CSVを読み込み、データを確認する",
-    "text": "Chapter 2｜CSVを読み込み、データを確認する\n\n1. データファイルを準備する\n第3回では、data.frame()に値を記述して表を作成した。観測数の多いデータを扱う場合は、ファイルから読み込む。CSVは、値をカンマで区切って表を保存するテキスト形式であり、通常は先頭行に列名が記載されている。\nここでは、第2回にLETUSからダウンロードし、Project内のdataフォルダに保存したdata_lesson02.csvを使用する。このファイルには、学生12人の学習時間や得点が記録されている。Filesペインでdataフォルダを開き、ファイルが保存されていることを確認する。\nCSVの先頭部分は、次のようになっている。\nstudent_id,class,study_hours,score,attendance,passed\nS001,A,6.5,82,0.96,TRUE\nS002,A,4.0,68,0.88,TRUE\n\n\n\n列名\n内容\n\n\n\n\nstudent_id\n学生ID\n\n\nclass\n所属クラス\n\n\nstudy_hours\n1週間の学習時間（時間）\n\n\nscore\nテストの得点\n\n\nattendance\n出席率（0〜1）\n\n\npassed\n合否（TRUE / FALSE）\n\n\n\n結果は、作業の準備で作成したoutputフォルダに保存する。使用するファイルの位置は次のとおりである。\nempirical_finance/\n├── empirical_finance.Rproj\n├── data/\n│   └── data_lesson02.csv\n├── script/\n│   └── lesson04.R\n└── output/\n\n\n2. Projectを基準にパスを指定する\nempirical_finance.Rprojを開いた状態では、Projectフォルダが作業ディレクトリになる。したがって、CSVは\"data/data_lesson02.csv\"と指定する。script/lesson04.Rを編集していても、パスの基準はRスクリプトを置いたフォルダではない。\n\ngetwd()\nlist.files(\"data\")\n\ngetwd()は作業ディレクトリ、list.files()は指定したフォルダ内のファイル名を表示する。data_lesson02.csvが見つからない場合は、開いているProject、保存先、ファイル名を確認する。Posit：RStudio Projects\n\n\n3. read.csv()で読み込む\nread.csv()は、CSVをデータフレームとして読み込む関数である。追加パッケージを導入しなくても使用できる。\n\nstudents &lt;- read.csv(\n  \"data/data_lesson02.csv\",\n  na.strings = c(\"\", \"NA\")\n)\nhead(students)\n\n\n\n  student_id class study_hours score attendance passed\n1       S001     A         6.5    82       0.96   TRUE\n2       S002     A         4.0    68       0.88   TRUE\n3       S003     A         2.5    55       0.74  FALSE\n4       S004     A         7.0    91       0.98   TRUE\n5       S005     B         5.5    76       0.90   TRUE\n6       S006     B         3.0    61       0.82   TRUE\n\n\n第1引数はファイルのパスである。na.stringsには、欠損値として読み込む表記を指定する。ここでは空欄とNAを欠損値として扱う。\nファイルをフォルダに置く操作と、Rのオブジェクトとして読み込む操作は異なる。読み込み後は、studentsを使ってデータを処理する。\n\n\n4. 構造と欠損値を確認する\n読み込んだ表にも、第3回で学んだ確認方法をそのまま使える。\n\nclass(students)\n\n[1] \"data.frame\"\n\ndim(students)\n\n[1] 12  6\n\nnames(students)\n\n[1] \"student_id\"  \"class\"       \"study_hours\" \"score\"       \"attendance\" \n[6] \"passed\"     \n\nstr(students)\n\n'data.frame':   12 obs. of  6 variables:\n $ student_id : chr  \"S001\" \"S002\" \"S003\" \"S004\" ...\n $ class      : chr  \"A\" \"A\" \"A\" \"A\" ...\n $ study_hours: num  6.5 4 2.5 7 5.5 3 1.5 8 4.5 NA ...\n $ score      : int  82 68 55 91 76 61 48 95 72 64 ...\n $ attendance : num  0.96 0.88 0.74 0.98 0.9 0.82 0.65 1 0.86 0.78 ...\n $ passed     : logi  TRUE TRUE FALSE TRUE TRUE TRUE ...\n\n\nこのデータは12行6列であり、1行が1人の学生を表す。数値として計算する列と、文字列や論理値として扱う列を確認する。\n続いて欠損値を調べる。is.na()の結果は論理値であり、sum()ではTRUEが1、FALSEが0として数えられる。\n\nsum(is.na(students$score))\n\n[1] 1\n\ncolSums(is.na(students))\n\n student_id       class study_hours       score  attendance      passed \n          0           0           1           1           0           0 \n\n\ncolSums()は列ごとの合計を返す。得点と学習時間に、それぞれ1件の欠損値がある。\n\nmean(students$score, na.rm = TRUE)\n\n[1] 72.45455\n\n\nこの平均は、得点が記録されている学生だけを対象としている。\n\n\n補足：文字化けや型の誤認がある場合\n\n日本語が文字化けする場合は、配布ファイルの文字コードを確認する。UTF-8のファイルなら、次のように指定できる。\n\nstudents &lt;- read.csv(\"data/data_lesson02.csv\", fileEncoding = \"UTF-8\")\n\n数値の列が文字列になっている場合は、数値以外の記号などが混ざっていないか確認する。型の変換だけで済ませず、元の表記と欠損値の扱いを確かめる。\n\n\n\n5. 必要な行と列を取り出す\n欠損値を除いたうえで、80点以上の学生についてIDと得点を取り出す。[行, 列]による指定は、手入力で作成したデータフレームと同じである。\n\nhigh_scores &lt;- students[\n  !is.na(students$score) & students$score &gt;= 80,\n  c(\"student_id\", \"score\")\n]\nhigh_scores\n\n   student_id score\n1        S001    82\n4        S004    91\n8        S008    95\n12       S012    85\n\n\n練習：出席率が0.90以上の学生について、IDと出席率を取り出しなさい。\n\n\n解答例\n\n\nstudents[\n  students$attendance &gt;= 0.90,\n  c(\"student_id\", \"attendance\")\n]\n\n\n処理結果を保存するには、write.csv()を使う。\n\nwrite.csv(\n  high_scores,\n  \"output/high-scores.csv\",\n  row.names = FALSE\n)\n\nrow.names = FALSEは行番号を別の列として書き出さない指定である。元のCSVと区別できる名前で保存する。同名のファイルが既にある場合は上書きされるため、保存先を確認してから実行する。",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html#chapter-3外部パッケージを利用する",
-    "href": "lessons/04/index.html#chapter-3外部パッケージを利用する",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "Chapter 3｜外部パッケージを利用する",
-    "text": "Chapter 3｜外部パッケージを利用する\n\n1. 機能を追加する\nここまで使ったread.csv()やmean()は、Rの標準的な機能として利用できる。パッケージは、関数、データ、説明文書などをまとめたものであり、追加することでRの機能を拡張できる。\n例えば、データの読み込み、統計モデルの推定、図表の作成など、目的に応じた処理がパッケージとして提供されている。必要なパッケージを利用すれば、すべての処理を自分で一から記述する必要はない。ただし、関数に渡すデータや引数、返される結果の意味は、利用者が確認する必要がある。\nRの主要な配布サイトであるCRANには、24,908個のパッケージが掲載されている（2026年9月時点）。統計分析だけでなく、金融、医療、地理情報、文章の分析など、幅広い分野の機能が公開されている。CRAN：Contributed Packagesすべてのパッケージを導入する必要はなく、分析の目的に応じて必要なものを選び、利用すればよい。\n金融・会計分野の特定の用途に向けて開発されたパッケージには、例えば次のようなものがある。\n\n\n\nパッケージ\n主な用途\n\n\n\n\nquantmod\n株価などの金融データの取得・分析\n\n\nPerformanceAnalytics\n投資の運用成果とリスクの評価\n\n\nPortfolioAnalytics\nポートフォリオの分析・最適化\n\n\nedgarWebR\n米国SECに提出された企業の開示書類情報の取得・解析\n\n\n\n\nこの回で使用するパッケージ\nここではCSVの読み込みにreadrを使う。readrはtidyverseを構成するパッケージの一つであり、単独でも導入できる。複数の関数をパイプでつなぐデータ処理は第6回で扱う。作図にはRの標準機能を用いる。\n\n\n\n2. インストールと読み込みを区別する\nパッケージは、まずパソコンにインストールする。以下は未導入の場合にConsoleで実行する。\n\ninstall.packages(\"readr\")\n\nすでにインストール済みであれば、ここは省略する。続いて、現在のRセッションで使えるようにlibrary()で読み込む。以下の行はscript/lesson04.Rに記述する。\n\nlibrary(readr)\n\n\n\n\n\n\n\n\n\n操作\n関数\n実行する時期\n\n\n\n\n導入\ninstall.packages()\n未導入のとき、または更新・再導入が必要なとき\n\n\n読み込み\nlibrary()\n新しいRセッションで、そのパッケージを使うとき\n\n\n\nProjectのオブジェクトが自動復元されても、使用するパッケージの読み込みはRスクリプトに記述しておく。Projectを開き直した後にパッケージの関数を使う場合は、該当するlibrary()の行を実行する。毎回の作業でインストールからやり直す必要はない。\n\n\n補足：導入状況とバージョンを確認する\n\n\nrequireNamespace(\"readr\", quietly = TRUE)\npackageVersion(\"readr\")\n\n[1] '2.1.5'\n\n\n最初の結果がTRUEなら、readrを利用できる。関数の説明は?readr::read_csvなどで確認できる。\n\n\n\n3. readrで同じCSVを読む\n同じファイルをread_csv()で読み込み、先ほどのstudentsと比較する。\n\nstudents_readr &lt;- read_csv(\n  \"data/data_lesson02.csv\",\n  na = c(\"\", \"NA\"),\n  show_col_types = FALSE\n)\nclass(students_readr)\nhead(students_readr)\n\n\n\n[1] \"spec_tbl_df\" \"tbl_df\"      \"tbl\"         \"data.frame\" \n\n\n# A tibble: 6 × 6\n  student_id class study_hours score attendance passed\n  &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt; \n1 S001       A             6.5    82       0.96 TRUE  \n2 S002       A             4      68       0.88 TRUE  \n3 S003       A             2.5    55       0.74 FALSE \n4 S004       A             7      91       0.98 TRUE  \n5 S005       B             5.5    76       0.9  TRUE  \n6 S006       B             3      61       0.82 TRUE  \n\n\nread_csv()は、データフレームを拡張したtibbleを返す。show_col_types = FALSEは、読み込み時の列型の案内を非表示にする設定であり、データの型そのものを変更するものではない。readr：read_csv()\n\ndim(students_readr)\n\n[1] 12  6\n\nmean(students_readr$score, na.rm = TRUE)\n\n[1] 72.45455\n\n\n行数・列数と平均点が、read.csv()で読み込んだ結果と一致することを確認する。以降の例では、引き続きstudentsを使う。\n\n\n4. パッケージ名を明示する\nパッケージ名::関数名と書くと、関数の所属を明示できる。パッケージがインストール済みであれば、library()を実行する前でも、その関数を呼び出せる。\n\nreadr::read_csv(\"data/data_lesson02.csv\", show_col_types = FALSE)\n\n::はインストールの代わりにはならない。未導入のパッケージは、先にinstall.packages()で導入する。\n確認：すでにreadrをインストールしたパソコンで、Projectを開き直してread_csv()を使う。通常、どの操作を行えばよいか。\n\n\n解答例\n\nlibrary(readr)を実行する。再インストールは不要である。readr::read_csv()のように所属を明示して呼び出す方法もある。\n\n\n\n補足：readrでCSVを書き出す\n\n\nreadr::write_csv(high_scores, \"output/high-scores-readr.csv\")\n\nwrite_csv()は行名を書き出さないため、row.names = FALSEの指定は不要である。",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/04/index.html#chapter-4グラフを作成し保存する",
-    "href": "lessons/04/index.html#chapter-4グラフを作成し保存する",
-    "title": "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図",
-    "section": "Chapter 4｜グラフを作成し、保存する",
-    "text": "Chapter 4｜グラフを作成し、保存する\n\n1. 確認したい内容とグラフの種類\nデータの構造を確認したら、分布や変数間の関係を図で確かめる。ここでは、同じ学生データを使い、Rの標準機能で作図する。追加のパッケージは必要ない。\n\n\n\n確認したいこと\nグラフ\n\n\n\n\n学習時間と得点の関係\n散布図\n\n\n得点の分布\nヒストグラム\n\n\nクラスごとの得点の分布\n箱ひげ図\n\n\n合否別の人数\n棒グラフ\n\n\n\n\n\n2. 散布図を作成する\n学習時間を横軸、得点を縦軸に置く。二つの値がそろっている学生だけを対象とするため、第3回で学んだ条件抽出を使う。\n\nplot_data &lt;- students[\n  !is.na(students$study_hours) & !is.na(students$score),\n]\nnrow(plot_data)\n\n[1] 10\n\n\n対象は10人である。plot()に横軸と縦軸のベクトルを渡して描く。\n\nplot(\n  x = plot_data$study_hours,\n  y = plot_data$score,\n  xlab = \"Study hours per week\",\n  ylab = \"Score\",\n  main = \"Study hours and score\",\n  pch = 19,\n  col = \"steelblue\"\n)\n\n\n\n\n\n\n\n図 1: 学習時間と得点\n\n\n\n\n\nxlabとylabは軸名、mainはタイトル、pchは点の形、colは色を指定する。RStudioでは図がPlotsペインに表示される。\nこのデータでは、学習時間が長い学生ほど得点も高い傾向が見られる。ただし、この図だけから学習時間が得点の差を生んだと断定することはできない。\n\n\n補足：基準線と文字を追加する\n\nabline()とtext()は、作成済みの図に線や文字を追加する。次のコードを、上のplot()を実行した直後に実行する。\n\nabline(h = 80, lty = 2, col = \"grey50\")\ntext(x = 2, y = 83, labels = \"Score = 80\")\n\nhは水平線の高さ、lty = 2は破線の指定である。\n\n練習：上の散布図の点を濃い緑色に変更し、タイトルを\"Weekly study hours and score\"にしなさい。\n\n\n解答例\n\nplot()のcolを\"darkgreen\"、mainを\"Weekly study hours and score\"に変更して再実行する。\n\n\n\n3. ヒストグラムを作成する\nhist()は、数値を区間に分け、各区間に含まれる件数を表示する。得点の分布には、学習時間の欠損は関係しないため、得点が記録されている11人を使用する。\n\nscore_values &lt;- students$score[!is.na(students$score)]\nlength(score_values)\n\n[1] 11\n\n\n\nhist(\n  score_values,\n  breaks = seq(40, 100, by = 10),\n  col = \"skyblue3\",\n  border = \"white\",\n  xlab = \"Score\",\n  main = \"Distribution of scores\"\n)\n\n\n\n\n\n\n\n図 2: 得点のヒストグラム\n\n\n\n\n\nbreaksに区切りを指定すると、この例では40から100までを10点幅に分けられる。区間の幅によって分布の見え方が変わるため、図を読む際は区切りも確認する。\n\n\n補足：箱ひげ図・棒グラフ・折れ線グラフ\n\nboxplot()は中央値や散らばりを示し、クラスごとの分布の比較に使える。score ~ classは、得点をクラスで分けるという指定である。\n\nboxplot(\n  score ~ class,\n  data = students,\n  xlab = \"Class\",\n  ylab = \"Score\",\n  col = c(\"#9ecae1\", \"#6baed6\", \"#3182bd\")\n)\n\n\n\n\n\n\n\n図 3: クラス別得点の箱ひげ図\n\n\n\n\n\ntable()でカテゴリごとの人数を数え、barplot()で棒グラフにできる。\n\npass_counts &lt;- table(students$passed)\nbarplot(\n  pass_counts,\n  names.arg = c(\"Not passed\", \"Passed\"),\n  col = c(\"#e07a5f\", \"#3d8b82\"),\n  ylab = \"Number of students\"\n)\n\n\n\n\n\n\n\n図 4: 合否別の人数\n\n\n\n\n\n時間の順序に意味があるデータでは、折れ線グラフを使える。type = \"o\"は点と線を重ねる指定である。\n\nweeks &lt;- 1:4\nweekly_hours &lt;- c(4, 6, 5, 7)\nplot(\n  weeks, weekly_hours,\n  type = \"o\",\n  xlab = \"Week\",\n  ylab = \"Study hours\",\n  pch = 19\n)\n\n\n\n\n\n\n\n図 5: ある学生の学習時間の推移\n\n\n\n\n\n学生IDのように順序自体に意味がない値を、同じように線で結ぶ必要はない。\n\n\n\n4. 図を保存する\nChapter 2で作成したoutputフォルダに、散布図をPNG形式で保存する。png()で保存先を指定し、作図のコードを実行した後、dev.off()でファイルへの出力を終了する。\n\npng(\"output/study-score.png\", width = 1120, height = 720, res = 160)\nplot(\n  x = plot_data$study_hours,\n  y = plot_data$score,\n  xlab = \"Study hours per week\",\n  ylab = \"Score\",\n  main = \"Study hours and score\",\n  pch = 19,\n  col = \"steelblue\"\n)\ndev.off()\n\nwidthとheightは画像の幅と高さ（ピクセル）、resは解像度を指定する。png()は、すでにPlotsペインに表示された図を保存する関数ではない。png()からdev.off()までを順に実行し、その間に図を描く必要がある。\n同名のファイルがある場合は上書きされる。保存後はFilesペインでoutputを開き、画像を確認する。\n練習：同じ手順で得点のヒストグラムをoutput/score-histogram.pngに保存しなさい。\n\n\n解答例\n\n\npng(\"output/score-histogram.png\", width = 1120, height = 720, res = 160)\nhist(\n  score_values,\n  breaks = seq(40, 100, by = 10),\n  col = \"skyblue3\",\n  border = \"white\",\n  xlab = \"Score\",\n  main = \"Distribution of scores\"\n)\ndev.off()\n\n\n作業を終えるときは、Rスクリプトを保存してProjectを閉じる。",
-    "crumbs": [
-      "第4回：Rの基本操作 IV ― 関数・CSV・パッケージ・作図"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html",
-    "href": "lessons/05/index.html",
-    "title": "第5回：演習：現在価値・NPV・IRR",
-    "section": "",
-    "text": "到達目標",
-    "crumbs": [
-      "第5回：演習：現在価値・NPV・IRR"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html#到達目標",
-    "href": "lessons/05/index.html#到達目標",
-    "title": "第5回：演習：現在価値・NPV・IRR",
-    "section": "",
-    "text": "お金の時間的価値を理解し、現在価値を計算できる\nNPVとIRRの概念を理解し、活用できる\nRのベクトルと自作関数を使ってNPVとIRRを計算できる\nNPVプロファイルを作図し、割引率とNPVの関係を解釈できる",
-    "crumbs": [
-      "第5回：演習：現在価値・NPV・IRR"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html#chapter-1理論現在価値npvirr",
-    "href": "lessons/05/index.html#chapter-1理論現在価値npvirr",
-    "title": "第5回：演習：現在価値・NPV・IRR",
-    "section": "Chapter 1｜理論：現在価値・NPV・IRR",
-    "text": "Chapter 1｜理論：現在価値・NPV・IRR\n\n1. お金の時間価値\n同じ100万円でも、今日受け取る100万円と1年後に受け取る100万円は、通常同じ価値ではない。今日受け取った資金はすぐに利用または運用できる一方、将来の資金を受け取るまでには時間がかかり、不確実性も存在する。この考え方をお金の時間価値という。\n投資や事業に伴う資金の受取りと支払いを、キャッシュフロー（cash flow: CF）という。投資を行う側から見て、受取りを正、支払いを負の金額で表す。\n例えば、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を考える。この投資では、現在に−100万円、1年後に60万円、2年後に60万円のキャッシュフローが発生する。受取額の合計は120万円であり、支払額を20万円上回る。ただし、この差額は、支払いから受取りまでの時間を考慮していない。\nこの投資の価値を評価するには、現在の支払いと将来の受取りを、同じ基準で比較する必要がある。お金には時間価値があるため、異なる時点の金額をそのまま足し合わせても、投資が生み出す価値を適切に評価することはできない。そこで、すべてのキャッシュフローを同じ時点の価値へ換算してから比較・合計する。ここでは、現在を\\(t=0\\)とし、将来の金額を現在の価値へ換算する方法を学ぶ。\n\n\n2. 将来価値と現在価値\n現在の金額を\\(PV\\)、1期間当たりの利率を\\(r\\)とすると、1期間後の将来価値\\(FV_1\\)は\n\\[\nFV_1=PV(1+r)\n\\]\nである。したがって、1期間後の金額を現在へ戻すと\n\\[\nPV=\\frac{FV_1}{1+r}\n\\tag{1}\\]\nとなる。\\(1/(1+r)\\)を割引因子という。\n\n数値例\n1年後に受け取る110万円を、年10%で現在価値へ換算する。\n\\[\nPV=\\frac{110}{1+0.10}=100\\text{万円}\n\\]\nつまり、年10%という基準の下では、「現在の100万円」と「1年後の110万円」は同じ価値を持つ。\n\n\n\n3. 複数期間の現在価値\n\\(t\\)期間後に受け取るキャッシュフローを\\(CF_t\\)とすると、その現在価値は\n\\[\nPV(CF_t)=\\frac{CF_t}{(1+r)^t}\n\\tag{2}\\]\nである。期間が長いほど\\((1+r)^t\\)が大きくなるため、他の条件が同じなら現在価値は小さくなる。\n例えば、割引率が8%のとき、1年後の30万円と3年後の50万円の現在価値は\n\\[\n\\frac{30}{1.08}=27.78, \\qquad\n\\frac{50}{1.08^3}=39.69\n\\]\n万円である。受取額が大きくても、受取時点が遅ければ割引の影響は大きくなる。\n\n\n\n\n\n\nノート割引率が表すもの\n\n\n\n割引率は、資金を別の用途へ使った場合に得られる収益機会、資金調達コスト、キャッシュフローの不確実性などを反映する評価基準である。割引率の選択によって現在価値とNPVは変化するため、計算結果には使用した割引率を必ず明記する。\n\n\n\n\n4. 正味現在価値（NPV）\nある投資案について、時点0の初期投資額を\\(I_0\\)、第\\(t\\)期のキャッシュフローを\\(CF_t\\)、割引率を\\(r\\)、最終期を\\(T\\)とする。正味現在価値（Net Present Value: NPV）は\n\\[\nNPV(r)=-I_0+\\sum_{t=1}^{T}\\frac{CF_t}{(1+r)^t}\n\\tag{3}\\]\nと定義される。\n時点0のキャッシュフローを\\(CF_0=-I_0\\)と書けば、次のようにまとめられる。\n\\[\nNPV(r)=\\sum_{t=0}^{T}\\frac{CF_t}{(1+r)^t}\n\\tag{4}\\]\n時点0では\\((1+r)^0=1\\)であるため、初期投資額は割り引かれない。\n\n\n5. NPVによる判断\n独立した投資案では、基本的な判断規則は次のとおりである。\n\n\n\nNPV\n判断\n意味\n\n\n\n\n\\(NPV&gt;0\\)\n採用\n必要な収益率を上回る価値を生み出す\n\n\n\\(NPV=0\\)\n無差別\n必要な収益率とちょうど一致する\n\n\n\\(NPV&lt;0\\)\n棄却\n必要な収益率を満たさない\n\n\n\n複数の相互排他的な投資案から一つだけ選ぶ場合は、同じ前提と割引率の下で、原則としてNPVが最も大きい案を選ぶ。\n\nNPVの数値例\n次のキャッシュフローを考える。金額の単位は万円とする。\n\n\n\n時点\\(t\\)\n0\n1\n2\n3\n4\n\n\n\n\nキャッシュフロー\\(CF_t\\)\n-100\n30\n40\n50\n30\n\n\n\n割引率を8%とすると、NPVは\n\\[\n\\begin{aligned}\nNPV(0.08)\n&=-100+\\frac{30}{1.08}\n+\\frac{40}{1.08^2}\n+\\frac{50}{1.08^3}\n+\\frac{30}{1.08^4} \\\\\n&=23.81\\text{万円}\n\\end{aligned}\n\\]\nとなる。NPVが正であるため、割引率8%を評価基準とするなら、この投資案は採用可能である。\n\n\n\n6. 内部収益率（IRR）\n内部収益率（Internal Rate of Return: IRR）は、NPVを0にする割引率である。IRRを\\(r^*\\)と書くと\n\\[\n0=-I_0+\\sum_{t=1}^{T}\\frac{CF_t}{(1+r^*)^t}\n\\tag{5}\\]\nを満たす\\(r^*\\)がIRRである。\n前の数値例では、\n\\[\n0=-100+\\frac{30}{1+r^*}\n+\\frac{40}{(1+r^*)^2}\n+\\frac{50}{(1+r^*)^3}\n+\\frac{30}{(1+r^*)^4}\n\\]\nを満たす\\(r^*\\)を求める。解は約18.03%である。\n\n\n7. IRRによる判断\nキャッシュフローが「最初に支出が一度あり、その後は受取りが続く」という通常型で、投資案が独立している場合、次の規則を利用できる。\n\n\n\n比較\n判断\n\n\n\n\n\\(IRR&gt;r\\)\n採用\n\n\n\\(IRR=r\\)\n無差別\n\n\n\\(IRR&lt;r\\)\n棄却\n\n\n\nここで\\(r\\)は必要収益率または基準となる割引率である。例のIRRは18.03%なので、必要収益率が8%なら採用、20%なら棄却となる。\n\n\n8. NPVプロファイル\n割引率を変えるとNPVも変化する。その関係を表したグラフをNPVプロファイルという。通常型のキャッシュフローでは、割引率が高くなるほど将来キャッシュフローの現在価値が小さくなり、NPVは低下する。NPVプロファイルが\\(NPV=0\\)の水平線と交わる点の割引率がIRRである。\n前の数値例と同じく、現在100万円を支払い、1〜4年後にそれぞれ30万円、40万円、50万円、30万円を受け取る投資について、割引率とNPVの関係を描く。\n\n\n\n\n\n\n\n\n図 1: NPVプロファイルの例：曲線とNPV＝0の水平線との交点がIRRを示す\n\n\n\n\n\n割引率8%の点は\\(NPV=0\\)の水平線より上にあり、NPVは正である。一方、20%の点は水平線より下にあり、NPVは負となる。その境界となる割引率が、約18.03%のIRRである。",
-    "crumbs": [
-      "第5回：演習：現在価値・NPV・IRR"
-    ]
-  },
-  {
-    "objectID": "lessons/05/index.html#chapter-2npvとirrの実装",
-    "href": "lessons/05/index.html#chapter-2npvとirrの実装",
-    "title": "第5回：演習：現在価値・NPV・IRR",
-    "section": "Chapter 2｜NPVとIRRの実装",
-    "text": "Chapter 2｜NPVとIRRの実装\n\n作業の準備\n\n第2回に作成したempirical_finance.Rprojを開く。\nFile → New File → R Scriptから新しいRスクリプトを作成し、Project内のscriptフォルダにlesson05.Rという名前で保存する。すでに作成している場合は、そのファイルを開く。\n以下のコードをRスクリプトに順に記述し、実行して結果を確認する。作業中も適宜保存する。\n\nこのChapterではRの標準機能のみを使うため、パッケージのインストールやlibrary()の実行は不要である。キャッシュフローはコード内で作成するので、データファイルも準備する必要はない。\n前回のオブジェクトはProjectを開くと自動復元されるが、ここで使うベクトルと関数は、以下のコードで作成する。\n\n\n1. キャッシュフローをベクトルで表す\n第3回で学んだベクトルを使い、時点とキャッシュフローを表す。\n\nperiods &lt;- 0:4\ncash_flows &lt;- c(-100, 30, 40, 50, 30)\ndiscount_rate &lt;- 0.08\n\nperiods\n\n[1] 0 1 2 3 4\n\ncash_flows\n\n[1] -100   30   40   50   30\n\n\n同じ位置にある要素が対応している。例えば、periods[3]は2、cash_flows[3]は40なので、時点2のキャッシュフローが40万円である。\n\ndata.frame(\n  period = periods,\n  cash_flow = cash_flows\n)\n\n  period cash_flow\n1      0      -100\n2      1        30\n3      2        40\n4      3        50\n5      4        30\n\n\n\n\n2. 各キャッシュフローの現在価値\n各時点の現在価値は、ベクトル化された計算で一度に求められる。\n\ndiscount_factors &lt;- 1 / (1 + discount_rate)^periods\npresent_values &lt;- cash_flows * discount_factors\n\npv_table &lt;- data.frame(\n  period = periods,\n  cash_flow = cash_flows,\n  discount_factor = discount_factors,\n  present_value = present_values\n)\n\npv_table\n\n  period cash_flow discount_factor present_value\n1      0      -100       1.0000000    -100.00000\n2      1        30       0.9259259      27.77778\n3      2        40       0.8573388      34.29355\n4      3        50       0.7938322      39.69161\n5      4        30       0.7350299      22.05090\n\n\n時点0の割引因子は1であり、初期投資-100はそのまま現在価値となる。NPVはpresent_value列の合計である。\n\nsum(pv_table$present_value)\n\n[1] 23.81384\n\n\n\n\n3. NPV関数を作る\n第4回で学んだfunction()を使い、キャッシュフロー、割引率、時点を受け取ってNPVを返す関数を作る。\n\ncalculate_npv &lt;- function(cash_flows, discount_rate,\n                          periods = seq_along(cash_flows) - 1) {\n  present_values &lt;- cash_flows / (1 + discount_rate)^periods\n  sum(present_values)\n}\n\nseq_along(cash_flows)は要素数に応じて1, 2, …という連番を作るため、1を引くと現在から始まる時点0, 1, …になる。periodsを省略した場合は、この時点を使う。\n関数内では、各キャッシュフローを対応する時点で割り引き、sum()で合計する。最後の計算結果が返り値となるため、return()は省略している。\n割引率8%で計算する。\n\nnpv_8 &lt;- calculate_npv(cash_flows, discount_rate = 0.08)\nnpv_8\n\n[1] 23.81384\n\n\n結果は約23.81万円であり、Chapter 1の手計算と一致する。キャッシュフローが現在、2年後、4年後に発生する場合などは、periods = c(0, 2, 4)のように時点を明示する。\nNPV法の判断も、基本的なif文だけで表現できる。\n\nif (npv_8 &gt; 0) {\n  decision &lt;- \"採用\"\n} else {\n  decision &lt;- \"不採用\"\n}\n\ndecision\n\n[1] \"採用\"\n\n\n割引率を変更して再計算する。\n\nc(\n  NPV_5_percent = calculate_npv(cash_flows, 0.05),\n  NPV_8_percent = calculate_npv(cash_flows, 0.08),\n  NPV_15_percent = calculate_npv(cash_flows, 0.15),\n  NPV_20_percent = calculate_npv(cash_flows, 0.20)\n)\n\n NPV_5_percent  NPV_8_percent NPV_15_percent NPV_20_percent \n     32.725562      23.813838       6.361112      -3.819444 \n\n\n割引率が高くなるにつれてNPVが低下し、18%と20%の間で正から負へ変わることが分かる。\n\n\n4. IRRを数値的に求める\nuniroot()は、指定した区間内で関数の値が0になる引数の値を求める関数である。ここでは、割引率を受け取ってNPVを返す関数を渡し、NPVが0になる割引率、すなわちIRRを求める。\n\nnpv_equation &lt;- function(rate) {\n  calculate_npv(cash_flows, rate, periods)\n}\n\nirr_result &lt;- uniroot(\n  f = npv_equation,\n  interval = c(-0.99, 1),\n  tol = 1e-10\n)\n\nirr_result$root\n\n[1] 0.1802816\n\n\nfには解を求める対象の関数、intervalには探索区間を指定する。この例では、割引率−99%から100%の範囲で探す。tolは解の精度を調整する許容誤差であり、1e-10は\\(10^{-10}\\)を表す。探索区間は、その両端でNPVの符号が異なるように設定する。\n結果はリストで返され、$rootで求めた解を取り出せる。この例では約0.1803、百分率で約18.03%となる。NPV関数に代入して、NPVがほぼ0になることを確認する。\n\nirr &lt;- irr_result$root\ncalculate_npv(cash_flows, irr, periods)\n\n[1] -0.000000000001142197\n\n\n数値的に求めた近似解であるため、NPVは厳密な0ではなく、0に非常に近い値になることがある。\n\n\n5. IRR関数を作る\n同じ処理を、キャッシュフローを受け取ってIRRを返す関数にまとめる。\n\ncalculate_irr &lt;- function(cash_flows,\n                          periods = seq_along(cash_flows) - 1,\n                          interval = c(-0.99, 1)) {\n  npv_function &lt;- function(rate) {\n    calculate_npv(cash_flows, rate, periods)\n  }\n\n  result &lt;- uniroot(\n    f = npv_function,\n    interval = interval,\n    tol = 1e-10\n  )\n  result$root\n}\n\nperiodsの既定値はNPV関数と同じである。関数内のnpv_function()は、受け取ったキャッシュフローと時点を使い、割引率rateに応じたNPVを返す。これをuniroot()に渡し、result$rootを返り値とする。\n\ncalculate_irr(cash_flows)\n\n[1] 0.1802816\n\n\n結果は約0.1803となる。探索範囲を変える場合はintervalを明示する。ただし、この関数が返すのは一つの解であり、IRRが複数存在する場合にすべてを求めるものではない。\n\n\n7. NPVプロファイルを作る\n割引率を-10%から40%まで変化させ、各割引率に対応するNPVを計算する。\n\ndiscount_rates &lt;- seq(-0.10, 0.40, by = 0.01)\nnpv_values &lt;- numeric(length(discount_rates))\n\nfor (i in seq_along(discount_rates)) {\n  npv_values[i] &lt;- calculate_npv(\n    cash_flows = cash_flows,\n    discount_rate = discount_rates[i],\n    periods = periods\n  )\n}\n\nnpv_profile &lt;- data.frame(\n  discount_rate = discount_rates,\n  NPV = npv_values\n)\n\nhead(npv_profile)\n\n  discount_rate      NPV\n1         -0.10 97.02789\n2         -0.09 91.36887\n3         -0.08 85.95470\n4         -0.07 80.77180\n5         -0.06 75.80750\n6         -0.05 71.04995\n\n\nplot()で折れ線グラフを描き、abline()でNPVが0の水平線とIRRの位置を示す垂直線を加える。\n\nplot(\n  x = npv_profile$discount_rate,\n  y = npv_profile$NPV,\n  type = \"l\",\n  col = \"blue\",\n  xlab = \"Discount rate\",\n  ylab = \"NPV\",\n  main = \"NPV profile\"\n)\n\nabline(h = 0, col = \"gray\")\nabline(v = irr, col = \"red\")\n\n\n\n\n\n\n\n図 2: 割引率とNPVの関係\n\n\n\n\n\ntype = \"l\"は線で描く指定であり、colで色を指定する。abline()のhは水平線の高さ、vは垂直線の位置を表す。横軸の割引率は小数表示であり、0.1は10%に対応する。\n図 2 では、青い曲線とNPVが0の灰色の水平線との交点に対応する割引率がIRRであり、赤い垂直線で示されている。割引率8%はIRRより低いためNPVは正、割引率20%はIRRより高いためNPVは負となる。",
-    "crumbs": [
-      "第5回：演習：現在価値・NPV・IRR"
-    ]
-  },
-  {
-    "objectID": "lessons/06/index.html",
-    "href": "lessons/06/index.html",
-    "title": "第6回：tidyverse流データ分析",
-    "section": "",
-    "text": "到達目標",
-    "crumbs": [
-      "第6回：tidyverse流データ分析"
-    ]
-  },
-  {
-    "objectID": "lessons/06/index.html#到達目標",
-    "href": "lessons/06/index.html#到達目標",
-    "title": "第6回：tidyverse流データ分析",
-    "section": "",
-    "text": "パイプでデータ処理を実行順に記述できる\nCSVの構造を確認し、必要な行と列を選べる\n現在価値の列を作り、投資案ごとにNPVとIRRを集計できる\nggplot2で投資案の比較や時点ごとの変化を図にし、保存できる",
-    "crumbs": [
-      "第6回：tidyverse流データ分析"
-    ]
-  },
-  {
-    "objectID": "lessons/06/index.html#chapter-1tidyverseとパイプ",
-    "href": "lessons/06/index.html#chapter-1tidyverseとパイプ",
-    "title": "第6回：tidyverse流データ分析",
-    "section": "Chapter 1｜tidyverseとパイプ",
-    "text": "Chapter 1｜tidyverseとパイプ\n\n作業の準備\n\nempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、script/lesson06.Rとして保存する。すでに作成している場合は、そのファイルを開く。\ncash-flows-lesson06.csvをダウンロードし、Project内のdataフォルダに保存する。図の保存に使うoutputフォルダも確認し、なければ作成する。\n\n以下のコードは、このRスクリプトに順に記述し、実行して結果を確認する。前回のオブジェクトは自動復元されるが、ここで使うデータは改めて読み込む。\n\n\n1. tidyverseを読み込む\n第5回では、一つの投資案についてNPVとIRRを計算した。ここでは、複数の投資案のキャッシュフローを一つの表で管理し、投資案ごとに計算結果をまとめる。\ntidyverseは、データの読み込み、整理、集計、作図を共通した考え方で行うためのパッケージ群である。第4回で使ったreadrもその一つであり、ここでは次の機能を組み合わせる。\n\n\n\n\n\n\n\n\nパッケージ\n主な用途\n\n\n\n\nreadr\nCSVの読み込み\n\n\ndplyr\n行・列の抽出、変数の作成、集計\n\n\nggplot2\nグラフの作成\n\n\n\n未導入の場合は、Consoleで次のコードを実行する。\n\ninstall.packages(\"tidyverse\")\n\n続いて、Rスクリプトに次の行を記述する。Projectのオブジェクトが復元されても、使用するパッケージはlibrary()で読み込む。\n\nlibrary(tidyverse)\n\n\n\n2. パイプで処理をつなぐ\nパイプ演算子|&gt;を使うと、左側の結果を右側の関数の第1引数へ渡し、処理を実行する順に記述できる。第5回の投資案について、各キャッシュフローの現在価値を合計し、小数第2位まで表示する。\n\ncash_flows &lt;- c(-100, 30, 40, 50, 30)\npresent_values &lt;- cash_flows / (1 + 0.08)^(0:4)\n\nround(sum(present_values), digits = 2)\n\n[1] 23.81\n\npresent_values |&gt;\n  sum() |&gt;\n  round(digits = 2)\n\n[1] 23.81\n\n\nどちらも結果は23.81となる。パイプを使ったコードは、「現在価値を合計し、その結果を小数第2位まで丸める」と上から読める。\n\n\n\n\n\ntidyverseのコードでは、同じように処理をつなぐ%&gt;%という表記も使われる。以下ではR標準の|&gt;で統一する。パイプの後で改行すると、各処理を確認しやすい。\n\n\n3. 計算に使う関数を用意する\n第5回で作成したcalculate_npv()とcalculate_irr()の定義を、script/lesson06.Rにも記述する。計算方法は変えず、後で投資案ごとに関数を適用する。\n\n\n第5回の関数を確認する\n\n\ncalculate_npv &lt;- function(cash_flows, discount_rate,\n                          periods = seq_along(cash_flows) - 1) {\n  present_values &lt;- cash_flows / (1 + discount_rate)^periods\n  sum(present_values)\n}\n\ncalculate_irr &lt;- function(cash_flows,\n                          periods = seq_along(cash_flows) - 1,\n                          interval = c(-0.99, 1)) {\n  npv_function &lt;- function(rate) {\n    calculate_npv(cash_flows, rate, periods)\n  }\n\n  result &lt;- uniroot(\n    f = npv_function,\n    interval = interval,\n    tol = 1e-10\n  )\n  result$root\n}",
-    "crumbs": [
-      "第6回：tidyverse流データ分析"
-    ]
-  },
-  {
-    "objectID": "lessons/06/index.html#chapter-2投資案ごとにnpvとirrを求める",
-    "href": "lessons/06/index.html#chapter-2投資案ごとにnpvとirrを求める",
-    "title": "第6回：tidyverse流データ分析",
-    "section": "Chapter 2｜投資案ごとにNPVとIRRを求める",
-    "text": "Chapter 2｜投資案ごとにNPVとIRRを求める\n\n1. CSVを読み込む\n三つの投資案A・B・Cのキャッシュフローを使う。Aは第5回と同じ投資案であり、BとCを比較用に加えている。いずれも時点0に支払い、その後4年間に受け取る例である。金額の単位は万円とする。\n\ncash_flow_data &lt;- read_csv(\n  \"data/cash-flows-lesson06.csv\",\n  na = c(\"\", \"NA\"),\n  show_col_types = FALSE\n)\nhead(cash_flow_data)\n\n\n\n# A tibble: 6 × 3\n  project period cash_flow\n  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1 A            0      -100\n2 A            1        30\n3 A            2        40\n4 A            3        50\n5 A            4        30\n6 B            0      -120\n\n\nread_csv()が返す表は、データフレームを拡張したtibbleである。\n\n\n\n列名\n内容\n\n\n\n\nproject\n投資案の名前\n\n\nperiod\nキャッシュフローが発生する時点（年）\n\n\ncash_flow\nキャッシュフロー（万円、支払いは負）\n\n\n\n一つの列が一つの変数、一つの行が一つの観測を表し、一つの表に同じ種類の観測単位をまとめたデータをtidy dataという。この表の一行は「一つの投資案の一つの時点」に対応する。\n\ndim(cash_flow_data)\n\n[1] 15  3\n\ncolSums(is.na(cash_flow_data))\n\n  project    period cash_flow \n        0         0         0 \n\n\nデータは15行・3列で、欠損値はない。キャッシュフローに欠損がある場合は、元の資料を確認する。行を削除したり0に置き換えたりすると投資案の内容が変わるため、そのまま計算を進めない。\n\n\n2. 行と列を選ぶ\nfilter()は条件を満たす行を、select()は指定した列を残す。投資案Aのキャッシュフローを取り出す。\n\nproject_a &lt;- cash_flow_data |&gt;\n  filter(project == \"A\") |&gt;\n  select(period, cash_flow)\n\nproject_a\n\n# A tibble: 5 × 2\n  period cash_flow\n   &lt;dbl&gt;     &lt;dbl&gt;\n1      0      -100\n2      1        30\n3      2        40\n4      3        50\n5      4        30\n\n\nこれらの関数では、表を第1引数として渡しているため、cash_flow_data$projectではなくprojectのように列名だけを記述できる。\n練習：投資案Bのうち、時点1以降の行を抽出し、periodとcash_flowを表示しなさい。filter(project == \"B\", period &gt;= 1)のように条件をカンマで区切ると、両方を満たす行を残せる。\nなお、NPVとIRRの計算には時点0の支払いも必要である。以下の計算には、抽出前のcash_flow_dataを使う。\n\n\n3. 現在価値の列を作る\nmutate()は新しい列を作成する。各キャッシュフローを年8%で割り引き、現在価値の列present_valueを加える。\n\ndiscount_rate &lt;- 0.08\n\npv_data &lt;- cash_flow_data |&gt;\n  mutate(\n    present_value = cash_flow / (1 + discount_rate)^period\n  )\n\nhead(pv_data)\n\n# A tibble: 6 × 4\n  project period cash_flow present_value\n  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 A            0      -100        -100  \n2 A            1        30          27.8\n3 A            2        40          34.3\n4 A            3        50          39.7\n5 A            4        30          22.1\n6 B            0      -120        -120  \n\n\n各行のcash_flowとperiodを使って計算する。元の表はcash_flow_dataに残し、現在価値を加えた表をpv_dataに保存している。\n\n\n4. 投資案ごとに集計する\ngroup_by()で集計単位を指定し、summarise()で各グループを一行にまとめる。投資案ごとに現在価値を合計してNPVを求め、同じグループのキャッシュフローと時点をcalculate_irr()へ渡す。\n\nproject_results &lt;- pv_data |&gt;\n  group_by(project) |&gt;\n  summarise(\n    NPV = sum(present_value),\n    IRR = calculate_irr(cash_flow, periods = period),\n    .groups = \"drop\"\n  ) |&gt;\n  mutate(IRR_percent = IRR * 100)\n\nproject_results\n\n# A tibble: 3 × 4\n  project   NPV    IRR IRR_percent\n  &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;\n1 A        23.8 0.180        18.0 \n2 B        31.9 0.174        17.4 \n3 C       -13.5 0.0192        1.92\n\n\n.groups = \"drop\"は集計後のグループ化を解除する指定である。IRRは小数、IRR_percentは百分率で表した値となる。\nAのNPVは約23.81万円、IRRは約18.03%であり、第5回と一致する。summarise()にはsum()やmean()だけでなく、今回のような自作関数も使える。\n\n\n5. 結果を並べ替える\narrange()は行を並べ替える。既定では昇順、desc()を付けると降順になる。NPVが大きい順に並べる。\n\nproject_results |&gt;\n  arrange(desc(NPV)) |&gt;\n  select(project, NPV, IRR_percent)\n\n# A tibble: 3 × 3\n  project   NPV IRR_percent\n  &lt;chr&gt;   &lt;dbl&gt;       &lt;dbl&gt;\n1 B        31.9       17.4 \n2 A        23.8       18.0 \n3 C       -13.5        1.92\n\n\nNPVはBが約31.89万円、Aが約23.81万円、Cが約−13.52万円となる。このコードは結果を表示するだけであり、project_results自体の並び順は変わらない。\n練習：discount_rateを12%に変更し、pv_dataの作成から集計までを再実行しなさい。NPVとIRRのうち、どちらが変化するか確認する。確認後は8%に戻して同じ処理を再実行し、次の作図へ進む。",
-    "crumbs": [
-      "第6回：tidyverse流データ分析"
-    ]
-  },
-  {
-    "objectID": "lessons/06/index.html#chapter-3ggplot2で結果を可視化する",
-    "href": "lessons/06/index.html#chapter-3ggplot2で結果を可視化する",
-    "title": "第6回：tidyverse流データ分析",
-    "section": "Chapter 3｜ggplot2で結果を可視化する",
-    "text": "Chapter 3｜ggplot2で結果を可視化する\n\n1. NPVを棒グラフで比較する\n第5回ではplot()で作図した。ggplot2では、データ、変数と軸の対応、図形を指定し、+で組み合わせる。library(tidyverse)によってggplot2も読み込まれている。\n横軸を投資案、縦軸をNPVとする棒グラフを作る。\n\nnpv_plot &lt;- ggplot(project_results, aes(x = project, y = NPV)) +\n  geom_col(fill = \"skyblue\") +\n  geom_hline(yintercept = 0, colour = \"gray\") +\n  labs(x = \"Project\", y = \"NPV (10,000 yen)\")\n\nprint(npv_plot)\n\n\n\n\n\n\n\n図 1: 三つの投資案のNPV（割引率8%）\n\n\n\n\n\nggplot()にはデータ、aes()には変数と軸の対応を記述する。geom_col()は指定した値を棒の高さとし、fillで塗りつぶしの色を設定する。geom_hline()は水平線、labs()は軸名などの設定である。\n図をオブジェクトに保存した場合は、print()で表示できる。|&gt;が処理結果を次の関数へ渡すのに対し、+は図に要素を追加する記号である。\n練習：縦軸をIRR_percentに変更し、IRRを比較する棒グラフを作りなさい。縦軸名は\"IRR (%)\"とする。\n\n\n2. キャッシュフローの変化を描く\nNPVとIRRは複数時点のキャッシュフローを一つの数値にまとめた指標である。元のキャッシュフローも図で確認する。横軸を時点、縦軸を金額とし、投資案ごとに色を分ける。\n\ncash_flow_plot &lt;- ggplot(\n  cash_flow_data,\n  aes(x = period, y = cash_flow, colour = project)\n) +\n  geom_line() +\n  geom_point() +\n  labs(x = \"Year\", y = \"Cash flow (10,000 yen)\", colour = \"Project\")\n\nprint(cash_flow_plot)\n\n\n\n\n\n\n\n図 2: 投資案ごとのキャッシュフロー\n\n\n\n\n\ngeom_line()は線、geom_point()は点を描く。aes()内のcolour = projectは投資案と色を対応させ、凡例も作成する。この例では投資案ごとに点が結ばれる。線は時点間の変化を示すものであり、その間にもキャッシュフローが発生するという意味ではない。\n点の色だけを青に固定する場合は、geom_point(colour = \"blue\")と指定する。aes()内で変数に色を対応させる指定と、図形の色を直接固定する指定を区別する。\n\n\n3. 図を保存する\nggsave()に保存先と図のオブジェクトを渡す。NPVの棒グラフを、Project内のoutputフォルダに保存する。\n\nggsave(\n  \"output/npv-comparison.png\",\n  plot = npv_plot,\n  width = 7,\n  height = 4.5\n)\n\nwidthとheightは、既定ではインチ単位での幅と高さである。作図済みのオブジェクトを保存するため、dev.off()は不要である。同名のファイルは上書きされる。保存後はFilesペインで画像を確認する。\n作業を終えるときは、script/lesson06.Rを保存する。コード例（lesson06-example.R）には、本文の主要なコードをまとめてある。",
-    "crumbs": [
-      "第6回：tidyverse流データ分析"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html",
-    "href": "appendices/A-r-basics.html",
-    "title": "R基礎事項",
-    "section": "",
-    "text": "ベクトル\nRでは、複数の値を c() でまとめる。\nprices &lt;- c(100, 103, 101, 106)\nprices\n\n[1] 100 103 101 106\nベクトルに対する演算は、原則として各要素へ一括適用される。\nprices * 1.10\n\n[1] 110.0 113.3 111.1 116.6\n\nlog(prices)\n\n[1] 4.605170 4.634729 4.615121 4.663439",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html#要素の選択",
-    "href": "appendices/A-r-basics.html#要素の選択",
-    "title": "R基礎事項",
-    "section": "要素の選択",
-    "text": "要素の選択\n\nprices[1]       # 最初の要素\n\n[1] 100\n\nprices[-1]      # 最初の要素を除く\n\n[1] 103 101 106\n\nprices[2:4]     # 2番目から4番目\n\n[1] 103 101 106\n\ntail(prices, 1) # 最後の要素\n\n[1] 106\n\n\n価格ベクトルを一つずらして割ることで、リターンをまとめて計算できる。\n\nprices[-1] / prices[-length(prices)] - 1\n\n[1]  0.03000000 -0.01941748  0.04950495",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html#データフレーム",
-    "href": "appendices/A-r-basics.html#データフレーム",
-    "title": "R基礎事項",
-    "section": "データフレーム",
-    "text": "データフレーム\nデータフレームは、長さの等しい複数の列を表形式で保持する。\n\nmarket &lt;- data.frame(\n  date = as.Date(\"2026-04-01\") + 0:3,\n  price = prices\n)\n\nmarket\n\n        date price\n1 2026-04-01   100\n2 2026-04-02   103\n3 2026-04-03   101\n4 2026-04-04   106\n\n\n列は $ を使って選択できる。\n\nmarket$price\n\n[1] 100 103 101 106\n\nmean(market$price)\n\n[1] 102.5",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html#欠損値",
-    "href": "appendices/A-r-basics.html#欠損値",
-    "title": "R基礎事項",
-    "section": "欠損値",
-    "text": "欠損値\nRでは欠損値を NA で表す。\n\nx &lt;- c(0.01, NA, -0.02, 0.03)\n\nmean(x)\n\n[1] NA\n\nmean(x, na.rm = TRUE)\n\n[1] 0.006666667\n\n\nna.rm = TRUE は欠損値を除いて計算する。ただし、欠損値を除くことが分析上妥当かどうかは別途検討する必要がある。",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html#関数",
-    "href": "appendices/A-r-basics.html#関数",
-    "title": "R基礎事項",
-    "section": "関数",
-    "text": "関数\n\ngross_return &lt;- function(r) {\n  1 + r\n}\n\ngross_return(c(0.03, -0.02))\n\n[1] 1.03 0.98\n\n\n関数は、入力、処理、出力を一つの再利用可能な単位にまとめる。繰り返し使う金融計算は関数化すると、転記ミスを減らせる。",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
-    ]
-  },
-  {
-    "objectID": "appendices/A-r-basics.html#よく使う確認コマンド",
-    "href": "appendices/A-r-basics.html#よく使う確認コマンド",
-    "title": "R基礎事項",
-    "section": "よく使う確認コマンド",
-    "text": "よく使う確認コマンド\n\n\n\nコマンド\n用途\n\n\n\n\nhead(x)\n先頭を確認する\n\n\ntail(x)\n末尾を確認する\n\n\nstr(x)\nデータ構造を確認する\n\n\nsummary(x)\n基本統計量を確認する\n\n\nis.na(x)\n欠損値を確認する\n\n\nlength(x)\nベクトルの長さを確認する\n\n\nnrow(x)\nデータフレームの行数を確認する",
-    "crumbs": [
-      "付録",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>R基礎事項</span>"
+      "第1回：Rの基本操作 I"
     ]
   }
 ]
