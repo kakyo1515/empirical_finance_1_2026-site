@@ -158,5 +158,125 @@
     "crumbs": [
       "第1回：Rの基本操作 I"
     ]
+  },
+  {
+    "objectID": "lessons/02/index.html",
+    "href": "lessons/02/index.html",
+    "title": "第2回：Rの基本操作 II",
+    "section": "",
+    "text": "到達目標",
+    "crumbs": [
+      "第2回：Rの基本操作 II"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#到達目標",
+    "href": "lessons/02/index.html#到達目標",
+    "title": "第2回：Rの基本操作 II",
+    "section": "",
+    "text": "RStudioの基本操作と、Rスクリプトによる作業方法を学ぶ。\nRの基本的な文法、データ型、簡単な処理方法を理解する。\n作業内容を適切に保存・管理し、Projectで作業を継続する方法を学ぶ。",
+    "crumbs": [
+      "第2回：Rの基本操作 II"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#chapter-1rstudioでのコードの実行",
+    "href": "lessons/02/index.html#chapter-1rstudioでのコードの実行",
+    "title": "第2回：Rの基本操作 II",
+    "section": "Chapter 1｜RStudioでのコードの実行",
+    "text": "Chapter 1｜RStudioでのコードの実行\n\n作業の準備\n\n第1回でインストールしたRStudioを起動する。\ndata_lesson02.csv をダウンロードをクリックして保存する。保存先は、以下でProjectを作成した後に指定する。\n\n今回は、画面の使い方を確認しながら、Projectとscript/lesson02.Rを作成する。追加パッケージのインストールは不要である。\n\n\n1. RStudioの画面\nRStudioの画面は複数の領域に分かれており、それぞれをペイン（pane）と呼ぶ。まず、図と自分の画面を対応させて各ペインを確認する。\n初回起動時にはSourceが表示されず、3領域に見えることがある。Sourceはスクリプトを開くと表示される。配置は設定によって変わるため、位置と併せてタブ名を確認する。\n\n\n\nRStudioの主要なペイン\n\n\n出典：Posit, Get Started — RStudio Panes。\n\n\n\n\n\n\n\nペイン\n主な役割\n\n\n\n\nSource\nRスクリプトを編集する\n\n\nConsole\nコードを実行し、結果やエラーを確認する\n\n\nEnvironment / History\n作成したオブジェクトや実行履歴を確認する\n\n\nFiles / Plots / Packages / Help\nファイル、図、パッケージ、ヘルプを確認する\n\n\n\n\n\n2. R Projectの作成\nR Projectは、分析に使うスクリプト、データ、出力を一つのフォルダにまとめて管理する仕組みである。作業を始める際にProjectを開くと、そのフォルダを基準にファイルを扱える。\n\nFile → New Project → New Directory → New Projectを選択する。\nDirectory nameにempirical_financeを入力し、保存先を指定する。\nCreate Projectを選択する。\n画面右上のProject名がempirical_financeになっていることを確認する。\n\n同名のProjectが既にある場合は、その.Rprojファイルから開く。\n練習1： Projectとフォルダの準備\n全員、次の作業を行い、授業で使用するProjectとデータを準備しなさい。\n\n上の手順に従って、empirical_financeという名前のProjectを作成する。既に作成した場合は、そのProjectを開く。\nProjectフォルダ直下に、データを保存するdataフォルダと、Rスクリプトを保存するscriptフォルダを作成する。RStudioのFilesペインでProjectフォルダを表示し、New Folderからそれぞれ作成する。\nダウンロードしたdata_lesson02.csvを、作成したdataフォルダに移す。\nFilesペインでdataフォルダを開き、data_lesson02.csvがあることを確認する。\n\n作業後のフォルダ構成は、次のようになる。\nempirical_finance/\n├── empirical_finance.Rproj\n├── data/\n│   └── data_lesson02.csv\n└── script/\n\n\n3. スクリプトの作成と最初の式の実行\nRのコードを記録したファイルをRスクリプトという。File → New File → R Scriptを選択すると、Sourceペインに新しいRスクリプトの編集タブが開く。\n#から行末まではコメントであり、計算として実行されない。Rスクリプトに次のコードを記述する。\n\n# 基本的な計算\n1 + 2\n\n[1] 3\n\n\n1 + 2の行にカーソルを置き、Runを選択する。WindowsではCtrl + Enter、MacではCommand + Enterでも実行できる。複数行を選択した場合は、その範囲が実行される。\nConsoleに[1] 3が表示される。3が計算結果であり、[1]は表示行の先頭の値が結果の第1要素であることを示す。\nFile → Save Asで、Project内のscriptフォルダを選び、lesson02.Rという名前で保存する。Projectを基準とした保存先はscript/lesson02.Rとなる。以降も同じファイルにコードを追加し、WindowsではCtrl + S、MacではCommand + Sで変更を保存する。\n保存と実行は別の操作である。コードを実行しても、その変更がファイルに保存されるとは限らない。\n\n\n4. Consoleへの直接入力\nConsoleにはコードを直接入力することもできる。&gt;は入力を受け付ける状態を示す記号であり、コードの一部として入力しない。\nConsoleで半角の10 / 4を入力し、Enterで実行する。結果は次のようになる。\n&gt; 10 / 4\n[1] 2.5\n直接入力は短い確認に便利だが、残す必要のある処理はRスクリプトに記述する。以降の例と練習はlesson02.Rに追加して実行する。\n\n\n入力・実行時の確認事項\n\n\nConsoleが+のままになる場合は、括弧や引用符の閉じ忘れを確認する。Escで入力を取り消し、式を修正する。\n数値や演算記号には半角文字を使う。\nRスクリプトにコードを記述しても結果が出ない場合は、Runまたは実行用ショートカットで実行したか確認する。\n\n\n練習2： lesson02.Rに(8 + 4) / 2を追加し、実行してから保存しなさい。\n\n\n解答例\n\n計算結果は6である。Rスクリプトに行を追加し、実行後に保存する。",
+    "crumbs": [
+      "第2回：Rの基本操作 II"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#chapter-2計算代入関数",
+    "href": "lessons/02/index.html#chapter-2計算代入関数",
+    "title": "第2回：Rの基本操作 II",
+    "section": "Chapter 2｜計算・代入・関数",
+    "text": "Chapter 2｜計算・代入・関数\n\n1. 計算式の記述\nRでは、加減乗除やべき乗を演算子で記述する。以下の表で記号を確認し、コードを実行する。\n\n\n\n演算子\n意味\n例\n\n\n\n\n+、-\n加算、減算\n10 - 4\n\n\n*、/\n乗算、除算\n3 * 5\n\n\n^\nべき乗\n2^3\n\n\n\n\n10 - 4\n\n[1] 6\n\n3 * 5\n\n[1] 15\n\n2^3\n\n[1] 8\n\n(2 + 3) * 4\n\n[1] 20\n\n\n結果は順に6、15、8、20となる。括弧を用いると、先に計算する範囲を明示できる。\n\n\n補足：余りと整数除算\n\n%%は除算の余り、%/%は整数除算の結果を返す。\n\n10 %% 3\n\n[1] 1\n\n10 %/% 3\n\n[1] 3\n\n\n結果はそれぞれ1と3である。\n\n\n\n2. 値の代入とオブジェクトの命名\nデータや計算結果を保存し、名前を使って再利用するには、代入演算子&lt;-を用いる。Rで扱う値やデータなどをオブジェクトという。\n\nscore &lt;- 82\nscore\n\n[1] 82\n\n\nscore &lt;- 82は、右側の値を左側の名前に代入する操作である。代入だけでは通常、結果は表示されない。名前を実行すると値が表示され、Environmentにもscoreが追加される。\n\nscore + 5\n\n[1] 87\n\nscore\n\n[1] 82\n\n\n最初の結果は87だが、score自体は82のままである。値を変更するには、計算結果を再び代入する。\n\nscore &lt;- score + 5\nprint(score)\n\n[1] 87\n\n\nここではscoreが87に更新される。print()は値を表示する関数であり、オブジェクト名を直接実行する代わりに使用できる。\n名前にはscoreやaverage_scoreのように内容を表す英字名を使うと読みやすい。大文字と小文字は区別されるため、scoreとScoreは別の名前である。空白や、TRUE、FALSE、functionなどの予約語は使わない。\n練習3： study_hoursに6を代入し、2を加えた結果を表示しなさい。その後、study_hours自体を8に更新しなさい。\n\n\n解答例\n\n\nstudy_hours &lt;- 6\nstudy_hours + 2\nstudy_hours &lt;- study_hours + 2\nstudy_hours\n\n単に加算した段階では元の値は変わらず、再代入によって更新される。\n\n\n\n3. 関数と引数\n関数は、値を受け取り、決められた処理を行って結果を返す仕組みである。関数名の後ろに括弧を書き、処理対象や設定を指定する。関数に渡す情報を引数という。\n\nsqrt(16)\n\n[1] 4\n\nabs(-8)\n\n[1] 8\n\nround(3.1415926, digits = 3)\n\n[1] 3.142\n\n\nsqrt()は平方根、abs()は絶対値を求める。round()は数値を丸め、digits = 3は小数点以下の桁数を指定する。この例の結果は4、8、3.142である。\n\n\n補足：対数と指数\n\nlog()は自然対数、exp()は自然対数の底を用いた指数関数である。\n\nlog(10)\n\n[1] 2.302585\n\nexp(2)\n\n[1] 7.389056\n\n\n\n使い方を確認する場合は、Helpを利用する。次のいずれかを実行すると、round()の説明が開く。\n\n?round\nhelp(round)\n\nHelpのUsageで書式、Argumentsで引数、Valueで返り値、Examplesで使用例を確認する。引数の書式だけを表示するにはargs(round)、使用例を実行するにはexample(round)を使う。\n練習4： sqrt(50)を計算し、その結果を小数第2位まで表示しなさい。\n\n\n解答例\n\n\nroot_value &lt;- sqrt(50)\nround(root_value, digits = 2)\n\n結果は7.07である。関数を自作する方法は第4回で扱う。\n\n\n\n4. データ型の確認\nデータ型とは、値を数値、文字列、論理値などのどの種類として扱うかを示すものである。Rでは、データ型によって適用できる演算や関数の処理が異なる。見た目が同じ数字でも、文字列として保存されていると、そのままでは足し算や平均の計算に使えない。\n例えば、82は数値なので、次の足し算の結果は87となる。\n\n82 + 5\n\n[1] 87\n\n\n一方、引用符で囲んだ\"82\"は文字列である。次の式を実行すると、数値ではない値に算術演算を適用したことを示すエラーになり、87は得られない。\n\n\"82\" + 5\n\nこのように、見た目だけでは計算に使えるかどうかを判断できない。計算やデータの加工に進む前に、値が意図した型になっているかを確認することが重要である。\nまず、基本となる数値、文字列、論理値を確認する。文字列は引用符で囲み、論理値はTRUEまたはFALSEで表す。class()を使うと型を確認できる。\n\nstudent_name &lt;- \"Aiko\"\nscore &lt;- 82\nattendance &lt;- 0.94\npassed &lt;- TRUE\n\nclass(student_name)\n\n[1] \"character\"\n\nclass(score)\n\n[1] \"numeric\"\n\nclass(passed)\n\n[1] \"logical\"\n\n\n出力は順に\"character\"、\"numeric\"、\"logical\"となる。82は数値だが、\"82\"は文字列である。\n\n\n補足：型の変換と警告\n\nas.numeric()、as.character()、as.logical()などで型を変換できる。\n\nas.numeric(\"12.5\")\n\n[1] 12.5\n\nas.character(100)\n\n[1] \"100\"\n\nas.logical(1)\n\n[1] TRUE\n\nas.numeric(FALSE)\n\n[1] 0\n\n\n数値として解釈できない文字列を変換すると、欠損値を表すNAになり、警告が表示される。\n\nas.numeric(\"twelve\")\n\nWarning: NAs introduced by coercion\n\n\n[1] NA\n\n\nこの警告は変換できなかったことを示している。NAの確認と集計方法は、第3回でベクトルとともに扱う。\n\n\n\n5. 条件の判定\n比較演算子を使うと、条件を満たすかどうかがTRUEまたはFALSEで返される。\n\nscore &gt;= 80\n\n[1] TRUE\n\nscore == 82\n\n[1] TRUE\n\nscore != 70\n\n[1] TRUE\n\n\n\n\n\n演算子\n意味\n\n\n\n\n&gt; / &lt;\nより大きい／より小さい\n\n\n&gt;= / &lt;=\n以上／以下\n\n\n== / !=\n等しい／等しくない\n\n\n&\nかつ\n\n\n\\|\nまたは\n\n\n!\n否定\n\n\n\n代入には&lt;-、値が等しいかの判定には==を用いる。複数の条件は、論理演算子で組み合わせる。\n\nscore &gt;= 60 & attendance &gt;= 0.80\n\n[1] TRUE\n\nscore &gt;= 90 | attendance == 1\n\n[1] FALSE\n\n!(score &lt; 60)\n\n[1] TRUE\n\n\n得点82、出席率0.94なので、結果は順にTRUE、FALSE、TRUEとなる。\n練習5： scoreが80以上、かつattendanceが0.90以上かどうかを判定しなさい。\n\n\n解答例\n\n\nscore &gt;= 80 & attendance &gt;= 0.90\n\n結果はTRUEである。\n\n\n\n補足：エラー・警告・メッセージ\n\n\n\n\n表示\n意味\n\n\n\n\nError\nその式の処理が完了しなかった\n\n\nWarning\n処理は行われたが、結果の確認が必要である\n\n\nMessage\n関数やパッケージからの情報である\n\n\n\nエラーが出た場合は、オブジェクト名の綴り、大文字と小文字、括弧、引用符、カンマを確認する。原因を確認できない場合は、実行したコードとメッセージを併せて教員に伝える。\n\n練習6： ある学生の小テストの得点は78点、期末テストの得点は92点、出席率は0.85である。総合点を「小テストの40%と期末テストの60%の合計」とし、総合点が80点以上、かつ出席率が0.80以上の場合を合格とする。\n次の処理をscript/lesson02.Rに記述しなさい。\n\n得点をquiz_scoreとexam_score、出席率をattendance_rateに代入する。\n総合点を計算し、final_scoreに代入する。\n総合点を小数第1位まで表示する。\n合格条件を判定し、その結果をis_passedに代入する。\nclass()でfinal_scoreとis_passedの型を確認する。\n\n\n\n解答例\n\n\nquiz_score &lt;- 78\nexam_score &lt;- 92\nattendance_rate &lt;- 0.85\n\nfinal_score &lt;- quiz_score * 0.40 + exam_score * 0.60\nround(final_score, digits = 1)\n\nis_passed &lt;- final_score &gt;= 80 & attendance_rate &gt;= 0.80\nis_passed\n\nclass(final_score)\nclass(is_passed)\n\n総合点は86.4点であり、出席率も基準を満たすため、is_passedはTRUEとなる。型はそれぞれ\"numeric\"、\"logical\"である。",
+    "crumbs": [
+      "第2回：Rの基本操作 II"
+    ]
+  },
+  {
+    "objectID": "lessons/02/index.html#chapter-3作業の保存と復元",
+    "href": "lessons/02/index.html#chapter-3作業の保存と復元",
+    "title": "第2回：Rの基本操作 II",
+    "section": "Chapter 3｜作業の保存と復元",
+    "text": "Chapter 3｜作業の保存と復元\n\n1. Projectの作業領域の自動保存・復元\nEnvironmentに表示されるオブジェクトをまとめたものを作業領域（workspace）という。作業領域を保存すると、作成したデータや計算結果を次にProjectを開いたときに復元できる。授業では、前回の状態から作業を続けられるよう、自動保存と自動復元を有効にする。\nempirical_financeを開いた状態で、Tools → Project Options → Generalを選択し、次のように設定してOKで確定する。\n\n\n\n設定項目\n選択する値\n\n\n\n\nRestore .RData into workspace at startup\nYes\n\n\nSave workspace to .RData on exit\nAlways\n\n\n\nProjectごとの設定はGlobal Optionsより優先される。このProjectでは、上の値を明示的に選択する。\nProjectを通常の手順で閉じると、作業領域がProjectフォルダ直下の.RDataに保存される。次にempirical_finance.Rprojを開くと、このファイルが読み込まれ、Environmentにオブジェクトが復元される。Posit：RStudio Projects\nただし、.RDataが保存するのはオブジェクトであり、Rスクリプトの変更ではない。script/lesson02.Rも別途保存する。また、CSVをdataフォルダに置くだけで、その内容が自動的に読み込まれるわけではない。\n\n\n2. Projectの再起動と復元の確認\n\nscript/lesson02.Rを保存する。\nConsoleで次のコードを実行し、現在の値を確認する。\nFile → Close ProjectでProjectを閉じる。\nempirical_finance.Rprojを開き直す。\nRスクリプトを実行する前に、Environmentにfinal_scoreやis_passedが復元されていることを確認する。\nConsoleで同じコードを実行し、閉じる前と同じ値が表示されることを確認する。\n\n\nprint(final_score)\nprint(is_passed)\n\n練習6まで実行した場合、総合点は86.4、合格判定はTRUEの状態で保存される。ここではRスクリプトを自動実行しているのではなく、終了時に保存したオブジェクトを復元している。\n次回以降も、同じProjectを開けば保存した状態から作業を再開できる。Rスクリプトを編集するときは、scriptフォルダのlesson02.Rを開く。",
+    "crumbs": [
+      "第2回：Rの基本操作 II"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html",
+    "href": "lessons/03/index.html",
+    "title": "第3回：Rの基本操作 III",
+    "section": "",
+    "text": "到達目標",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#到達目標",
+    "href": "lessons/03/index.html#到達目標",
+    "title": "第3回：Rの基本操作 III",
+    "section": "",
+    "text": "Rの主なデータ構造の特徴と違いを理解する。\nデータの内容や処理の目的に応じた、データ構造の選択方法を学ぶ。\nデータ構造の基本操作と、欠損値の扱い方を身につける。",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#chapter-1ベクトル",
+    "href": "lessons/03/index.html#chapter-1ベクトル",
+    "title": "第3回：Rの基本操作 III",
+    "section": "Chapter 1｜ベクトル",
+    "text": "Chapter 1｜ベクトル\n\n作業の準備\n\n第2回に作成したempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、Project内のscriptフォルダにlesson03.Rという名前で保存する。すでに作成している場合は、そのファイルを開く。\n\n以下のコードはscript/lesson03.Rに順に記述し、実行して結果を確認する。\n\n\n1. 複数の値の格納\n複数の学生の得点を扱うとき、学生ごとに別のオブジェクトを作る必要はない。ベクトルを使えば、同じ型の値をひとまとめにできる。c()は、引数に指定した値を順に結合する関数である。\n\nscores &lt;- c(72, 85, 91, 68, 77)\nstudent_names &lt;- c(\"Aiko\", \"Ken\", \"Mei\", \"Sora\", \"Yuki\")\n\nscores\n\n[1] 72 85 91 68 77\n\nstudent_names\n\n[1] \"Aiko\" \"Ken\"  \"Mei\"  \"Sora\" \"Yuki\"\n\n\nlength()で要素数、class()でデータ型を確認する。\n\nlength(scores)\n\n[1] 5\n\nclass(scores)\n\n[1] \"numeric\"\n\nclass(student_names)\n\n[1] \"character\"\n\n\n規則的な並びには専用の記法や関数がある。:は連続する整数、seq()は等間隔の数列、rep()は同じ値の繰り返しを作る。\n\n1:5\n\n[1] 1 2 3 4 5\n\nseq(from = 0, to = 10, by = 2)\n\n[1]  0  2  4  6  8 10\n\nrep(\"A\", times = 4)\n\n[1] \"A\" \"A\" \"A\" \"A\"\n\n\n練習1： 50から100まで、10刻みのベクトルを作りなさい。\n\n\n解答例\n\n\nseq(from = 50, to = 100, by = 10)\n\nseq(from = 0, to = 1, length.out = 6)のように、間隔ではなく要素数を指定することもできる。\n\n\n\n2. ベクトルによる計算\nベクトルに数値を足したり、割ったりすると、それぞれの要素に計算が適用される。次のコードでは、得点に5点を加えた値と、100で割った値を求める。scores自体は書き換わらない。\n\nscores + 5\n\n[1] 77 90 96 73 82\n\nscores / 100\n\n[1] 0.72 0.85 0.91 0.68 0.77\n\n\n合計や平均は、ベクトルを関数に渡して求める。\n\nsum(scores)\n\n[1] 393\n\nmean(scores)\n\n[1] 78.6\n\nmin(scores)\n\n[1] 68\n\nmax(scores)\n\n[1] 91\n\n\n平均は78.6点である。このように、複数の値を一度に処理できることがRの特徴の一つである。\n同じ長さのベクトル同士では、同じ位置の要素が計算される。2回の小テストの合計点と平均点を求めてみよう。\n\nquiz_1 &lt;- c(8, 7, 9, 6)\nquiz_2 &lt;- c(7, 9, 8, 8)\n\nquiz_1 + quiz_2\n\n[1] 15 16 17 14\n\n(quiz_1 + quiz_2) / 2\n\n[1] 7.5 8.0 8.5 7.0\n\n\n\n\n補足：長さの異なるベクトル\n\n長さの異なるベクトルを計算すると、短い側の値が繰り返し使われる。これをリサイクル規則という。scores + 5も、すべての得点に同じ5を加える例である。ただし、二つのデータを対応させて計算するときには、length()で長さを確認する。長さが異なっていても、必ず警告が出るとは限らない。\n\n\n\n3. 必要な要素の抽出\nベクトルの後ろに角括弧[]を付け、取り出す位置を指定する。Rでは、先頭の位置を1で表す。\n\nscores[1]\n\n[1] 72\n\nscores[c(1, 3, 5)]\n\n[1] 72 91 77\n\nscores[2:4]\n\n[1] 85 91 68\n\n\n条件による抽出もできる。まず、条件式だけを実行して結果を確認する。\n\nscores &gt;= 80\n\n[1] FALSE  TRUE  TRUE FALSE FALSE\n\n\n各得点について、条件を満たす位置にTRUE、満たさない位置にFALSEが返る。この結果を[]に入れると、TRUEに対応する要素が選ばれる。\n\nscores[scores &gt;= 80]\n\n[1] 85 91\n\n\n抽出されるのは85点と91点である。要素に名前を付けると、位置だけでなく名前でも指定できる。\n\nnames(scores) &lt;- student_names\n\nscores\n\nAiko  Ken  Mei Sora Yuki \n  72   85   91   68   77 \n\nscores[\"Mei\"]\n\nMei \n 91 \n\n\n同じ記法で、指定した要素を書き換えられる。ここでは元の得点を残すため、コピーを作ってからKenの得点を修正する。\n\nrevised_scores &lt;- scores\nrevised_scores[\"Ken\"] &lt;- 88\nrevised_scores\n\nAiko  Ken  Mei Sora Yuki \n  72   88   91   68   77 \n\n\n練習2： scoresから80点以上の得点を取り出し、該当する学生の名前も確認しなさい。\n\n\n解答例\n\n\nscores[scores &gt;= 80]\nnames(scores[scores &gt;= 80])\n\nKenとMeiが該当する。\n\n\n\n4. 欠損値の処理\n値が記録されていない場合、Rでは通常NAで表す。欠損値は0とは異なる。次のデータでは、4人のうち1人の得点が不明である。\n\nscores_missing &lt;- c(70, 85, NA, 90)\n\nmean(scores_missing)\n\n[1] NA\n\n\n得点が一つでも不明なため、そのままでは平均もNAになる。欠損値を除いて計算する場合は、na.rm = TRUEを指定する。\n\nmean(scores_missing, na.rm = TRUE)\n\n[1] 81.66667\n\n\nこれは得点が記録されている3人の平均であり、4人全員の平均ではない。欠損値を除くときは、計算対象が変わることに注意する。\n欠損値の位置は、is.na()で調べる。== NAでは判定できない。\n\nis.na(scores_missing)\n\n[1] FALSE FALSE  TRUE FALSE\n\nscores_missing[!is.na(scores_missing)]\n\n[1] 70 85 90\n\n\n!は条件を反転させるため、!is.na()は「欠損していない」という条件になる。\n練習3： scores_missingの欠損値を除いた合計を求めなさい。\n\n\n解答例\n\n\nsum(scores_missing, na.rm = TRUE)\n\n結果は245となる。",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#chapter-2行列matrix",
+    "href": "lessons/03/index.html#chapter-2行列matrix",
+    "title": "第3回：Rの基本操作 III",
+    "section": "Chapter 2｜行列（matrix）",
+    "text": "Chapter 2｜行列（matrix）\n\n1. 行と列からなるデータの作成\n行列は、同じ型の値を行と列に並べた二次元のデータ構造である。例えば、3人の学生が受けた2回のテストの得点を、行が学生、列がテストとなるように整理できる。\nmatrix()のnrowで行数を指定する。byrow = TRUEは、値を行方向に順に並べる指定である。\n\nscore_matrix &lt;- matrix(\n  c(80, 75,\n    68, 72,\n    91, 88),\n  nrow = 3,\n  byrow = TRUE\n)\n\nscore_matrix\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\n\n1行目には80と75、2行目には68と72、3行目には91と88が入る。byrowを指定しない場合は、列方向に並ぶ。\n\nmatrix(1:6, nrow = 3)\n\n     [,1] [,2]\n[1,]    1    4\n[2,]    2    5\n[3,]    3    6\n\nmatrix(1:6, nrow = 3, byrow = TRUE)\n\n     [,1] [,2]\n[1,]    1    2\n[2,]    3    4\n[3,]    5    6\n\n\n同じ値でも並べ方によって位置が変わることを確認する。dim()は行数と列数、nrow()は行数、ncol()は列数を返す。\n\ndim(score_matrix)\n\n[1] 3 2\n\nnrow(score_matrix)\n\n[1] 3\n\nncol(score_matrix)\n\n[1] 2\n\n\n\n\n2. 行名・列名の設定と要素の抽出\nrownames()とcolnames()で行と列に名前を付ける。\n\nrownames(score_matrix) &lt;- c(\"Aiko\", \"Ken\", \"Mei\")\ncolnames(score_matrix) &lt;- c(\"Test1\", \"Test2\")\nscore_matrix\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\n\n\n行列の要素は[行, 列]で指定する。片方を空欄にすると、その方向のすべてを選ぶ。\n\nscore_matrix[2, 1]\n\n[1] 68\n\nscore_matrix[\"Ken\", \"Test1\"]\n\n[1] 68\n\nscore_matrix[, \"Test2\"]\n\nAiko  Ken  Mei \n  75   72   88 \n\nscore_matrix[1:2, ]\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\n\n\n最初の二つはどちらもKenのTest1の得点、68を返す。\n\n\n補足：行列形式を保持した1列の抽出\n\n通常、1列だけを取り出すとベクトルになる。行列の構造を保つにはdrop = FALSEを指定する。\n\nscore_matrix[, \"Test2\", drop = FALSE]\n\n     Test2\nAiko    75\nKen     72\nMei     88\n\n\n\n\n\n3. 行・列ごとの計算\nrowMeans()は行ごと、colMeans()は列ごとの平均を求める。この例では、それぞれ学生別、テスト別の平均になる。\n\nrowMeans(score_matrix)\n\nAiko  Ken  Mei \n77.5 70.0 89.5 \n\ncolMeans(score_matrix)\n\n   Test1    Test2 \n79.66667 78.33333 \n\n\nrbind()は上下、cbind()は左右に結合する。次のコードでは、学生を1人追加した表と、平均点の列を追加した表をそれぞれ表示する。元のscore_matrixは書き換わらない。\n\nrbind(score_matrix, Yuki = c(76, 81))\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\nYuki    76    81\n\ncbind(score_matrix, Average = rowMeans(score_matrix))\n\n     Test1 Test2 Average\nAiko    80    75    77.5\nKen     68    72    70.0\nMei     91    88    89.5\n\n\n練習4： 1から6までの値を行方向に並べた3行2列の行列を作り、行名と列名を付けなさい。その後、2行目を取り出し、各列の平均を求めなさい。\n\n\n解答例\n\n\nm &lt;- matrix(1:6, nrow = 3, byrow = TRUE)\nrownames(m) &lt;- c(\"row1\", \"row2\", \"row3\")\ncolnames(m) &lt;- c(\"col1\", \"col2\")\n\nm[2, ]\ncolMeans(m)\n\n2行目は3と4、列の平均は3と4である。\n\n\n\n補足：要素ごとの演算と行列積\n\n行列への加算や乗算は、通常は要素ごとに行われる。t()は行と列を入れ替える転置である。\n\nscore_matrix + 5\n\n     Test1 Test2\nAiko    85    80\nKen     73    77\nMei     96    93\n\nscore_matrix * 2\n\n     Test1 Test2\nAiko   160   150\nKen    136   144\nMei    182   176\n\nt(score_matrix)\n\n      Aiko Ken Mei\nTest1   80  68  91\nTest2   75  72  88\n\n\n二つの行列の*は対応する要素同士の積、%*%は行列積である。行列積では、左側の列数と右側の行数が一致する必要がある。\n\nm1 &lt;- matrix(1:4, nrow = 2, byrow = TRUE)\nm2 &lt;- matrix(c(2, 0, 1, 3), nrow = 2, byrow = TRUE)\nm1 * m2\n\n     [,1] [,2]\n[1,]    2    0\n[2,]    3   12\n\nm1 %*% m2\n\n     [,1] [,2]\n[1,]    4    6\n[2,]   10   12",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#chapter-3配列array",
+    "href": "lessons/03/index.html#chapter-3配列array",
+    "title": "第3回：Rの基本操作 III",
+    "section": "Chapter 3｜配列（array）",
+    "text": "Chapter 3｜配列（array）\n\n1. 三次元以上のデータ\n配列は、同じ型の値を複数の次元に沿って並べたデータ構造である。行列は二次元の配列に当たり、array()を使うと三次元以上にも拡張できる。\n例えば、「学生 × テスト × 週」の得点を考える。3人が毎週2回のテストを受け、その記録が2週分あれば、3行2列の行列を2枚重ねた構造として表せる。\n\nscore_array &lt;- array(\n  c(80, 68, 91, 75, 72, 88,\n    84, 70, 93, 78, 76, 90),\n  dim = c(3, 2, 2)\n)\n\nscore_array\n\n, , 1\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\n, , 2\n\n     [,1] [,2]\n[1,]   84   78\n[2,]   70   76\n[3,]   93   90\n\n\ndim = c(3, 2, 2)は、学生3人、テスト2回、週2つに対応する。値は第1次元から順に埋まるため、最初の3個が第1週のTest1、次の3個が第1週のTest2となり、残りの6個が第2週に入る。matrix(..., byrow = TRUE)とは並べ方が異なる点に注意する。\n\ndim(score_array)\n\n[1] 3 2 2\n\nlength(score_array)\n\n[1] 12\n\n\ndim()の結果は3 2 2、要素数は3 × 2 × 2 = 12である。\n\n\n2. 次元ごとの位置の指定\n三次元配列では、[学生, テスト, 週]の順に指定する。省略した次元では、すべての要素を選ぶ。\n\nscore_array[2, 1, 2]\n\n[1] 70\n\nscore_array[, , 1]\n\n     [,1] [,2]\n[1,]   80   75\n[2,]   68   72\n[3,]   91   88\n\nscore_array[1, , ]\n\n     [,1] [,2]\n[1,]   80   84\n[2,]   75   78\n\n\n最初の式は、2人目の学生の第2週・Test1の得点70を返す。次の式は第1週の全得点、最後の式は1人目の学生についてテストと週を並べた表を返す。\n\n\n3. 部分データの抽出と集計\n第2週を取り出すと行列になるため、rowMeans()など、行列で学んだ関数を利用できる。\n\nweek2_scores &lt;- score_array[, , 2]\nrowMeans(week2_scores)\n\n[1] 81.0 73.0 91.5\n\nmean(week2_scores)\n\n[1] 81.83333\n\n\n学生別平均は81、73、91.5点である。全体の平均は、第2週の6個の得点を対象としている。\n練習5： 第2週のTest2の得点を取り出し、その平均を求めなさい。\n\n\n解答例\n\n\nweek2_test2 &lt;- score_array[, 2, 2]\nweek2_test2\nmean(week2_test2)\n\n得点は78、76、90、平均は約81.33点となる。",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#chapter-4データフレーム",
+    "href": "lessons/03/index.html#chapter-4データフレーム",
+    "title": "第3回：Rの基本操作 III",
+    "section": "Chapter 4｜データフレーム",
+    "text": "Chapter 4｜データフレーム\n\n1. 表形式のデータの作成\n氏名、所属クラス、得点、出席率を一つの表にまとめるには、データフレームを使う。データフレームは列ごとに異なる型を持てる。ここでは、1行が1人の学生、1列が一つの項目に対応する。\n\nstudent_data &lt;- data.frame(\n  name = student_names,\n  class = c(\"A\", \"A\", \"B\", \"B\", \"A\"),\n  score = c(72, 85, 91, 68, 77),\n  attendance = c(0.90, 0.95, 1.00, 0.75, 0.88)\n)\n\nstudent_data\n\n  name class score attendance\n1 Aiko     A    72       0.90\n2  Ken     A    85       0.95\n3  Mei     B    91       1.00\n4 Sora     B    68       0.75\n5 Yuki     A    77       0.88\n\n\ndata.frame()の各引数で列名と値を指定している。文字列の列と数値の列が、同じ表に含まれていることを確認しよう。\n表を扱う前に、行数・列数、列名、各列の型を確認する。dim()は行数と列数、names()は列名、str()は全体の構造を表示する。\n\ndim(student_data)\n\n[1] 5 4\n\nnames(student_data)\n\n[1] \"name\"       \"class\"      \"score\"      \"attendance\"\n\nstr(student_data)\n\n'data.frame':   5 obs. of  4 variables:\n $ name      : chr  \"Aiko\" \"Ken\" \"Mei\" \"Sora\" ...\n $ class     : chr  \"A\" \"A\" \"B\" \"B\" ...\n $ score     : num  72 85 91 68 77\n $ attendance: num  0.9 0.95 1 0.75 0.88\n\n\n行数だけならnrow()、列数だけならncol()を使う。head()は先頭の行を表示する関数で、行数の多いデータの確認に用いる。\n\nnrow(student_data)\n\n[1] 5\n\nncol(student_data)\n\n[1] 4\n\nhead(student_data, n = 3)\n\n  name class score attendance\n1 Aiko     A    72       0.90\n2  Ken     A    85       0.95\n3  Mei     B    91       1.00\n\n\n\n\n2. 列・行・条件による抽出\n一つの列を取り出すには、データフレーム名$列名と書く。取り出した得点の列はベクトルなので、先ほどと同じ関数を使って平均を求められる。\n\nstudent_data$score\n\n[1] 72 85 91 68 77\n\nmean(student_data$score)\n\n[1] 78.6\n\n\n行と列を同時に指定する場合は、[行, 列]と書く。片方を空欄にすると、その方向のすべてを選ぶ。\n\nstudent_data[2, 3]\n\n[1] 85\n\nstudent_data[2, ]\n\n  name class score attendance\n2  Ken     A    85       0.95\n\nstudent_data[, c(\"name\", \"score\")]\n\n  name score\n1 Aiko    72\n2  Ken    85\n3  Mei    91\n4 Sora    68\n5 Yuki    77\n\n\n順に、2行3列目の値、2行目の全項目、全学生の氏名と得点を取り出している。行の指定には条件式も使える。\n\nstudent_data[\n  student_data$score &gt;= 80,\n  c(\"name\", \"score\")\n]\n\n  name score\n2  Ken    85\n3  Mei    91\n\n\nコンマの前が行の条件、後ろが列の指定である。コードが複数行に分かれていても、[]全体で一つの処理になる。\n\n\n3. 列の追加\n$と代入を組み合わせると、新しい列を追加できる。60点以上を合格とし、判定結果をpassed列に保存する。\n\nstudent_data$passed &lt;- student_data$score &gt;= 60\nstudent_data\n\n  name class score attendance passed\n1 Aiko     A    72       0.90   TRUE\n2  Ken     A    85       0.95   TRUE\n3  Mei     B    91       1.00   TRUE\n4 Sora     B    68       0.75   TRUE\n5 Yuki     A    77       0.88   TRUE\n\n\n練習6： 出席率が0.90以上の学生について、氏名と出席率を取り出しなさい。\n\n\n解答例\n\n\nstudent_data[\n  student_data$attendance &gt;= 0.90,\n  c(\"name\", \"attendance\")\n]\n\nAiko、Ken、Meiの3人が該当する。\n\n\n\nfactorとDate：カテゴリと日付の表現\n\n所属クラスなどのカテゴリにはfactor、日付にはDateという型を使うことがある。as.factor()とas.Date()で変換できる。元の表を残し、コピーのクラス列を変換してみよう。\n\nstudent_typed &lt;- student_data\nstudent_typed$class &lt;- as.factor(student_typed$class)\n\nclass(student_typed$class)\n\n[1] \"factor\"\n\nlevels(student_typed$class)\n\n[1] \"A\" \"B\"\n\nclass_dates &lt;- as.Date(c(\"2026-04-10\", \"2026-04-17\", \"2026-04-24\"))\nclass(class_dates)\n\n[1] \"Date\"\n\nclass_dates\n\n[1] \"2026-04-10\" \"2026-04-17\" \"2026-04-24\"\n\n\nlevels()はカテゴリの水準を返す。日付は\"年-月-日\"の形式で記述する。",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
+  },
+  {
+    "objectID": "lessons/03/index.html#chapter-5リストlist",
+    "href": "lessons/03/index.html#chapter-5リストlist",
+    "title": "第3回：Rの基本操作 III",
+    "section": "Chapter 5｜リスト（list）",
+    "text": "Chapter 5｜リスト（list）\n\n1. 異なる構造のデータの格納\nベクトル、行列、配列では、ここまで同じ型の値を扱ってきた。一方、分析結果には、説明文、表、行列などをまとめて保存したい場合がある。リストは、このように型や構造、大きさの異なるオブジェクトを一つにまとめるデータ構造である。\nlist()の各引数に名前を付けて、これまでに作成したデータをまとめる。\n\ncourse_result &lt;- list(\n  course = \"R入門\",\n  students = student_data,\n  test_scores = score_matrix,\n  weekly_scores = score_array\n)\n\nnames(course_result)\n\n[1] \"course\"        \"students\"      \"test_scores\"   \"weekly_scores\"\n\nstr(course_result)\n\nList of 4\n $ course       : chr \"R入門\"\n $ students     :'data.frame':  5 obs. of  5 variables:\n  ..$ name      : chr [1:5] \"Aiko\" \"Ken\" \"Mei\" \"Sora\" ...\n  ..$ class     : chr [1:5] \"A\" \"A\" \"B\" \"B\" ...\n  ..$ score     : num [1:5] 72 85 91 68 77\n  ..$ attendance: num [1:5] 0.9 0.95 1 0.75 0.88\n  ..$ passed    : logi [1:5] TRUE TRUE TRUE TRUE TRUE\n $ test_scores  : num [1:3, 1:2] 80 68 91 75 72 88\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:3] \"Aiko\" \"Ken\" \"Mei\"\n  .. ..$ : chr [1:2] \"Test1\" \"Test2\"\n $ weekly_scores: num [1:3, 1:2, 1:2] 80 68 91 75 72 88 84 70 93 78 ...\n\n\ncourseは文字列、studentsはデータフレーム、test_scoresは行列、weekly_scoresは三次元配列である。同じリストの中でも、それぞれの構造は保たれる。\n\n\n2. リストからの要素の抽出\n$または[[ ]]を使うと、要素そのものを取り出せる。\n\ncourse_result$course\n\n[1] \"R入門\"\n\ncourse_result[[\"test_scores\"]]\n\n     Test1 Test2\nAiko    80    75\nKen     68    72\nMei     91    88\n\ncourse_result[[1]]\n\n[1] \"R入門\"\n\n\n[[1]]は第1要素であるcourseの中身を返す。[]との違いを、データフレームを取り出して確認する。\n\nclass(course_result[\"students\"])\n\n[1] \"list\"\n\nclass(course_result[[\"students\"]])\n\n[1] \"data.frame\"\n\n\ncourse_result[\"students\"]は要素を一つ含むリスト、course_result[[\"students\"]]は要素の中身であるデータフレームを返す。取り出した表を計算に使う場合は、後者を使用する。\n\nresult_students &lt;- course_result[[\"students\"]]\nmean(result_students$score)\n\n[1] 78.6\n\n\n\n\n3. 要素の追加\n$と代入で、新しい要素を追加できる。\n\ncourse_result$average_score &lt;- mean(student_data$score)\ncourse_result$average_score\n\n[1] 78.6\n\nnames(course_result)\n\n[1] \"course\"        \"students\"      \"test_scores\"   \"weekly_scores\"\n[5] \"average_score\"\n\n\nデータフレームの各列は同じ行数に対応する必要があるが、リストにはその制約がない。ここでは5人分の表と、平均点という一つの値を同時に保持している。\n練習7： データフレームstudent_data、行列score_matrix、説明文\"練習結果\"をリストpractice_resultにまとめなさい。その後、行列を取り出し、Test2の平均を求めなさい。\n\n\n解答例\n\n\npractice_result &lt;- list(\n  data = student_data,\n  matrix = score_matrix,\n  note = \"練習結果\"\n)\npractice_matrix &lt;- practice_result[[\"matrix\"]]\nmean(practice_matrix[, \"Test2\"])\n\n平均は約78.33点である。",
+    "crumbs": [
+      "第3回：Rの基本操作 III"
+    ]
   }
 ]
