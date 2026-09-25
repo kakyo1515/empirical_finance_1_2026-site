@@ -194,6 +194,8 @@ course_result$course
 course_result[["test_scores"]]
 course_result[[1]]
 
+course_result[c("course", "students")]
+
 class(course_result["students"])
 class(course_result[["students"]])
 
