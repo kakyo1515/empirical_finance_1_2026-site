@@ -16,14 +16,14 @@ add_five <- function(x) {
 add_five(72)
 
 
-# 2. ベクトルを引数に渡す
+# ベクトルを引数に渡す
 scores <- c(72, 85, 91, 68, 77)
 adjusted_scores <- add_five(scores)
 adjusted_scores
 scores
 
 
-# 3. 複数の引数と既定値
+# 2. 複数の引数と既定値
 calculate_score <- function(quiz, exam, quiz_weight = 0.40) {
   result <- quiz * quiz_weight + exam * (1 - quiz_weight)
   return(result)
@@ -36,7 +36,7 @@ calculate_score(78, 92)
 calculate_score(exam = 92, quiz = 78)
 
 
-# 4. 条件に応じて処理を分ける
+# 3. 条件に応じて処理を分ける
 judge_result <- function(score) {
   if (score >= 60) {
     return("合格")

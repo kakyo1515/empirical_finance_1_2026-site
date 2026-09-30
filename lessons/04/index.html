@@ -220,10 +220,9 @@ window.Quarto = {
   <li><a href="#chapter-1関数の作成" id="toc-chapter-1関数の作成" class="nav-link" data-scroll-target="#chapter-1関数の作成">Chapter 1｜関数の作成</a>
   <ul class="collapse">
   <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
-  <li><a href="#計算式の関数化" id="toc-計算式の関数化" class="nav-link" data-scroll-target="#計算式の関数化">1. 計算式の関数化</a></li>
-  <li><a href="#引数へのベクトルの指定" id="toc-引数へのベクトルの指定" class="nav-link" data-scroll-target="#引数へのベクトルの指定">2. 引数へのベクトルの指定</a></li>
-  <li><a href="#複数の引数と既定値" id="toc-複数の引数と既定値" class="nav-link" data-scroll-target="#複数の引数と既定値">3. 複数の引数と既定値</a></li>
-  <li><a href="#条件に応じた処理の分岐" id="toc-条件に応じた処理の分岐" class="nav-link" data-scroll-target="#条件に応じた処理の分岐">4. 条件に応じた処理の分岐</a></li>
+  <li><a href="#関数の作成" id="toc-関数の作成" class="nav-link" data-scroll-target="#関数の作成">1. 関数の作成</a></li>
+  <li><a href="#複数の引数と既定値" id="toc-複数の引数と既定値" class="nav-link" data-scroll-target="#複数の引数と既定値">2. 複数の引数と既定値</a></li>
+  <li><a href="#条件に応じた処理の分岐" id="toc-条件に応じた処理の分岐" class="nav-link" data-scroll-target="#条件に応じた処理の分岐">3. 条件に応じた処理の分岐</a></li>
   </ul></li>
   <li><a href="#chapter-2csvの読み込みとデータの確認" id="toc-chapter-2csvの読み込みとデータの確認" class="nav-link" data-scroll-target="#chapter-2csvの読み込みとデータの確認">Chapter 2｜CSVの読み込みとデータの確認</a>
   <ul class="collapse">
@@ -291,8 +290,8 @@ window.Quarto = {
 </ol>
 <p>以下のコードは<code>script/lesson04.R</code>に順に記述し、実行して結果を確認する。</p>
 </section>
-<section id="計算式の関数化" class="level3">
-<h3 class="anchored" data-anchor-id="計算式の関数化">1. 計算式の関数化</h3>
+<section id="関数の作成" class="level3">
+<h3 class="anchored" data-anchor-id="関数の作成">1. 関数の作成</h3>
 <p>第2回では<code>sqrt()</code>や<code>round()</code>を使い、第3回ではベクトルの平均を<code>mean()</code>で求めた。Rでは、こうした既存の関数を利用するだけでなく、自分で関数を作成できる。</p>
 <p>まず、得点に5点を加える関数を作成する。関数の定義には<code>function()</code>を使う。</p>
 <div class="cell" data-layout-align="center">
@@ -310,10 +309,7 @@ window.Quarto = {
 </div>
 </div>
 <p>結果は77となる。同じ処理を別の値にも適用でき、処理を変更する場合も関数の定義を修正すればよい。</p>
-</section>
-<section id="引数へのベクトルの指定" class="level3">
-<h3 class="anchored" data-anchor-id="引数へのベクトルの指定">2. 引数へのベクトルの指定</h3>
-<p>次のベクトルを、この関数に渡してみよう。</p>
+<p>この関数には、ベクトルを渡すこともできる。次の例で確認してみよう。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">68</span>, <span class="dv">77</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>adjusted_scores <span class="ot">&lt;-</span> <span class="fu">add_five</span>(scores)</span>
@@ -357,8 +353,9 @@ window.Quarto = {
 </details>
 </section>
 <section id="複数の引数と既定値" class="level3">
-<h3 class="anchored" data-anchor-id="複数の引数と既定値">3. 複数の引数と既定値</h3>
-<p>第2回の総合点の計算を関数にする。小テストと期末テストの得点に加え、小テストの比重も引数として受け取る。</p>
+<h3 class="anchored" data-anchor-id="複数の引数と既定値">2. 複数の引数と既定値</h3>
+<p>関数には複数の引数を渡すことができる。また、引数を省略したときに使う値を、既定値として設定することもできる。</p>
+<p>ここでは、第2回の総合点の計算を関数にする。小テストと期末テストの得点に加え、小テストの比重も引数として受け取る。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>calculate_score <span class="ot">&lt;-</span> <span class="cf">function</span>(quiz, exam, <span class="at">quiz_weight =</span> <span class="fl">0.40</span>) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> quiz <span class="sc">*</span> quiz_weight <span class="sc">+</span> exam <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> quiz_weight)</span>
@@ -398,7 +395,7 @@ window.Quarto = {
 </details>
 </section>
 <section id="条件に応じた処理の分岐" class="level3">
-<h3 class="anchored" data-anchor-id="条件に応じた処理の分岐">4. 条件に応じた処理の分岐</h3>
+<h3 class="anchored" data-anchor-id="条件に応じた処理の分岐">3. 条件に応じた処理の分岐</h3>
 <p>比較演算子は条件を満たすかどうかを論理値で返す。<code>if</code>と<code>else</code>を使うと、その結果によって実行する処理を分けられる。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>judge_result <span class="ot">&lt;-</span> <span class="cf">function</span>(score) {</span>
@@ -534,7 +531,8 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="projectを基準としたパスの指定" class="level3">
 <h3 class="anchored" data-anchor-id="projectを基準としたパスの指定">2. Projectを基準としたパスの指定</h3>
-<p><code>empirical_finance.Rproj</code>を開いた状態では、Projectフォルダが作業ディレクトリになる。したがって、CSVは<code>"data/data_lesson02.csv"</code>と指定する。<code>script/lesson04.R</code>を編集していても、パスの基準はRスクリプトを置いたフォルダではない。</p>
+<p>ファイルを読み込むには、その場所を表す<strong>パス</strong>を指定する。Projectを使うと、Projectフォルダを基準にしてファイルの場所を記述できる。</p>
+<p><code>empirical_finance.Rproj</code>を開いた状態では、Projectフォルダが作業ディレクトリになる。したがって、CSVは<code>"data/data_lesson02.csv"</code>と指定する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(<span class="st">"data"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
@@ -567,7 +565,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="構造と欠損値の確認" class="level3">
 <h3 class="anchored" data-anchor-id="構造と欠損値の確認">4. 構造と欠損値の確認</h3>
-<p>読み込んだ表にも、第3回で学んだ確認方法をそのまま使える。</p>
+<p>データを読み込んだら、行数・列数、各列の型、欠損値の有無を確認する。意図した形で読み込めているかを確かめるためであり、第3回で学んだ確認方法をそのまま使える。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(students)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -627,7 +625,8 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="必要な行と列の抽出" class="level3">
 <h3 class="anchored" data-anchor-id="必要な行と列の抽出">5. 必要な行と列の抽出</h3>
-<p>欠損値を除いたうえで、80点以上の学生についてIDと得点を取り出す。<code>[行, 列]</code>による指定は、手入力で作成したデータフレームと同じである。</p>
+<p>読み込んだ表からも、条件に合う行や必要な列だけを取り出せる。<code>[行, 列]</code>による指定は、手入力で作成したデータフレームと同じである。</p>
+<p>ここでは欠損値を除いたうえで、80点以上の学生についてIDと得点を取り出す。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>high_scores <span class="ot">&lt;-</span> students[</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">!</span><span class="fu">is.na</span>(students<span class="sc">$</span>score) <span class="sc">&amp;</span> students<span class="sc">$</span>score <span class="sc">&gt;=</span> <span class="dv">80</span>,</span>
@@ -706,6 +705,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="インストールと読み込みの違い" class="level3">
 <h3 class="anchored" data-anchor-id="インストールと読み込みの違い">2. インストールと読み込みの違い</h3>
+<p>パッケージを使うには、パソコンに機能を追加する「インストール」と、現在のRセッションで使えるようにする「読み込み」の二つの操作が必要である。</p>
 <p>パッケージは、まずパソコンにインストールする。以下は未導入の場合にConsoleで実行する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readr"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
@@ -757,7 +757,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="readrによる同じcsvの読み込み" class="level3">
 <h3 class="anchored" data-anchor-id="readrによる同じcsvの読み込み">3. readrによる同じCSVの読み込み</h3>
-<p>同じファイルを<code>read_csv()</code>で読み込み、先ほどの<code>students</code>と比較する。</p>
+<p>readrの<code>read_csv()</code>も、CSVを表として読み込む関数である。同じファイルを読み込み、標準機能の<code>read.csv()</code>で作成した<code>students</code>と、表の型や読み込み結果を比較する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>students_readr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson02.csv"</span>,</span>
@@ -798,18 +798,12 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="パッケージ名の明示" class="level3">
 <h3 class="anchored" data-anchor-id="パッケージ名の明示">4. パッケージ名の明示</h3>
-<p><code>パッケージ名::関数名</code>と書くと、関数の所属を明示できる。パッケージがインストール済みであれば、<code>library()</code>を実行する前でも、その関数を呼び出せる。</p>
+<p>異なるパッケージに、同じ名前の関数が含まれていることがある。関数名だけでは意図したものとは別の関数が呼び出される場合があるため、<code>パッケージ名::関数名</code>と書くと、どのパッケージの関数を使うかを明示できる。</p>
+<p>パッケージがインストール済みであれば、<code>library()</code>を実行する前でも、その関数を呼び出せる。次の例では、readrの<code>read_csv()</code>を指定している。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/data_lesson02.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>::</code>はインストールの代わりにはならない。未導入のパッケージは、先に<code>install.packages()</code>で導入する。</p>
-<p><strong>練習4：</strong> すでにreadrをインストールしたパソコンで、Projectを開き直して<code>read_csv()</code>を使う。通常、どの操作を行えばよいか。</p>
-<details>
-<summary>
-解答例
-</summary>
-<p><code>library(readr)</code>を実行する。再インストールは不要である。<code>readr::read_csv()</code>のように所属を明示して呼び出す方法もある。</p>
-</details>
 <details>
 <summary>
 補足：readrによるCSVの書き出し
@@ -855,6 +849,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="散布図の作成" class="level3">
 <h3 class="anchored" data-anchor-id="散布図の作成">2. 散布図の作成</h3>
+<p><strong>散布図</strong>は、二つの数値の組を点で表し、変数どうしの関係を調べる図である。</p>
 <p>学習時間を横軸、得点を縦軸に置く。二つの値がそろっている学生だけを対象とするため、第3回で学んだ条件抽出を使う。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> students[</span>
@@ -902,7 +897,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </div>
 <p><code>h</code>は水平線の高さ、<code>lty = 2</code>は破線の指定である。</p>
 </details>
-<p><strong>練習5：</strong> 上の散布図の点を濃い緑色に変更し、タイトルを<code>"Weekly study hours and score"</code>にしなさい。</p>
+<p><strong>練習4：</strong> 上の散布図の点を濃い緑色に変更し、タイトルを<code>"Weekly study hours and score"</code>にしなさい。</p>
 <details>
 <summary>
 解答例
@@ -1020,6 +1015,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </section>
 <section id="図の保存" class="level3">
 <h3 class="anchored" data-anchor-id="図の保存">4. 図の保存</h3>
+<p>作成した図は画像ファイルとして保存し、レポートなどに利用できる。ここではPNG形式で保存する手順を学ぶ。</p>
 <p>Chapter 2で作成した<code>output</code>フォルダに、散布図をPNG形式で保存する。<code>png()</code>で保存先を指定し、作図のコードを実行した後、<code>dev.off()</code>でファイルへの出力を終了する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">"output/study-score.png"</span>, <span class="at">width =</span> <span class="dv">1120</span>, <span class="at">height =</span> <span class="dv">720</span>, <span class="at">res =</span> <span class="dv">160</span>)</span>
@@ -1036,7 +1032,7 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
 </div>
 <p><code>width</code>と<code>height</code>は画像の幅と高さ（ピクセル）、<code>res</code>は解像度を指定する。<code>png()</code>は、すでにPlotsペインに表示された図を保存する関数ではない。<code>png()</code>から<code>dev.off()</code>までを順に実行し、その間に図を描く必要がある。</p>
 <p>同名のファイルがある場合は上書きされる。保存後は<strong>Files</strong>ペインで<code>output</code>を開き、画像を確認する。</p>
-<p><strong>練習6：</strong> 同じ手順で得点のヒストグラムを<code>output/score-histogram.png</code>に保存しなさい。</p>
+<p><strong>練習5：</strong> 同じ手順で得点のヒストグラムを<code>output/score-histogram.png</code>に保存しなさい。</p>
 <details>
 <summary>
 解答例
