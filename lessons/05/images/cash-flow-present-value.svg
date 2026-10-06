@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" role="img" aria-labelledby="title desc">
+  <title id="title">年8%でキャッシュフローを現在価値に換算する</title>
+  <desc id="desc">現在に100万円を支払い、1年後と2年後に60万円ずつ受け取る。1年後の60万円は1.08で割り、現在価値は約55.56万円。2年後の60万円は1.08の二乗で割り、現在価値は約51.44万円となる。左向きの矢印で、二つの受取りを時点0へ割り引くことを示す。</desc>
+  <rect width="1000" height="490" fill="#ffffff"/>
+
+  <path d="M60 150H940" fill="none" stroke="#61757A" stroke-width="2"/>
+  <path d="M950 150L938 144V156Z" fill="#61757A"/>
+  <path d="M180 150V218" fill="none" stroke="#B24C3D" stroke-width="5"/>
+  <path d="M180 231L169 214H191Z" fill="#B24C3D"/>
+  <path d="M500 150V82M820 150V82" fill="none" stroke="#007C73" stroke-width="5"/>
+  <path d="M500 70L489 87H511Z M820 70L809 87H831Z" fill="#007C73"/>
+  <g fill="#123F45">
+    <circle cx="180" cy="150" r="5"/>
+    <circle cx="500" cy="150" r="5"/>
+    <circle cx="820" cy="150" r="5"/>
+  </g>
+
+  <!-- Each receipt is discounted to the same valuation date, t = 0. -->
+  <path d="M500 232V335H338" fill="none" stroke="#007C73" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M325 335L341 327V343Z" fill="#007C73"/>
+  <path d="M820 232V425H338" fill="none" stroke="#007C73" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M325 425L341 417V433Z" fill="#007C73"/>
+  <rect x="45" y="298" width="270" height="76" rx="8" fill="#F0F6F5" stroke="#007C73"/>
+  <rect x="45" y="388" width="270" height="76" rx="8" fill="#F0F6F5" stroke="#007C73"/>
+
+  <g font-family="Hiragino Sans, Yu Gothic, Meiryo, sans-serif" text-anchor="middle">
+    <g fill="#123F45" font-size="23">
+      <text x="180" y="103">現在</text>
+      <text x="500" y="184">1年後</text>
+      <text x="820" y="184">2年後</text>
+    </g>
+    <g fill="#61757A" font-size="19">
+      <text x="180" y="130">t = 0</text>
+      <text x="500" y="211">t = 1</text>
+      <text x="820" y="211">t = 2</text>
+      <text x="935" y="184">時間</text>
+    </g>
+    <g fill="#007C73">
+      <text x="500" y="31" font-size="29" font-weight="600">＋60万円</text>
+      <text x="820" y="31" font-size="29" font-weight="600">＋60万円</text>
+      <text x="500" y="57" font-size="19">受取り</text>
+      <text x="820" y="57" font-size="19">受取り</text>
+      <text x="635" y="311" font-size="22">1年分割引：60 ÷ 1.08</text>
+      <text x="590" y="405" font-size="22">2年分割引：60 ÷ 1.08²</text>
+      <text x="180" y="325" font-size="19">現在価値</text>
+      <text x="180" y="357" font-size="28" font-weight="600">約55.56万円</text>
+      <text x="180" y="415" font-size="19">現在価値</text>
+      <text x="180" y="447" font-size="28" font-weight="600">約51.44万円</text>
+    </g>
+    <text x="180" y="266" fill="#B24C3D" font-size="27" font-weight="600">−100万円</text>
+  </g>
+</svg>

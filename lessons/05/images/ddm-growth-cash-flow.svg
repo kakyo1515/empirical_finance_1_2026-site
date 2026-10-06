@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" role="img" aria-labelledby="title desc">
+<title id="title">定率成長する配当のキャッシュフロー</title>
+<desc id="desc">1期後、2期後、3期後の配当が将来も続き、必要収益率rで現在へ割り引かれる。配当は毎期gの率で成長する。</desc>
+<rect width="1000" height="460" fill="white"/>
+<g font-family="Hiragino Sans, Yu Gothic, Meiryo, sans-serif" text-anchor="middle">
+<path d="M75 190H940l-12 -6m12 6l-12 6" fill="none" stroke="#61757A" stroke-width="2"/>
+<circle cx="150" cy="190" r="4" fill="#123F45"/>
+<text x="150" y="223" font-size="22" fill="#123F45">現在</text>
+<text x="150" y="253" font-size="18" fill="#61757A">t = 0</text>
+<circle cx="370" cy="190" r="4" fill="#123F45"/>
+<text x="370" y="223" font-size="22" fill="#123F45">1期後</text>
+<text x="370" y="253" font-size="18" fill="#61757A">t = 1</text>
+<path d="M370 190V125" stroke="#007C73" stroke-width="5"/><path d="M370 115l-9 15h18Z" fill="#007C73"/>
+<text x="370" y="100" font-size="25" fill="#007C73">D₁</text>
+<circle cx="590" cy="190" r="4" fill="#123F45"/>
+<text x="590" y="223" font-size="22" fill="#123F45">2期後</text>
+<text x="590" y="253" font-size="18" fill="#61757A">t = 2</text>
+<path d="M590 190V100" stroke="#007C73" stroke-width="5"/><path d="M590 90l-9 15h18Z" fill="#007C73"/>
+<text x="590" y="75" font-size="25" fill="#007C73">D₁(1 + g)</text>
+<circle cx="810" cy="190" r="4" fill="#123F45"/>
+<text x="810" y="223" font-size="22" fill="#123F45">3期後</text>
+<text x="810" y="253" font-size="18" fill="#61757A">t = 3</text>
+<path d="M810 190V75" stroke="#007C73" stroke-width="5"/><path d="M810 65l-9 15h18Z" fill="#007C73"/>
+<text x="810" y="50" font-size="25" fill="#007C73">D₁(1 + g)²</text>
+<text x="917" y="150" font-size="34" fill="#007C73">…</text>
+<text x="917" y="253" font-size="17" fill="#61757A">将来も続く</text>
+<path d="M370 270V302H255l12 -7m-12 7l12 7" fill="none" stroke="#007C73" stroke-width="2.5"/>
+<path d="M590 270V342H255l12 -7m-12 7l12 7" fill="none" stroke="#007C73" stroke-width="2.5"/>
+<path d="M810 270V382H255l12 -7m-12 7l12 7" fill="none" stroke="#007C73" stroke-width="2.5"/>
+<rect x="45" y="282" width="205" height="116" rx="10" fill="#F0F6F5" stroke="#007C73"/>
+<text x="148" y="317" font-size="20" fill="#123F45">現在の理論価値</text>
+<text x="148" y="353" font-size="32" fill="#007C73">P₀</text>
+<text x="148" y="382" font-size="16" fill="#123F45">配当の現在価値の合計</text>
+<text x="580" y="438" font-size="21" fill="#123F45">必要収益率 r で、各期の配当を現在へ割り引く</text>
+<text x="560" y="35" font-size="22" fill="#123F45">配当は毎期 g の率で成長する（r &gt; g）</text>
+</g>
+</svg>

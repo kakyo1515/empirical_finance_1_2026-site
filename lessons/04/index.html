@@ -71,6 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lessons/05/index.html" rel="next">
 <link href="../../lessons/03/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -204,6 +205,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">第4回：Rの基本操作 IV</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：Rの基本操作：演習</span></a>
   </div>
 </li>
     </ul>
@@ -360,8 +367,8 @@ window.Quarto = {
 </section>
 <section id="複数の引数と既定値" class="level3">
 <h3 class="anchored" data-anchor-id="複数の引数と既定値">2. 複数の引数と既定値</h3>
-<p>関数には複数の引数を渡すことができる。また、引数を省略したときに使う値を、既定値として設定することもできる。</p>
-<p>ここでは、第2回の総合点の計算を関数にする。小テストと期末テストの得点に加え、小テストの比重も引数として受け取る。</p>
+<p>ここで、小テストと期末テストの得点の<strong>加重平均</strong>で総合点を計算する関数を作ってみよう。それぞれの得点に<strong>重み</strong>を掛けて足し合わせる。小テストの重みを<code>quiz_weight</code>、期末テストの重みを<code>1 - quiz_weight</code>とすれば、重みの合計は1になる。</p>
+<p>関数には、二つの得点と小テストの重みを引数として渡す。小テストの重みには<strong>既定値</strong>を設定し、省略した場合はその値を使う。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>calculate_score <span class="ot">&lt;-</span> <span class="cf">function</span>(quiz, exam, <span class="at">quiz_weight =</span> <span class="fl">0.40</span>) {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> quiz <span class="sc">*</span> quiz_weight <span class="sc">+</span> exam <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> quiz_weight)</span>
@@ -377,7 +384,7 @@ window.Quarto = {
 <pre><code>[1] 85</code></pre>
 </div>
 </div>
-<p>結果は順に86.4点と85点となる。<code>quiz_weight = 0.40</code>は<strong>既定値</strong>であり、呼び出し時に省略すると0.40が使われる。この例では、二つの比重の合計が1になるように記述している。</p>
+<p>結果は順に86.4点と85点となる。<code>quiz_weight = 0.40</code>は<strong>既定値</strong>であり、呼び出し時に省略すると0.40が使われる。この例では、二つの重みの合計が1になるように記述している。</p>
 <p>引数名を省略した場合は位置で対応する。引数名を記述すれば、順序を変えても対応は明確になる。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_score</span>(<span class="dv">78</span>, <span class="dv">92</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
@@ -389,7 +396,7 @@ window.Quarto = {
 <pre><code>[1] 86.4</code></pre>
 </div>
 </div>
-<p><strong>練習2：</strong> 小テスト70点、期末テスト90点について、小テストの比重を0.30として総合点を求めなさい。</p>
+<p><strong>練習2：</strong> 小テスト70点、期末テスト90点について、小テストの重みを0.30として総合点を求めなさい。</p>
 <details>
 <summary>
 解答例
@@ -1449,6 +1456,9 @@ S002,A,4.0,68,0.88,TRUE</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lessons/05/index.html" class="pagination-link" aria-label="第5回：Rの基本操作：演習">
+        <span class="nav-page-text">第5回：Rの基本操作：演習</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
