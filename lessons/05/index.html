@@ -384,28 +384,23 @@ NPV(r)=\sum_{t=0}^{T}\frac{CF_t}{(1+r)^t}
 <tr class="header">
 <th>NPV</th>
 <th>判断</th>
-<th>意味</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(NPV&gt;0\)</span></td>
 <td>採用</td>
-<td>必要な収益率を上回る価値を生み出す</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(NPV=0\)</span></td>
 <td>無差別</td>
-<td>必要な収益率とちょうど一致する</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(NPV&lt;0\)</span></td>
 <td>棄却</td>
-<td>必要な収益率を満たさない</td>
 </tr>
 </tbody>
 </table>
-<p>複数の相互排他的な投資案から一つだけ選ぶ場合は、同じ前提と割引率の下で、原則としてNPVが最も大きい案を選ぶ。</p>
 <section id="npvの数値例" class="level4">
 <h4 class="anchored" data-anchor-id="npvの数値例">NPVの数値例</h4>
 <p>冒頭と同じく、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を考える。金額の単位は万円とする。</p>
@@ -621,7 +616,13 @@ P_0=\frac{D}{r},\qquad r&gt;0
 </section>
 <section id="irrを数値的に求める" class="level3">
 <h3 class="anchored" data-anchor-id="irrを数値的に求める">4. IRRを数値的に求める</h3>
-<p><code>uniroot()</code>は、方程式<span class="math inline">\(f(x)=0\)</span>の解を、指定した区間内で数値的に求める関数である。<code>f</code>に対象の関数、<code>interval</code>に探索区間の下限と上限を指定する。対象の関数が区間内で連続であり、両端の関数値の符号が異なる区間を指定する。</p>
+<p><code>uniroot()</code>は、方程式<span class="math inline">\(f(x)=0\)</span>の解を、指定した区間内で数値的に求める関数である。ここで使う主な引数は、<code>f</code>、<code>interval</code>、<code>tol</code>の3つである。</p>
+<ul>
+<li><code>f</code>：解を求める対象の関数を指定する。数値を受け取り、<span class="math inline">\(f(x)\)</span>の値を返す関数を渡す。</li>
+<li><code>interval</code>：解を探す区間を、<code>c(下限, 上限)</code>という2つの数値からなるベクトルで指定する。</li>
+<li><code>tol</code>：解を求める際の許容誤差を指定する。小さい値にすると、より高い精度で解を求める。省略した場合は、既定値が使われる。</li>
+</ul>
+<p>探索区間は、対象の関数が区間内で連続であり、両端の関数値の符号が異なるように指定する。</p>
 <p>例えば、<span class="math inline">\(x^2-2=0\)</span>の正の解を、0から2の範囲で求める。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -652,7 +653,7 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <pre><code>[1] 0.1306624</code></pre>
 </div>
 </div>
-<p><code>f</code>には解を求める対象の関数、<code>interval</code>には探索区間を指定する。この例では、割引率−99%から100%の範囲で探す。<code>tol</code>は解の精度を調整する許容誤差であり、<code>1e-10</code>は<span class="math inline">\(10^{-10}\)</span>を表す。探索区間は、その両端でNPVの符号が異なるように設定する。</p>
+<p>この例では、<code>f</code>にNPVを返す関数<code>npv_equation</code>を指定し、<code>interval = c(-0.99, 1)</code>で割引率−99%から100%の範囲を探索する。</p>
 <p>結果はリストで返され、<code>$root</code>で求めた解を取り出せる。この例では約0.1307、百分率で約13.07%となる。NPV関数に代入して、NPVがほぼ0になることを確認する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>irr <span class="ot">&lt;-</span> irr_result<span class="sc">$</span>root</span>
