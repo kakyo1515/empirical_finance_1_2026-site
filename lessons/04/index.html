@@ -213,6 +213,12 @@ window.Quarto = {
  <span class="menu-text">第5回：Rの基本操作：演習</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -224,9 +230,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#chapter-1関数の作成" id="toc-chapter-1関数の作成" class="nav-link" data-scroll-target="#chapter-1関数の作成">Chapter 1｜関数の作成</a>
   <ul class="collapse">
-  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#関数の作成" id="toc-関数の作成" class="nav-link" data-scroll-target="#関数の作成">1. 関数の作成</a></li>
   <li><a href="#複数の引数と既定値" id="toc-複数の引数と既定値" class="nav-link" data-scroll-target="#複数の引数と既定値">2. 複数の引数と既定値</a></li>
   </ul></li>
@@ -284,10 +290,8 @@ window.Quarto = {
 <li>グラフの作成・保存の方法を学ぶ。</li>
 </ul>
 </section>
-<section id="chapter-1関数の作成" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-1関数の作成">Chapter 1｜関数の作成</h2>
-<section id="作業の準備" class="level3">
-<h3 class="anchored" data-anchor-id="作業の準備">作業の準備</h3>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
 <ol type="1">
 <li><code>empirical_finance.Rproj</code>を開く。</li>
 <li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson04.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
@@ -303,6 +307,8 @@ window.Quarto = {
 └── output/</code></pre>
 <p>以下のコードは<code>script/lesson04.R</code>に順に記述し、実行して結果を確認する。</p>
 </section>
+<section id="chapter-1関数の作成" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1関数の作成">Chapter 1｜関数の作成</h2>
 <section id="関数の作成" class="level3">
 <h3 class="anchored" data-anchor-id="関数の作成">1. 関数の作成</h3>
 <p>第2回では<code>sqrt()</code>や<code>round()</code>を使い、第3回ではベクトルの平均を<code>mean()</code>で求めた。Rでは、こうした既存の関数を利用するだけでなく、自分で関数を作成できる。</p>

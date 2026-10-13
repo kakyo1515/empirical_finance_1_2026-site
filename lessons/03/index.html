@@ -184,6 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">第5回：Rの基本操作：演習</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -195,9 +201,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#chapter-1ベクトル" id="toc-chapter-1ベクトル" class="nav-link" data-scroll-target="#chapter-1ベクトル">Chapter 1｜ベクトル</a>
   <ul class="collapse">
-  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#データ構造とは" id="toc-データ構造とは" class="nav-link" data-scroll-target="#データ構造とは">データ構造とは</a></li>
   <li><a href="#複数の値の格納" id="toc-複数の値の格納" class="nav-link" data-scroll-target="#複数の値の格納">1. 複数の値の格納</a></li>
   <li><a href="#ベクトルによる計算" id="toc-ベクトルによる計算" class="nav-link" data-scroll-target="#ベクトルによる計算">2. ベクトルによる計算</a></li>
@@ -261,16 +267,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>データ構造の基本操作と、欠損値の扱い方を身につける。</li>
 </ul>
 </section>
-<section id="chapter-1ベクトル" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-1ベクトル">Chapter 1｜ベクトル</h2>
-<section id="作業の準備" class="level3">
-<h3 class="anchored" data-anchor-id="作業の準備">作業の準備</h3>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
 <ol type="1">
 <li>第2回に作成した<code>empirical_finance.Rproj</code>を開く。</li>
 <li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、Project内の<code>script</code>フォルダに<code>lesson03.R</code>という名前で保存する。すでに作成している場合は、そのファイルを開く。</li>
 </ol>
 <p>以下のコードは<code>script/lesson03.R</code>に順に記述し、実行して結果を確認する。</p>
 </section>
+<section id="chapter-1ベクトル" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1ベクトル">Chapter 1｜ベクトル</h2>
 <section id="データ構造とは" class="level3">
 <h3 class="anchored" data-anchor-id="データ構造とは">データ構造とは</h3>
 <p><strong>データ構造</strong>とは、データをコンピュータの中でどのようにまとめ、並べて保持するかを決める仕組みである。データを適切な形に整理すると、必要な値を取り出したり、まとめて計算したりしやすくなる。</p>

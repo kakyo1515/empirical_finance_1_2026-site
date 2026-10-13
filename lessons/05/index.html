@@ -71,6 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../lessons/06/index.html" rel="next">
 <link href="../../lessons/04/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -212,6 +213,12 @@ window.Quarto = {
  <span class="menu-text">第5回：Rの基本操作：演習</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -223,6 +230,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#chapter-1理論現在価値npvirrddm" id="toc-chapter-1理論現在価値npvirrddm" class="nav-link" data-scroll-target="#chapter-1理論現在価値npvirrddm">Chapter 1｜理論：現在価値・NPV・IRR・DDM</a>
   <ul class="collapse">
   <li><a href="#お金の時間価値" id="toc-お金の時間価値" class="nav-link" data-scroll-target="#お金の時間価値">1. お金の時間価値</a></li>
@@ -234,7 +242,6 @@ window.Quarto = {
   </ul></li>
   <li><a href="#chapter-2npvとirrの実装" id="toc-chapter-2npvとirrの実装" class="nav-link" data-scroll-target="#chapter-2npvとirrの実装">Chapter 2｜NPVとIRRの実装</a>
   <ul class="collapse">
-  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
   <li><a href="#キャッシュフローをベクトルで表す" id="toc-キャッシュフローをベクトルで表す" class="nav-link" data-scroll-target="#キャッシュフローをベクトルで表す">1. キャッシュフローをベクトルで表す</a></li>
   <li><a href="#各キャッシュフローの現在価値" id="toc-各キャッシュフローの現在価値" class="nav-link" data-scroll-target="#各キャッシュフローの現在価値">2. 各キャッシュフローの現在価値</a></li>
   <li><a href="#npv関数を作る" id="toc-npv関数を作る" class="nav-link" data-scroll-target="#npv関数を作る">3. NPV関数を作る</a></li>
@@ -278,6 +285,16 @@ window.Quarto = {
 <li>お金の時間的価値と、NPV・IRRによる投資評価、DDMによる株式評価の考え方を学ぶ。</li>
 <li>上記のファイナンス理論に基づく計算を、Rで実装できる。</li>
 </ul>
+</section>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
+<ol type="1">
+<li>第2回に作成した<code>empirical_finance.Rproj</code>を開く。</li>
+<li><strong>File → New File → R Script</strong>から新しいRスクリプトを作成し、Project内の<code>script</code>フォルダに<code>lesson05.R</code>という名前で保存する。すでに作成している場合は、そのファイルを開く。</li>
+<li>以下のコードをRスクリプトに順に記述し、実行して結果を確認する。作業中も適宜保存する。</li>
+</ol>
+<p>授業中の計算ではRの標準機能のみを使うため、パッケージのインストールや<code>library()</code>の実行は不要である。キャッシュフローはコード内で作成するので、データファイルも準備する必要はない。</p>
+<p>前回のオブジェクトはProjectを開くと自動復元されるが、ここで使うベクトルと関数は、以下のコードで作成する。</p>
 </section>
 <section id="chapter-1理論現在価値npvirrddm" class="level2">
 <h2 class="anchored" data-anchor-id="chapter-1理論現在価値npvirrddm">Chapter 1｜理論：現在価値・NPV・IRR・DDM</h2>
@@ -520,16 +537,6 @@ P_0=\frac{D}{r},\qquad r&gt;0
 </section>
 <section id="chapter-2npvとirrの実装" class="level2">
 <h2 class="anchored" data-anchor-id="chapter-2npvとirrの実装">Chapter 2｜NPVとIRRの実装</h2>
-<section id="作業の準備" class="level3">
-<h3 class="anchored" data-anchor-id="作業の準備">作業の準備</h3>
-<ol type="1">
-<li>第2回に作成した<code>empirical_finance.Rproj</code>を開く。</li>
-<li><strong>File → New File → R Script</strong>から新しいRスクリプトを作成し、Project内の<code>script</code>フォルダに<code>lesson05.R</code>という名前で保存する。すでに作成している場合は、そのファイルを開く。</li>
-<li>以下のコードをRスクリプトに順に記述し、実行して結果を確認する。作業中も適宜保存する。</li>
-</ol>
-<p>このChapterではRの標準機能のみを使うため、パッケージのインストールや<code>library()</code>の実行は不要である。キャッシュフローはコード内で作成するので、データファイルも準備する必要はない。</p>
-<p>前回のオブジェクトはProjectを開くと自動復元されるが、ここで使うベクトルと関数は、以下のコードで作成する。</p>
-</section>
 <section id="キャッシュフローをベクトルで表す" class="level3">
 <h3 class="anchored" data-anchor-id="キャッシュフローをベクトルで表す">1. キャッシュフローをベクトルで表す</h3>
 <p>冒頭の例と同じく、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を扱う。第3回で学んだベクトルを使い、時点とキャッシュフローを表す。</p>
@@ -1201,6 +1208,9 @@ P_0=\frac{D_1}{r-g},\qquad r&gt;g
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../lessons/06/index.html" class="pagination-link" aria-label="第6回：tidyverse流による財務・株式データ分析">
+        <span class="nav-page-text">第6回：tidyverse流による財務・株式データ分析</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
