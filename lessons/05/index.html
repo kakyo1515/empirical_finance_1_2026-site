@@ -303,7 +303,7 @@ window.Quarto = {
 <p>同じ100万円でも、今日受け取る100万円と1年後に受け取る100万円は、通常同じ価値ではない。今日受け取った資金はすぐに利用または運用できる一方、将来の資金を受け取るまでには時間がかかり、不確実性も存在する。この考え方を<span class="key-term">お金の時間価値</span>という。</p>
 <p>投資や事業に伴う資金の受取りと支払いを、<span class="key-term">キャッシュフロー（cash flow: CF）</span>という。投資を行う側から見て、受取りを正、支払いを負の金額で表す。</p>
 <p>例えば、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を考える。この投資では、現在に−100万円、1年後に60万円、2年後に60万円のキャッシュフローが発生する。受取額の合計は120万円であり、支払額を20万円上回る。ただし、この差額は、支払いから受取りまでの時間を考慮していない。</p>
-<div id="fig-cash-flow-timeline" class="quarto-float quarto-figure quarto-figure-center anchored" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。" data-fig-align="center">
+<div id="fig-cash-flow-timeline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cash-flow-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/cash-flow-timeline.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。">
@@ -345,7 +345,7 @@ PV(CF_t)=\frac{CF_t}{(1+r)^t}
 \tag{2}\]</span></span></p>
 <p>である。割引率が正のとき、期間が長いほど<span class="math inline">\((1+r)^t\)</span>が大きくなるため、同じ受取額でも現在価値は小さくなる。</p>
 <p><a href="#fig-cash-flow-timeline" class="quarto-xref">図&nbsp;<span>1</span></a> の「現在100万円を支払い、1年後と2年後に60万円ずつ受け取る投資」で考えてみよう。割引率を<strong>年8%</strong>とすると、1年後の60万円は1年分、2年後の60万円は2年分を割り引き、どちらも現在（<span class="math inline">\(t=0\)</span>）の価値に換算する。</p>
-<div id="fig-cash-flow-present-value" class="quarto-float quarto-figure quarto-figure-center anchored" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。" data-fig-align="center">
+<div id="fig-cash-flow-present-value" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cash-flow-present-value-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/cash-flow-present-value.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。">
@@ -498,7 +498,7 @@ NPV(0.08)
 P_0=\sum_{t=1}^{\infty}\frac{D_t}{(1+r)^t}
 \tag{6}\]</span></span></p>
 <p>と表される。投資案の評価では事業のキャッシュフローを割り引いたが、DDMでは株主が受け取る配当を割り引く。</p>
-<div id="fig-ddm-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。" data-fig-align="center">
+<div id="fig-ddm-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ddm-cash-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ddm-cash-flow.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。">
@@ -513,7 +513,7 @@ P_0=\sum_{t=1}^{\infty}\frac{D_t}{(1+r)^t}
 P_0=\frac{D_1}{r-g},\qquad r&gt;g
 \tag{7}\]</span></span></p>
 <p>とまとめられる。これを<strong>定率成長モデル（ゴードン成長モデル）</strong>という。<span class="math inline">\(D_1\)</span>は、すでに支払われた配当ではなく、<strong>1年後に受け取ると予想される配当</strong>である。この式は、必要収益率と配当成長率が一定で、必要収益率が配当成長率を上回る場合に使える。</p>
-<div id="fig-ddm-growth-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。" data-fig-align="center">
+<div id="fig-ddm-growth-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ddm-growth-cash-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ddm-growth-cash-flow.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。">

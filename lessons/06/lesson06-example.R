@@ -47,9 +47,13 @@ present_values |>
   sum() |>
   round(digits = 2)
 
-# Chapter 2｜投資案ごとにNPVとIRRを求める
+# 練習：次のコードを、cash_flowsから始めてパイプ演算子|>で処理をつなぐ形に
+# 書き換え、同じ結果（67.59）が得られることを確認する。
+round(calculate_npv(cash_flows, discount_rate = 0.08), digits = 2)
 
-# 1. CSVを読み込む
+# Chapter 2｜tidyverseの基本操作
+
+# 1. データの読み込み
 
 cash_flow_data <- read_csv(
   "data/cash-flows-lesson06.csv",
@@ -78,13 +82,6 @@ cash_flow_data |>
 cash_flow_data |>
   filter(project == "B" | project == "C")
 
-# 「BまたはC」と「時点1以降」を組み合わせる。
-cash_flow_data |>
-  filter(
-    (project == "B" | project == "C"),
-    period >= 1
-  )
-
 # 3. 新しい列の追加
 
 discount_rate <- 0.08
@@ -96,7 +93,7 @@ pv_data <- cash_flow_data |>
 
 head(pv_data)
 
-# 4. 投資案ごとに集計する
+# 4. グループごとに集計する
 
 # (1) group_by()でグループを指定する
 pv_grouped <- pv_data |>
@@ -105,19 +102,10 @@ pv_grouped <- pv_data |>
 pv_grouped
 
 # (2) summarise()でグループごとに集計する
-pv_grouped |>
+project_results <- pv_grouped |>
   summarise(
     NPV = sum(present_value),
-    .groups = "drop"
-  )
-
-# (3) NPVとIRRをまとめて計算する
-project_results <- pv_data |>
-  group_by(project) |>
-  summarise(
-    NPV = sum(present_value),
-    IRR = calculate_irr(cash_flow, periods = period),
-    .groups = "drop"
+    IRR = calculate_irr(cash_flow, periods = period)
   ) |>
   mutate(IRR_percent = IRR * 100)
 
@@ -129,118 +117,60 @@ project_results |>
   arrange(desc(NPV)) |>
   select(project, NPV, IRR_percent)
 
-# Chapter 3｜ggplot2で結果を可視化する
+# Chapter 3｜ggplot2によるデータ可視化
 
-# 1. ggplot2の作図の考え方
+# 1. ggplot2による作図の基本
+# (1) データと変数の対応を指定する
+# (2) 図の層を加える
+# (3) ラベルや見た目を整える
+# (4) 図を表示する
 
-# 2. NPVの棒グラフを段階的に作る
+# 2. NPVの棒グラフ
 
-# (1) 作図するデータを確認する
-
-project_results |>
-  select(project, NPV)
-
-# (2) データと軸を指定する
-
+# (1) データと変数の対応を指定する
 npv_base <- ggplot(
   data = project_results,
   mapping = aes(x = project, y = NPV)
 )
 
-print(npv_base)
-
-# (3) 棒の層を加える
-
-npv_bars <- npv_base +
-  geom_col()
-
-print(npv_bars)
-
-# (4) 棒の色を指定する
-
-npv_coloured <- npv_base +
-  geom_col(fill = "skyblue")
-
-print(npv_coloured)
-
-# (5) 軸のラベルを付ける
-
-npv_labelled <- npv_coloured +
-  labs(x = "Project", y = "NPV (10,000 yen)")
-
-print(npv_labelled)
-
-# (6) NPVが0となる基準線を加える
-
-npv_reference <- npv_labelled +
+# (2) 図の層を加える
+npv_layers <- npv_base +
+  geom_col(fill = "skyblue") +
   geom_hline(yintercept = 0, colour = "gray")
 
-print(npv_reference)
-
-# (7) テーマを指定する
-
-npv_plot <- npv_reference +
+# (3) ラベルや見た目を整える
+npv_plot <- npv_layers +
+  labs(x = "Project", y = "NPV (10,000 yen)") +
   theme_classic()
 
+# (4) 図を表示する
 print(npv_plot)
 
-# 3. キャッシュフローの折れ線グラフを段階的に作る
+# 3. キャッシュフローの折れ線グラフ
 
-# (1) 時点と金額を点で表す
-
+# (1) データと変数の対応を指定する
 cash_flow_base <- ggplot(
-  data = cash_flow_data,
-  mapping = aes(x = period, y = cash_flow)
-)
-
-cash_flow_points <- cash_flow_base +
-  geom_point()
-
-print(cash_flow_points)
-
-# (2) 投資案ごとに色を分ける
-
-cash_flow_colour_base <- ggplot(
   data = cash_flow_data,
   mapping = aes(x = period, y = cash_flow, colour = project)
 )
 
-cash_flow_coloured <- cash_flow_colour_base +
-  geom_point()
+# (2) 図の層を加える
+cash_flow_layers <- cash_flow_base +
+  geom_point() +
+  geom_line() +
+  geom_hline(yintercept = 0, colour = "gray")
 
-print(cash_flow_coloured)
-
-# (3) 同じ投資案の点を線で結ぶ
-
-cash_flow_lines <- cash_flow_coloured +
-  geom_line()
-
-print(cash_flow_lines)
-
-# (4) 横軸の目盛りを各年に付ける
-
-cash_flow_years <- cash_flow_lines +
-  scale_x_continuous(breaks = 0:8)
-
-print(cash_flow_years)
-
-# (5) 軸と凡例の名前を付ける
-
-cash_flow_labelled <- cash_flow_years +
+# (3) ラベルや見た目を整える
+cash_flow_plot <- cash_flow_layers +
   labs(
     x = "Year",
     y = "Cash flow (10,000 yen)",
     colour = "Project"
-  )
-
-print(cash_flow_labelled)
-
-# (6) 基準線とテーマを加えて仕上げる
-
-cash_flow_plot <- cash_flow_labelled +
-  geom_hline(yintercept = 0, colour = "gray") +
+  ) +
+  scale_x_continuous(breaks = 0:8) +
   theme_classic()
 
+# (4) 図を表示する
 print(cash_flow_plot)
 
 # 4. 図を保存する
