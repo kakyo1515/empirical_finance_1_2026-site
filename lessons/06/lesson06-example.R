@@ -1,6 +1,6 @@
 # 第6回：tidyverse流による財務・株式データ分析
 # empirical_finance.Rprojを開き、script/lesson06.Rとして保存して使用する。
-# tidyverseを事前にインストールし、data/cash-flows-lesson06.csvとoutputフォルダを準備する。
+# tidyverseを事前にインストールし、data/data_lesson06.csvとoutputフォルダを準備する。
 # output/npv-comparison.pngに同名のファイルがある場合は上書きされる。
 
 # 作業の準備
@@ -56,7 +56,7 @@ round(calculate_npv(cash_flows, discount_rate = 0.08), digits = 2)
 # 1. データの読み込み
 
 cash_flow_data <- read_csv(
-  "data/cash-flows-lesson06.csv",
+  "data/data_lesson06.csv",
   na = c("", "NA"),
   show_col_types = FALSE
 )
@@ -82,6 +82,9 @@ cash_flow_data |>
 cash_flow_data |>
   filter(project == "B" | project == "C")
 
+# 練習：投資案Eのうち、キャッシュフローが負となる行を抽出し、
+# periodとcash_flowの列だけを取り出す。filter()とselect()を|>でつなぐこと。
+
 # 3. 新しい列の追加
 
 discount_rate <- 0.08
@@ -92,6 +95,9 @@ pv_data <- cash_flow_data |>
   )
 
 head(pv_data)
+
+# 練習：pv_dataに円単位の列cash_flow_yenを追加し、pv_yen_dataに保存する。
+# 1万円は10,000円である。head()で表示し、元のcash_flow列と見比べること。
 
 # 4. グループごとに集計する
 
@@ -110,6 +116,9 @@ project_results <- pv_grouped |>
   mutate(IRR_percent = IRR * 100)
 
 project_results
+
+# 練習：cash_flow_dataから時点1以降の行を取り出し、投資案ごとの
+# キャッシュフローの平均を求める。結果の列名はmean_cash_flowとする。
 
 # 5. 結果を並べ替える
 
@@ -140,7 +149,11 @@ npv_layers <- npv_base +
 
 # (3) ラベルや見た目を整える
 npv_plot <- npv_layers +
-  labs(x = "Project", y = "NPV (10,000 yen)") +
+  labs(
+    title = "NPV by Project",
+    x = "Project",
+    y = "NPV (10,000 yen)"
+  ) +
   theme_classic()
 
 # (4) 図を表示する
@@ -163,6 +176,7 @@ cash_flow_layers <- cash_flow_base +
 # (3) ラベルや見た目を整える
 cash_flow_plot <- cash_flow_layers +
   labs(
+    title = "Cash Flows by Project",
     x = "Year",
     y = "Cash flow (10,000 yen)",
     colour = "Project"

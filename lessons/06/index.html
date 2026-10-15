@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><code>empirical_finance.Rproj</code>を開く。</li>
 <li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson06.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
-<li><a href="../../data/lesson06/cash-flows-lesson06.csv">cash-flows-lesson06.csv</a>をダウンロードし、Project内の<code>data</code>フォルダに保存する。図の保存に使う<code>output</code>フォルダも確認し、なければ作成する。</li>
+<li><a href="../../data/lesson06/data_lesson06.csv" download="data_lesson06.csv">data_lesson06.csv</a>をダウンロードし、Project内の<code>data</code>フォルダに保存する。図の保存に使う<code>output</code>フォルダも確認し、なければ作成する。</li>
 </ol>
 <p>以下のコードは、このRスクリプトに順に記述し、実行して結果を確認する。</p>
 <section id="計算に使う関数を確認する" class="level3">
@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>ここでは、五つの投資案A・B・C・D・EのキャッシュフローをCSVから読み込み、データの内容と構造を確認する。各投資案について、時点0の初期投資から8年後までの金額を記録している。金額の単位は万円とする。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>cash_flow_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/cash-flows-lesson06.csv"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson06.csv"</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -547,20 +547,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 18 C            8        16</code></pre>
 </div>
 </div>
+<p><strong>練習</strong>：投資案Eのうち、キャッシュフローが負となる行を抽出し、<code>period</code>と<code>cash_flow</code>の列だけを取り出しなさい。<code>filter()</code>と<code>select()</code>をパイプ演算子<code>|&gt;</code>でつないで書くこと。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cash_flow_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(project <span class="sc">==</span> <span class="st">"E"</span>, cash_flow <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, cash_flow)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>時点0の−120万円と時点3の−45万円の2行が得られる。<code>filter()</code>で投資案と金額の二つの条件を指定し、<code>select()</code>で表示する列を選んでいる。</p>
+</details>
 </section>
 <section id="新しい列の追加" class="level3">
 <h3 class="anchored" data-anchor-id="新しい列の追加">3. 新しい列の追加</h3>
 <p>tidyverse流では、<code>mutate()</code>を使って新しい列を追加する。</p>
 <p>ここでは、各キャッシュフローを年8%で割り引き、現在価値の列<code>present_value</code>を加える。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pv_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pv_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   project period cash_flow present_value
@@ -574,18 +586,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>各行の<code>cash_flow</code>と<code>period</code>を使って計算する。元の表は<code>cash_flow_data</code>に残し、現在価値を加えた表を<code>pv_data</code>に保存している。</p>
+<p><strong>練習</strong>：<code>pv_data</code>に、キャッシュフローを万円単位から円単位に換算した列<code>cash_flow_yen</code>を追加し、結果を<code>pv_yen_data</code>に保存しなさい。1万円は10,000円である。<code>head()</code>で先頭の行を表示し、元の<code>cash_flow</code>列と見比べること。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pv_yen_data <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cash_flow_yen =</span> cash_flow <span class="sc">*</span> <span class="dv">10000</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pv_yen_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>例えば、投資案Aの時点0は−1,000,000円、時点1は300,000円となる。元の<code>cash_flow</code>列を残したまま、円単位の列が追加される。</p>
+</details>
 </section>
 <section id="グループごとに集計する" class="level3">
 <h3 class="anchored" data-anchor-id="グループごとに集計する">4. グループごとに集計する</h3>
+<p>データ分析では、データをグループに分け、グループごとに集計・分析することがある。例えば、企業の財務データを業種別に分けて平均利益を比較したり、株式のリターンデータを銘柄別に分けて平均リターンを求めたりする。</p>
 <p>tidyverse流では、<code>group_by()</code>でグループを指定し、<code>summarise()</code>でグループごとの集計を行う。ここでは、投資案ごとにNPVとIRRを計算し、結果を一つの表にまとめる。</p>
 <section id="group_byでグループを指定する" class="level4">
 <h4 class="anchored" data-anchor-id="group_byでグループを指定する">(1) group_by()でグループを指定する</h4>
 <p><code>group_by()</code>は、指定した列の値が同じ行を、同じグループとして扱うための関数である。<code>group_by(project)</code>とすると、投資案Aの行、Bの行というように、投資案ごとにグループが指定される。<a href="https://dplyr.tidyverse.org/reference/group_by.html">dplyr：group_by()</a></p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pv_grouped <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>pv_grouped</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pv_grouped <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>pv_grouped</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 45 × 4
 # Groups:   project [5]
@@ -633,14 +659,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>ここでは、先ほどグループを指定した<code>pv_grouped</code>を使い、投資案ごとのNPVとIRRを同時に計算する。NPVは現在価値の合計、IRRは同じグループのキャッシュフローと時点を<code>calculate_irr()</code>へ渡して求める。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_grouped <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_grouped <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   project   NPV     IRR IRR_percent
@@ -655,6 +681,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>sum(present_value)</code>は、各投資案に属する9行の現在価値を合計する。<code>calculate_irr()</code>にも、その投資案の9行のキャッシュフローと時点が渡される。結果は、A～Eの各投資案につき一行、合計5行になる。</p>
 <p><code>summarise()</code>の後に<code>mutate()</code>で百分率の列を追加している。<code>IRR</code>は小数、<code>IRR_percent</code>は百分率で表した値となる。</p>
 <p>AのNPVは約67.59万円、IRRは約27.44%となる。<code>summarise()</code>には<code>sum()</code>や<code>mean()</code>だけでなく、第5回で定義した自作関数も使える。</p>
+<p><strong>練習</strong>：<code>cash_flow_data</code>から時点1以降の行を取り出し、投資案ごとのキャッシュフローの平均を求めなさい。結果の列名は<code>mean_cash_flow</code>とする。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cash_flow_data <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(period <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_cash_flow =</span> <span class="fu">mean</span>(cash_flow))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>時点0の初期投資を除き、各投資案の時点1～8のキャッシュフローを平均している。結果は投資案ごとに一行となり、例えばAの平均は27.5万円となる。</p>
+</details>
 </section>
 </section>
 <section id="結果を並べ替える" class="level3">
@@ -662,9 +701,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>五つの投資案をNPVの大きい順に並べ、計算結果を比較する。</p>
 <p><code>arrange()</code>は行を並べ替える。既定では昇順、<code>desc()</code>を付けると降順になる。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>project_results <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NPV)) <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(project, NPV, IRR_percent)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>project_results <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(NPV)) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(project, NPV, IRR_percent)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   project   NPV IRR_percent
@@ -683,42 +722,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 解答例
 </summary>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.12</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project) <span class="sc">|&gt;</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.12</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project) <span class="sc">|&gt;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>NPVは変化するが、IRRは変化しない。NPVは指定した割引率で現在価値を求めるため、<code>discount_rate</code>の影響を受ける。一方、IRRはキャッシュフローとその発生時点から求めるため、ここで指定する割引率には依存しない。</p>
 <p>確認後は、割引率を8%に戻し、現在価値と集計結果を作り直す。<code>discount_rate</code>の値を変更するだけでは、すでに作成した<code>pv_data</code>や<code>project_results</code>は更新されない。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project) <span class="sc">|&gt;</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>pv_data <span class="ot">&lt;-</span> cash_flow_data <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">present_value =</span> cash_flow <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>period</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>project_results <span class="ot">&lt;-</span> pv_data <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(project) <span class="sc">|&gt;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">NPV =</span> <span class="fu">sum</span>(present_value),</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">IRR =</span> <span class="fu">calculate_irr</span>(cash_flow, <span class="at">periods =</span> period)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IRR_percent =</span> IRR <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>project_results</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </details>
 </section>
@@ -730,7 +769,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="ggplot2による作図の基本">1. ggplot2による作図の基本</h3>
 <p><strong>ggplot2</strong>は、図を作るためのパッケージであり、tidyverseに含まれている。Chapter 1で<code>library(tidyverse)</code>を実行していれば、そのまま使える。ggplot2の名前にあるggは、<strong>Grammar of Graphics（グラフィックスの文法）</strong>を表す。データと図の要素を組み合わせる共通の書き方で、さまざまなグラフを作成できる。</p>
 <p>例えば、次のようなさまざまなグラフを作成できる。</p>
-<div id="fig-ggplot-gallery" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="ダイヤモンドのデータを用いた三つの作図例。上段では重量と価格の関係を三つのカット品質別に表示し、左下では価格の分布を対数軸で比較し、右下ではカット品質とカラー別の価格中央値を色と数値で示している。">
+<div id="fig-ggplot-gallery" class="quarto-float quarto-figure quarto-figure-center anchored" alt="ダイヤモンドのデータを用いた三つの作図例。上段では重量と価格の関係を三つのカット品質別に表示し、左下では価格の分布を対数軸で比較し、右下ではカット品質とカラー別の価格中央値を色と数値で示している。" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ggplot-gallery-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ggplot-gallery.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="ダイヤモンドのデータを用いた三つの作図例。上段では重量と価格の関係を三つのカット品質別に表示し、左下では価格の分布を対数軸で比較し、右下ではカット品質とカラー別の価格中央値を色と数値で示している。">
@@ -768,7 +807,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td>(3) ラベルや見た目を整える</td>
-<td>軸ラベル、凡例（legend）、目盛り、背景などを設定する</td>
+<td>タイトル、軸ラベル、凡例（legend）、目盛り、背景などを設定する</td>
 <td><code>labs()</code>、<code>scale_x_continuous()</code>、<code>theme_classic()</code>など</td>
 </tr>
 <tr class="even">
@@ -788,10 +827,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="データと変数の対応を指定する">(1) データと変数の対応を指定する</h4>
 <p><code>ggplot()</code>に表を渡し、<code>aes()</code>で横軸に<code>project</code>、縦軸に<code>NPV</code>を対応させる。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>npv_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> NPV)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>npv_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> NPV)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <table class="caption-top table">
 <thead>
@@ -826,9 +865,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="図の層を加える">(2) 図の層を加える</h4>
 <p><code>geom_col()</code>で棒の層を加える。あわせて、<code>geom_hline()</code>でNPVが0となる位置に基準線を加える。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>npv_layers <span class="ot">&lt;-</span> npv_base <span class="sc">+</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>npv_layers <span class="ot">&lt;-</span> npv_base <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>fill = "skyblue"</code>は、すべての棒を同じ水色にする指定である。<code>yintercept = 0</code>は基準線の位置、<code>colour = "gray"</code>はその線の色を指定している。</p>
 <p><strong>層（layer）</strong>とは、図に重ねる棒、点、線などの要素である。層を加える<code>geom_</code>から始まる関数には、次のようなものがあり、表したい内容に応じて選ぶ。<a href="https://ggplot2.tidyverse.org/reference/index.html">ggplot2：関数一覧</a></p>
@@ -890,13 +929,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ラベルや見た目を整える" class="level4">
 <h4 class="anchored" data-anchor-id="ラベルや見た目を整える">(3) ラベルや見た目を整える</h4>
-<p><code>labs()</code>で軸ラベルを付け、<code>theme_classic()</code>で背景や軸線などの見た目を整える。</p>
+<p><code>labs()</code>で図のタイトルと軸ラベルを付け、<code>theme_classic()</code>で背景や軸線などの見た目を整える。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>npv_plot <span class="ot">&lt;-</span> npv_layers <span class="sc">+</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Project"</span>, <span class="at">y =</span> <span class="st">"NPV (10,000 yen)"</span>) <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>npv_plot <span class="ot">&lt;-</span> npv_layers <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"NPV by Project"</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Project"</span>,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"NPV (10,000 yen)"</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>labs()</code>の<code>x</code>は横軸の名前、<code>y</code>は縦軸の名前である。金額の単位は万円なので、縦軸に<code>10,000 yen</code>と記載している。ラベルを変えても、表の列名や値は変わらない。</p>
+<p><code>labs()</code>の<code>title</code>は図全体のタイトル、<code>x</code>は横軸の名前、<code>y</code>は縦軸の名前である。金額の単位は万円なので、縦軸に<code>10,000 yen</code>と記載している。ラベルを変えても、表の列名や値は変わらない。</p>
 <p><code>theme_classic()</code>では背景が白くなり、グリッド線がなくなる。テーマを変えても、NPVの値や棒の高さは変わらない。主なテーマには、次のようなものがある。<a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2：テーマ</a></p>
 <table class="caption-top table">
 <thead>
@@ -929,7 +972,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="図を表示する">(4) 図を表示する</h4>
 <p>完成した図のオブジェクト<code>npv_plot</code>を<code>print()</code>に渡す。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(npv_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(npv_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-project-npv" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -949,47 +992,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="作図コードのまとめ">作図コードのまとめ</h4>
 <p>四つの手順をまとめると、次のように書ける。<code>project_results</code>を使い、上と同じ棒グラフを作成する。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>npv_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> NPV)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (2) 図の層を加える</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (3) ラベルや見た目を整える</span></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Project"</span>, <span class="at">y =</span> <span class="st">"NPV (10,000 yen)"</span>) <span class="sc">+</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(npv_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>npv_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> NPV)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (2) 図の層を加える</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (3) ラベルや見た目を整える</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"NPV by Project"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Project"</span>,</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"NPV (10,000 yen)"</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(npv_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>練習</strong>：縦軸を<code>IRR_percent</code>に変更し、IRRを比較する棒グラフを作りなさい。縦軸名は<code>"IRR (%)"</code>とする。</p>
+<p><strong>練習</strong>：縦軸を<code>IRR_percent</code>に変更し、IRRを比較する棒グラフを作りなさい。縦軸名は<code>"IRR (%)"</code>、図のタイトルは<code>"IRR by Project"</code>とする。</p>
 <details>
 <summary>
 解答例
 </summary>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>irr_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> IRR_percent)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 図の層を加える</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>irr_layers <span class="ot">&lt;-</span> irr_base <span class="sc">+</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) ラベルや見た目を整える</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>irr_plot <span class="ot">&lt;-</span> irr_layers <span class="sc">+</span></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Project"</span>, <span class="at">y =</span> <span class="st">"IRR (%)"</span>) <span class="sc">+</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(irr_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>irr_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> project_results,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> project, <span class="at">y =</span> IRR_percent)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) 図の層を加える</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>irr_layers <span class="ot">&lt;-</span> irr_base <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (3) ラベルや見た目を整える</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>irr_plot <span class="ot">&lt;-</span> irr_layers <span class="sc">+</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"IRR by Project"</span>,</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Project"</span>,</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"IRR (%)"</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(irr_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>aes()</code>の縦軸を<code>IRR_percent</code>に、<code>labs()</code>の縦軸名を<code>"IRR (%)"</code>に変更している。百分率の列を使うため、例えばAの棒の高さは約27.44となる。</p>
+<p><code>aes()</code>の縦軸を<code>IRR_percent</code>に、<code>labs()</code>の縦軸名を<code>"IRR (%)"</code>に、タイトルを<code>"IRR by Project"</code>に変更している。百分率の列を使うため、例えばAの棒の高さは約27.44となる。</p>
 </details>
 </section>
 </section>
@@ -1000,10 +1051,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="データと変数の対応を指定する-1">(1) データと変数の対応を指定する</h4>
 <p>横軸に<code>period</code>、縦軸に<code>cash_flow</code>を対応させる。投資案ごとの違いを表すため、<code>aes()</code>に<code>colour = project</code>も指定する。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cash_flow_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cash_flow_data,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> cash_flow, <span class="at">colour =</span> project)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>cash_flow_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cash_flow_data,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> cash_flow, <span class="at">colour =</span> project)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>colour = project</code>は色名を指定する命令ではなく、<code>project</code>の値に応じて色を分ける指定である。図を表示すると、A～Eに異なる色が割り当てられ、色と投資案の対応を示す<strong>凡例（legend）</strong>も表示される。</p>
 </section>
@@ -1011,26 +1062,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="図の層を加える-1">(2) 図の層を加える</h4>
 <p><code>geom_point()</code>で点、<code>geom_line()</code>で線の層を加える。金額の正負を見比べるため、0の位置に基準線も加える。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cash_flow_layers <span class="ot">&lt;-</span> cash_flow_base <span class="sc">+</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cash_flow_layers <span class="ot">&lt;-</span> cash_flow_base <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>一つの点が、一つの投資案の一つの時点の金額を表す。<code>geom_line()</code>は横軸の値の順に点を結ぶ。この例では、<code>project</code>を色に対応させているため、投資案ごとに別の線が描かれる。データと<code>aes()</code>の指定は、<code>ggplot()</code>で作った土台から点と線の層へ引き継がれる。<a href="https://ggplot2.tidyverse.org/reference/geom_path.html">ggplot2：折れ線グラフ</a></p>
 <p>線は各時点の金額の変化を見比べるためのものであり、時点の間にもキャッシュフローが発生するという意味ではない。</p>
 </section>
 <section id="ラベルや見た目を整える-1" class="level4">
 <h4 class="anchored" data-anchor-id="ラベルや見た目を整える-1">(3) ラベルや見た目を整える</h4>
-<p><code>labs()</code>で軸と凡例の名前を付け、<code>scale_x_continuous()</code>で横軸の目盛りを設定する。テーマは棒グラフと同じ<code>theme_classic()</code>を使う。</p>
+<p><code>labs()</code>で図のタイトルと軸・凡例の名前を付け、<code>scale_x_continuous()</code>で横軸の目盛りを設定する。テーマは棒グラフと同じ<code>theme_classic()</code>を使う。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>cash_flow_plot <span class="ot">&lt;-</span> cash_flow_layers <span class="sc">+</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cash flow (10,000 yen)"</span>,</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Project"</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>cash_flow_plot <span class="ot">&lt;-</span> cash_flow_layers <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cash Flows by Project"</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cash flow (10,000 yen)"</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Project"</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>labs()</code>の<code>colour</code>は、色の凡例の見出しを設定する引数である。<code>aes(colour = project)</code>が色分けに使う変数を指定するのに対し、<code>labs(colour = "Project")</code>は凡例に表示する名前を指定している。</p>
 <p><code>breaks = 0:8</code>は、時点0～8をすべて横軸の目盛りに表示する指定である。目盛りの表示を変える設定であり、データの時点や金額は変わらない。</p>
@@ -1039,7 +1091,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="図を表示する-1">(4) 図を表示する</h4>
 <p>完成した図のオブジェクト<code>cash_flow_plot</code>を表示する。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cash_flow_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cash_flow_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-project-cash-flows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1059,26 +1111,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="作図コードのまとめ-1">作図コードのまとめ</h4>
 <p>折れ線グラフも、同じ四つの手順をまとめて書ける。<code>cash_flow_data</code>を使い、上と同じ図を作成する。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>cash_flow_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cash_flow_data,</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> cash_flow, <span class="at">colour =</span> project)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (2) 図の層を加える</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (3) ラベルや見た目を整える</span></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cash flow (10,000 yen)"</span>,</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Project"</span></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cash_flow_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) データと変数の対応を指定する</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>cash_flow_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> cash_flow_data,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> cash_flow, <span class="at">colour =</span> project)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (2) 図の層を加える</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (3) ラベルや見た目を整える</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cash Flows by Project"</span>,</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Cash flow (10,000 yen)"</span>,</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Project"</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="co"># (4) 図を表示する</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cash_flow_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -1087,14 +1140,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>完成したNPVの棒グラフを、Project内の<code>output</code>フォルダに画像ファイルとして保存する。</p>
 <p>図を画面に表示するだけでは、画像ファイルは保存されない。<code>ggsave()</code>に保存先と図のオブジェクトを渡す。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"output/npv-comparison.png"</span>,</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> npv_plot,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fl">4.5</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"in"</span>,</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dpi =</span> <span class="dv">160</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"output/npv-comparison.png"</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> npv_plot,</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fl">4.5</span>,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">"in"</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dpi =</span> <span class="dv">160</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <table class="caption-top table">
 <thead>
