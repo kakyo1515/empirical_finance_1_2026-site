@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第7回：財務データ分析 I – 応用ファイナンス1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lessons/06/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37294f0e61b532b0f7ebd5ccc0471b30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c2e880a5cb14d7a116eba1e73095a7f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/07/index.html">第7回：財務データ分析 I</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">応用ファイナンス1</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ガイダンス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第1回：Rの基本操作 I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第2回：Rの基本操作 II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第3回：Rの基本操作 III</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第4回：Rの基本操作 IV</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：Rの基本操作：演習</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/07/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">第7回：財務データ分析 I</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
+  <li><a href="#chapter-1財務データの入手と読み方" id="toc-chapter-1財務データの入手と読み方" class="nav-link" data-scroll-target="#chapter-1財務データの入手と読み方">Chapter 1｜財務データの入手と読み方</a>
+  <ul class="collapse">
+  <li><a href="#企業活動と財務諸表" id="toc-企業活動と財務諸表" class="nav-link" data-scroll-target="#企業活動と財務諸表">1. 企業活動と財務諸表</a></li>
+  <li><a href="#有価証券報告書と決算短信" id="toc-有価証券報告書と決算短信" class="nav-link" data-scroll-target="#有価証券報告書と決算短信">2. 有価証券報告書と決算短信</a></li>
+  </ul></li>
+  <li><a href="#chapter-2財務データの読み込みと整理" id="toc-chapter-2財務データの読み込みと整理" class="nav-link" data-scroll-target="#chapter-2財務データの読み込みと整理">Chapter 2｜財務データの読み込みと整理</a>
+  <ul class="collapse">
+  <li><a href="#csvの読み込み" id="toc-csvの読み込み" class="nav-link" data-scroll-target="#csvの読み込み">1. CSVの読み込み</a></li>
+  <li><a href="#idのカテゴリ変数への変換" id="toc-idのカテゴリ変数への変換" class="nav-link" data-scroll-target="#idのカテゴリ変数への変換">2. IDのカテゴリ変数への変換</a></li>
+  </ul></li>
+  <li><a href="#chapter-3探索的データ分析" id="toc-chapter-3探索的データ分析" class="nav-link" data-scroll-target="#chapter-3探索的データ分析">Chapter 3｜探索的データ分析</a>
+  <ul class="collapse">
+  <li><a href="#データセットの概要確認" id="toc-データセットの概要確認" class="nav-link" data-scroll-target="#データセットの概要確認">1. データセットの概要確認</a></li>
+  <li><a href="#欠損データの処理" id="toc-欠損データの処理" class="nav-link" data-scroll-target="#欠損データの処理">2. 欠損データの処理</a></li>
+  </ul></li>
+  <li><a href="#chapter-4データの抽出とヒストグラムによる可視化" id="toc-chapter-4データの抽出とヒストグラムによる可視化" class="nav-link" data-scroll-target="#chapter-4データの抽出とヒストグラムによる可視化">Chapter 4｜データの抽出とヒストグラムによる可視化</a>
+  <ul class="collapse">
+  <li><a href="#条件に合うデータの抽出" id="toc-条件に合うデータの抽出" class="nav-link" data-scroll-target="#条件に合うデータの抽出">1. 条件に合うデータの抽出</a></li>
+  <li><a href="#ヒストグラムによる可視化" id="toc-ヒストグラムによる可視化" class="nav-link" data-scroll-target="#ヒストグラムによる可視化">2. ヒストグラムによる可視化</a></li>
+  <li><a href="#対数変換と分布の可視化" id="toc-対数変換と分布の可視化" class="nav-link" data-scroll-target="#対数変換と分布の可視化">3. 対数変換と分布の可視化</a></li>
+  <li><a href="#図の保存" id="toc-図の保存" class="nav-link" data-scroll-target="#図の保存">4. 図の保存</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第7回：財務データ分析 I</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="到達目標" class="level2">
+<h2 class="anchored" data-anchor-id="到達目標">到達目標</h2>
+<ul>
+<li>財務データの入手方法を学ぶ。</li>
+<li>財務データの状態を把握し、分析に必要な整理と前処理を行える。</li>
+<li>財務データに対する探索的データ分析の手法を理解できる。</li>
+</ul>
+</section>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
+<ol type="1">
+<li><code>empirical_finance.Rproj</code>を開く。</li>
+<li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson07.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
+<li><a href="../../data/lesson07/data_lesson07.csv" download="data_lesson07.csv">data_lesson07.csv をダウンロード</a>をクリックし、Project内の<code>data</code>フォルダに保存する。同じファイルを保存済みの場合は、そのまま使用する。<code>output</code>フォルダも確認し、なければ作成する。</li>
+</ol>
+<p>以下のコードは、このRスクリプトに順に記述する。前回のオブジェクトが復元されても、使用するパッケージは読み込む。tidyverseは第6回で導入しているため、再インストールは不要である。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="chapter-1財務データの入手と読み方" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1財務データの入手と読み方">Chapter 1｜財務データの入手と読み方</h2>
+<section id="企業活動と財務諸表" class="level3">
+<h3 class="anchored" data-anchor-id="企業活動と財務諸表">1. 企業活動と財務諸表</h3>
+<p>第6回では、投資案ごとのキャッシュフローを整理し、NPVとIRRを比較した。ここからは企業の財務データを使い、売上高や利益の分布、企業間の違いを調べる。</p>
+<p>企業の財務情報は、主に<strong>財務諸表</strong>にまとめられる。代表的な次の3つを<strong>財務三表</strong>と呼ぶ。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>財務諸表</th>
+<th>主な内容</th>
+<th>時間の捉え方</th>
+<th>読み取れること</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>損益計算書（P/L）</td>
+<td>売上高、費用、利益</td>
+<td>一定期間</td>
+<td>どれだけ売上を上げ、利益を得たか</td>
+</tr>
+<tr class="even">
+<td>貸借対照表（B/S）</td>
+<td>資産、負債、純資産</td>
+<td>ある時点（期末など）</td>
+<td>何を保有し、その資金をどのように調達しているか</td>
+</tr>
+<tr class="odd">
+<td>キャッシュ・フロー計算書（C/F）</td>
+<td>営業・投資・財務活動別の現金等の増減</td>
+<td>一定期間</td>
+<td>現金等が、どのような活動によって増減したか</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="有価証券報告書と決算短信" class="level3">
+<h3 class="anchored" data-anchor-id="有価証券報告書と決算短信">2. 有価証券報告書と決算短信</h3>
+<p>上場企業には不特定多数の投資家がいるため、投資家保護の一環として、財務データを含む重要な企業情報を公表する義務がある。その柱となるのが、<a href="https://laws.e-gov.go.jp/law/323AC0000000025">金融商品取引法</a>に基づく<strong>有価証券報告書（有報）</strong>と、証券取引所のルールに基づく<strong>決算短信</strong>である。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>有価証券報告書</th>
+<th>決算短信</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>制度上の位置付け</td>
+<td>金融商品取引法に基づく法定開示</td>
+<td>証券取引所のルールに基づく適時開示</td>
+</tr>
+<tr class="even">
+<td>主な内容</td>
+<td>企業の概況、事業の状況、リスク、財務諸表と注記など</td>
+<td>売上高・利益などの決算概要や業績予想など</td>
+</tr>
+<tr class="odd">
+<td>開示時期</td>
+<td>原則として決算期末から3か月以内に提出</td>
+<td>決算内容が定まり次第、速やかに開示</td>
+</tr>
+<tr class="even">
+<td>分量のイメージ</td>
+<td>企業によっては200ページを超えることもある</td>
+<td>10ページ前後など、有報より簡潔な資料</td>
+</tr>
+<tr class="odd">
+<td>監査との関係</td>
+<td>収録される財務諸表は公認会計士・監査法人の監査を受ける</td>
+<td>決算短信自体は監査の対象外で、財務諸表の監査完了前に開示される場合もある</td>
+</tr>
+<tr class="even">
+<td>重視する点</td>
+<td><strong>網羅性・信頼性</strong>：企業の経済活動を詳しく調べる</td>
+<td><strong>速報性</strong>：決算の概要を早く把握する</td>
+</tr>
+</tbody>
+</table>
+<p>有価証券報告書は詳しい情報を得られる一方、決算期末から公表までに時間がかかる。その間の情報を補うのが決算短信である。例えば、東証の2025年3月期の集計では、期末から決算発表までの平均所要日数は<strong>40.7日</strong>だった。監査が終了する前の数値も含まれるため、後に有価証券報告書の財務諸表でも確認する。<a href="https://faq.jpx.co.jp/disclo/tse/web/knowledge7142.html">東証：決算短信の位置付け</a> ／ <a href="https://www.jpx.co.jp/news/1023/um3qrc000001k00d-att/um3qrc000001k036.pdf">2025年3月期決算発表状況</a></p>
+<p>公表された有価証券報告書と決算短信は、各企業の公式ウェブサイトの投資家向け情報（IR情報）で閲覧できる。例えば、<a href="https://www.nintendo.co.jp/ir/index.html">任天堂の株主・投資家向け情報</a>から探せる。</p>
+<p>また、有価証券報告書は、金融庁が運営する電子開示システム<a href="https://disclosure2.edinet-fsa.go.jp/">EDINET</a>で企業を横断して検索・閲覧できる。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/edinet-reference.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="EDINETの書類検索画面の例"></p>
+</figure>
+</div>
+<p>決算短信は、東京証券取引所の適時開示情報伝達システム<a href="https://www.release.tdnet.info/inbs/I_main_00.html">TDnetの閲覧サービス</a>でも閲覧できる。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tdnet-reference.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" alt="TDnet適時開示情報閲覧サービスの画面例"></p>
+</figure>
+</div>
+<p>年間より短い期間の状況を調べる場合は、<strong>半期報告書</strong>や<strong>四半期決算短信</strong>も参照する。金融商品取引法上の四半期報告書制度は2024年4月に廃止されているため、現行制度ではこれらの資料を使う。<a href="https://www.fsa.go.jp/sesc/jirei/kaiji/20240911/japanese.pdf">金融庁：四半期報告書制度の廃止</a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>EDINET APIで財務データを取得する
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>API（Application Programming Interface）</strong>は、RなどのプログラムからWebサイトに「このデータがほしい」と依頼し、データを受け取るための窓口である。</p>
+<p>例えば、EDINET APIを使うと、任天堂の有価証券報告書に含まれる財務データをRのコードでダウンロードできる。日付や書類IDを変えれば、他の年度や企業のデータにも同じ手順を使えるため、データ収集を繰り返す作業を自動化できる。</p>
+<p>取得の大まかな流れは、次のとおりである。</p>
+<ol type="1">
+<li><strong>APIキーを取得する</strong>：<a href="https://api.edinet-fsa.go.jp/api/auth/index.aspx?mode=1">EDINET APIの利用登録・キー取得画面</a>でアカウントを作成し、利用者を識別するためのAPIキーを取得する。</li>
+<li><strong>書類IDを調べる</strong>：提出日を指定して書類一覧を取得し、対象企業の有価証券報告書のIDを確認する。</li>
+<li><strong>データを取得する</strong>：書類IDとAPIキーを指定し、<code>type = 5</code>でCSV入りZIPをダウンロードする。</li>
+<li><strong>Rで読み込む</strong>：ZIPを展開し、CSVをタブ区切り・UTF-16LEとして読み込み、内容を確認する。</li>
+</ol>
+<p>以下は任天堂の2025年3月期有価証券報告書の例である。まず、<strong>提出日</strong>の2025年6月26日の書類一覧から、企業名と書類の種類で対象を探す。結果の<code>docID</code>が書類ID（この例では<code>S100W73A</code>）である。各自のキーは環境変数<code>EDINET_API_KEY</code>に設定する。詳しくは<a href="https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/download/ESE140206.pdf">公式API仕様書</a>を参照。</p>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>取得コード</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)  <span class="co"># 初回のみ install.packages("httr2")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 各自のAPIキーを環境変数から読み込む</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"EDINET_API_KEY"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 提出日ごとの書類一覧を取得する（dateは報告書の提出日）</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>docs <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://api.edinet-fsa.go.jp/api/v2/documents.json"</span>) <span class="sc">|&gt;</span> <span class="co"># 通信先を指定する</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_url_query</span>(<span class="at">date =</span> <span class="st">"2025-06-26"</span>, <span class="at">type =</span> <span class="dv">2</span>, <span class="st">`</span><span class="at">Subscription-Key</span><span class="st">`</span> <span class="ot">=</span> key) <span class="sc">|&gt;</span> <span class="co"># URLに検索条件とキーを追加</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>() <span class="sc">|&gt;</span> <span class="co"># リクエストを送信し、応答を受け取る</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">resp_body_json</span>(<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>) <span class="co"># JSONをRのリストや表に変換する</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 企業名と書類の種類で探す（120 = 有価証券報告書）</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>report <span class="ot">&lt;-</span> docs<span class="sc">$</span>results <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(filerName <span class="sc">==</span> <span class="st">"任天堂株式会社"</span>, docTypeCode <span class="sc">==</span> <span class="st">"120"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(report) <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># 対象が1件でなければ処理を止める</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(report <span class="sc">|&gt;</span> <span class="fu">select</span>(docID, filerName, docDescription))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>doc_id <span class="ot">&lt;-</span> report<span class="sc">$</span>docID[[<span class="dv">1</span>]]  <span class="co"># この例では S100W73A</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 調べた書類IDを使い、CSV入りZIPを取得する</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># paste0()でAPIのURLと書類IDをつなぐ</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="fu">paste0</span>(<span class="st">"https://api.edinet-fsa.go.jp/api/v2/documents/"</span>, doc_id)) <span class="sc">|&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_url_query</span>(<span class="at">type =</span> <span class="dv">5</span>, <span class="st">`</span><span class="at">Subscription-Key</span><span class="st">`</span> <span class="ot">=</span> key) <span class="sc">|&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req_perform</span>()</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">resp_content_type</span>(res) <span class="sc">==</span> <span class="st">"application/octet-stream"</span>) <span class="co"># 応答がバイナリ形式か確認</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ZIPを保存し、展開する</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"output"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>) <span class="co"># 保存先を作る（存在する場合の警告は非表示）</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">writeBin</span>(<span class="fu">resp_body_raw</span>(res), <span class="st">"output/edinet.zip"</span>) <span class="co"># 応答の生データをバイナリで保存する</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">unzip</span>(<span class="st">"output/edinet.zip"</span>, <span class="at">exdir =</span> <span class="st">"output/edinet"</span>) <span class="co"># ZIPを展開し、ファイルのパスを得る</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># jpcrpで始まる提出本文CSVを読む（タブ区切り・UTF-16LE）</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>edinet_raw <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  files[<span class="fu">grepl</span>(<span class="st">"^jpcrp"</span>, <span class="fu">basename</span>(files))], <span class="co"># basename()でファイル名を得て、grepl()で先頭を照合する</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"UTF-16LE"</span>), <span class="co"># 読み込む文字コードを指定する</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">.default =</span> <span class="fu">col_character</span>()) <span class="co"># 元の表記を保つため全列を文字列として読む</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 先頭3行を、9列すべて表示する</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(edinet_raw, <span class="dv">3</span>), <span class="at">width =</span> <span class="cn">Inf</span>) <span class="co"># Infを指定して列の表示幅を制限しない</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>取得結果は1,477行・9列である。先頭3行を示す。</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 9
+  要素ID                                     項目名            
+  &lt;chr&gt;                                      &lt;chr&gt;             
+1 jpdei_cor:NumberOfSubmissionDEI            提出回数、DEI     
+2 jpcrp_cor:NetSalesSummaryOfBusinessResults 売上高、経営指標等
+3 jpcrp_cor:NetSalesSummaryOfBusinessResults 売上高、経営指標等
+  コンテキストID     相対年度   `連結・個別` `期間・時点` ユニットID 単位 
+  &lt;chr&gt;              &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;
+1 FilingDateInstant  提出日時点 その他       時点         pure       &lt;NA&gt; 
+2 Prior4YearDuration 四期前     その他       期間         JPY        円   
+3 Prior3YearDuration 三期前     その他       期間         JPY        円   
+  値           
+  &lt;chr&gt;        
+1 1            
+2 1758910000000
+3 1695344000000</code></pre>
+</div>
+</div>
+<p><a href="lesson07-edinet-example.R" download="lesson07-edinet-example.R">Rコード</a> ／ <a href="../../data/lesson07/edinet_S100W73A.zip" download="edinet_S100W73A.zip">取得元ZIP</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">ノート</span>本学で利用できる財務データベース
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>東京理科大学では、大学や学部・学科の契約により、次のデータベースを利用できる。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>データベース</th>
+<th>主に調べられる情報</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>日経NEEDS–FinancialQUEST（日経FQ）</td>
+<td>企業の財務、株式・債券、マクロ経済などの数値データ</td>
+</tr>
+<tr class="even">
+<td>日経バリューサーチ</td>
+<td>国内外企業の財務情報、企業比較や企業価値評価に使う情報</td>
+</tr>
+<tr class="odd">
+<td>FactSet</td>
+<td>世界の企業・証券に関する情報</td>
+</tr>
+<tr class="even">
+<td>eol（イーオーエル）</td>
+<td>有価証券報告書などの開示書類と、CSV形式の財務諸表データ</td>
+</tr>
+</tbody>
+</table>
+<p>アクセス先と利用方法は、LETUSの<a href="https://letus.ed.tus.ac.jp/course/view.php?id=79559">「経営学部 データソース」</a>で確認する。学外からのVPN接続、利用登録、対象学科、同時アクセス数などの条件はデータベースごとに異なる。例えば、FactSetは経営学科・ビジネスエコノミクス学科を対象とし、アカウントの申請が必要である。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="chapter-2財務データの読み込みと整理" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2財務データの読み込みと整理">Chapter 2｜財務データの読み込みと整理</h2>
+<section id="csvの読み込み" class="level3">
+<h3 class="anchored" data-anchor-id="csvの読み込み">1. CSVの読み込み</h3>
+<p>財務データを分析するには、CSVをRの表として読み込み、列の内容やデータの型を確認する。</p>
+<p>第6回と同じ<code>read_csv()</code>を使い、読み込んだデータを<code>financial_raw</code>に保存する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>financial_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson07.csv"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(financial_raw)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+   year firm_ID industry_ID sales    OX   NFE     X     OA     FA    OL     FO
+  &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1  2015       1           1 5261.  437.  NA    287. 13006.  3543. 4373.  2481.
+2  2016       1           1 5949.  564.  50.7  513. 13866.  4642. 4534.  3960.
+3  2017       1           1 6505.  691.  29.5  662. 13953.  7744. 5111.  6159.
+4  2018       1           1 6846.  751.  86.5  665. 18818.  7285. 5137. 10124.
+5  2019       1           1 7572.  959. 298.   660. 18190   9735. 5488. 11362.
+6  2020       1           1 7538.  778. -65.5  844. 20463. 10274. 5371. 13772.</code></pre>
+</div>
+</div>
+<p><code>data_lesson07.csv</code>は、企業の財務情報を模したシミュレーション・データであり、実在企業の数値ではない。各列の内容は次のとおりである。損益計算書の項目（売上高<code>sales</code>、事業利益<code>OX</code>、純金融費用<code>NFE</code>、当期純利益<code>X</code>）は年度中の金額、貸借対照表の項目（事業資産<code>OA</code>、金融資産<code>FA</code>、事業負債<code>OL</code>、金融負債<code>FO</code>）は年度末の残高を表す。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>列名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>year</code></td>
+<td>年度</td>
+</tr>
+<tr class="even">
+<td><code>firm_ID</code>、<code>industry_ID</code></td>
+<td>企業ID、産業ID</td>
+</tr>
+<tr class="odd">
+<td><code>sales</code></td>
+<td>売上高</td>
+</tr>
+<tr class="even">
+<td><code>OX</code>、<code>NFE</code>、<code>X</code></td>
+<td>事業利益、純金融費用、当期純利益</td>
+</tr>
+<tr class="odd">
+<td><code>OA</code>、<code>FA</code></td>
+<td>事業資産、金融資産</td>
+</tr>
+<tr class="even">
+<td><code>OL</code>、<code>FO</code></td>
+<td>事業負債、金融負債</td>
+</tr>
+</tbody>
+</table>
+<p>一行は「一つの企業の一つの年度」に対応する。同じ企業が複数年度に登場するため、行数と企業数は異なる。このように、複数の対象を複数時点にわたって観測したデータを<strong>パネルデータ</strong>という。</p>
+<p>続いて、大きさと列の型を調べる。<code>glimpse()</code>は、列名、型、値の一部を列ごとに表示する関数である。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(financial_raw)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7920   11</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(financial_raw) <span class="co"># 各列の名前・型・値の一部をコンパクトに確認する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 7,920
+Columns: 11
+$ year        &lt;dbl&gt; 2015, 2016, 2017, 2018, 2019, 2020, 2015, 2016, 2017, 2018…
+$ firm_ID     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4…
+$ industry_ID &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ sales       &lt;dbl&gt; 5261.40, 5948.96, 6505.06, 6846.38, 7572.24, 7537.63, 3505…
+$ OX          &lt;dbl&gt; 437.49, 564.14, 691.18, 751.29, 958.53, 778.37, 45.82, 51.…
+$ NFE         &lt;dbl&gt; NA, 50.667498, 29.543157, 86.486500, 298.049774, -65.45877…
+$ X           &lt;dbl&gt; 286.64, 513.48, 661.64, 664.80, 660.48, 843.83, 40.07, 49.…
+$ OA          &lt;dbl&gt; 13005.55, 13865.58, 13952.58, 18818.48, 18190.00, 20462.86…
+$ FA          &lt;dbl&gt; 3543.43, 4642.16, 7743.99, 7284.72, 9735.13, 10274.25, 225…
+$ OL          &lt;dbl&gt; 4372.96, 4534.22, 5111.22, 5137.28, 5487.96, 5371.38, 1840…
+$ FO          &lt;dbl&gt; 2480.72, 3959.70, 6159.02, 10123.91, 11362.22, 13772.15, 2…</code></pre>
+</div>
+</div>
+<p>データは7,920行・11列である。<code>firm_ID</code>と<code>industry_ID</code>は数値として読み込まれるが、大小や平均に意味のある量ではなく、企業と産業を区別するための番号である。</p>
+</section>
+<section id="idのカテゴリ変数への変換" class="level3">
+<h3 class="anchored" data-anchor-id="idのカテゴリ変数への変換">2. IDのカテゴリ変数への変換</h3>
+<p>ここでは、企業ID（<code>firm_ID</code>）と産業ID（<code>industry_ID</code>）を、企業や産業の区分を表すカテゴリ変数に変換する。これにより、RでIDを数量ではなくグループの区分として扱えるようにする。</p>
+<p><strong>factor型（因子型）</strong>は、所属や種類などのカテゴリを表す型である。<code>as.factor()</code>で二つのIDを変換し、整理後の表を<code>financial_data</code>として保存する。元の表は<code>financial_raw</code>に残る。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>financial_data <span class="ot">&lt;-</span> financial_raw <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">firm_ID =</span> <span class="fu">as.factor</span>(firm_ID), <span class="co"># 数値のIDをカテゴリを表すfactor型に変換する</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">industry_ID =</span> <span class="fu">as.factor</span>(industry_ID)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>financial_data <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, firm_ID, industry_ID, sales) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 7,920
+Columns: 4
+$ year        &lt;dbl&gt; 2015, 2016, 2017, 2018, 2019, 2020, 2015, 2016, 2017, 2018…
+$ firm_ID     &lt;fct&gt; 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4…
+$ industry_ID &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ sales       &lt;dbl&gt; 5261.40, 5948.96, 6505.06, 6846.38, 7572.24, 7537.63, 3505…</code></pre>
+</div>
+</div>
+<p>IDは文字列でも管理できるが、ここではカテゴリであることを明示するためfactor型を使う。一方、<code>year</code>は年度順の並べ替えや差の計算に使うため、数値のままにする。</p>
+</section>
+</section>
+<section id="chapter-3探索的データ分析" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3探索的データ分析">Chapter 3｜探索的データ分析</h2>
+<section id="データセットの概要確認" class="level3">
+<h3 class="anchored" data-anchor-id="データセットの概要確認">1. データセットの概要確認</h3>
+<p><strong>探索的データ分析（exploratory data analysis、EDA）</strong>とは、要約統計量や図を用いて、データの構造、分布、欠損などの特徴を把握する作業である。個別の指標を計算する前に、どのような企業・年度が含まれ、各変数がどの範囲の値を取るのかを確認する。</p>
+<section id="要約統計量" class="level4">
+<h4 class="anchored" data-anchor-id="要約統計量">要約統計量</h4>
+<p><code>summary()</code>を表全体に適用すると、列ごとに概要を表示できる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(financial_data) <span class="co"># 数値列の要約統計量やfactor列のカテゴリ別件数を表示する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      year         firm_ID      industry_ID       sales        
+ Min.   :2015   1      :   6   3      :1760   Min.   :    205  
+ 1st Qu.:2016   2      :   6   10     :1702   1st Qu.:  16103  
+ Median :2018   3      :   6   7      :1334   Median :  40431  
+ Mean   :2018   4      :   6   1      :1143   Mean   : 166007  
+ 3rd Qu.:2019   5      :   6   9      : 667   3rd Qu.: 118314  
+ Max.   :2020   7      :   6   8      : 429   Max.   :3496433  
+                (Other):7884   (Other): 885                    
+       OX                 NFE                  X                   OA         
+ Min.   :-353606.7   Min.   :-285383.9   Min.   :-357624.8   Min.   :    217  
+ 1st Qu.:    399.3   1st Qu.:    -66.4   1st Qu.:    383.3   1st Qu.:  12560  
+ Median :   1602.9   Median :     -1.2   Median :   1586.1   Median :  30799  
+ Mean   :   7968.9   Mean   :     64.0   Mean   :   7904.9   Mean   : 152273  
+ 3rd Qu.:   5260.5   3rd Qu.:     41.4   3rd Qu.:   5204.6   3rd Qu.:  93469  
+ Max.   : 398034.5   Max.   : 331035.3   Max.   : 572588.7   Max.   :7987936  
+                     NA's   :1                                                
+       FA                 OL                FO         
+ Min.   :     288   Min.   :     35   Min.   :     44  
+ 1st Qu.:    6835   1st Qu.:   3965   1st Qu.:   3757  
+ Median :   19095   Median :  10868   Median :  11125  
+ Mean   :   80185   Mean   :  50261   Mean   :  70681  
+ 3rd Qu.:   52118   3rd Qu.:  33111   3rd Qu.:  35446  
+ Max.   :29250611   Max.   :2817975   Max.   :7026924  
+                                                       </code></pre>
+</div>
+</div>
+<p>数値の列では、最小値、第1四分位数、中央値、平均値、第3四分位数、最大値が表示される。第1四分位数と第3四分位数は、小さい順に並べた値のそれぞれ25%、75%の位置に対応する。欠損がある場合は、その件数も表示される。一方、factor型に変換したIDでは、カテゴリごとの行数が表示される。</p>
+<p>まず売上高<code>sales</code>の平均値と中央値、最小値と最大値を比較し、企業間で値の大きさがどの程度異なるかを読む。また、<code>NFE</code>には欠損が1件含まれていることも分かる。</p>
+</section>
+<section id="対象年度企業数産業数" class="level4">
+<h4 class="anchored" data-anchor-id="対象年度企業数産業数">対象年度・企業数・産業数</h4>
+<p><code>unique()</code>は、ベクトルから重複を除いた値を取り出す関数である。年度の列に適用すると、データに含まれる年度を列挙できる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(financial_data<span class="sc">$</span>year) <span class="co"># 重複を除き、収録されている年度を列挙する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2015 2016 2017 2018 2019 2020</code></pre>
+</div>
+</div>
+<p>企業数と産業数は、dplyrの<code>n_distinct()</code>で重複を除いた値の個数を数える。<code>unique()</code>が具体的な値を返すのに対し、<code>n_distinct()</code>はその種類数を返す。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n_distinct()は具体的な値ではなく、重複を除いた種類数を返す</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(financial_data<span class="sc">$</span>firm_ID)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1515</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(financial_data<span class="sc">$</span>industry_ID)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>2015～2020年の6年度、1,515社、10産業が含まれる。行数は7,920行であり、同じ企業の複数年度の観測を含んでいる。すべての企業が6年度分そろっているわけではない。</p>
+</section>
+</section>
+<section id="欠損データの処理" class="level3">
+<h3 class="anchored" data-anchor-id="欠損データの処理">2. 欠損データの処理</h3>
+<p>データに欠損があるときは、まず場所と件数を調べ、欠損の理由を考えてから処理方法を選ぶ。ここでは、欠損の確認方法と主な対処法を学び、欠損を含む行を除く操作を試す。</p>
+<section id="欠損を含む行と列の確認" class="level4">
+<h4 class="anchored" data-anchor-id="欠損を含む行と列の確認">欠損を含む行と列の確認</h4>
+<p>第4回で使った<code>colSums(is.na())</code>で、列ごとの欠損数を調べる。欠損のある行は<code>filter()</code>で取り出せる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(financial_data))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       year     firm_ID industry_ID       sales          OX         NFE 
+          0           0           0           0           0           1 
+          X          OA          FA          OL          FO 
+          0           0           0           0           0 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>financial_data <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(NFE)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, firm_ID, sales, NFE, X)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+   year firm_ID sales   NFE     X
+  &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  2015 1       5261.    NA  287.</code></pre>
+</div>
+</div>
+<p>企業ID 1の2015年について、純金融費用<code>NFE</code>が1件欠損している。他の列には欠損がない。</p>
+</section>
+<section id="欠損の発生理由と分析への影響" class="level4">
+<h4 class="anchored" data-anchor-id="欠損の発生理由と分析への影響">欠損の発生理由と分析への影響</h4>
+<p>欠損値を見つけたら、処理方法を選ぶ前に、なぜ値が記録されていないのかを考える。未開示、データの取得漏れ、企業の倒産など、理由によって分析への影響は異なる。欠損が特定の企業や状況に偏っている場合、値がそろった観測だけを使うと、結論にも偏りが生じる可能性がある。</p>
+<p>例えば、企業の数年後の業績を調べるとき、途中で倒産した企業については、その後の業績を観測できない。このような企業を除き、存続した企業だけで分析すると、企業全体の業績を実態より良く評価するおそれがある。こうした偏りを<strong>生存者バイアス（survivorship bias）</strong>という。欠損行を削除しても、この問題が解消されるわけではない。</p>
+</section>
+<section id="欠損値の主な処理方法" class="level4">
+<h4 class="anchored" data-anchor-id="欠損値の主な処理方法">欠損値の主な処理方法</h4>
+<p>まず元の資料や取得条件を確認し、取得漏れや入力ミスを修正できる場合は修正する。それでも値を得られない場合には、次のような方法がある。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th>内容</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>欠損を含む行の削除</td>
+<td>分析に必要な値がそろった行だけを使う</td>
+<td>観測数が減り、残る企業や年度が偏ることがある</td>
+</tr>
+<tr class="even">
+<td>平均値・中央値による補完</td>
+<td>観測された値の平均や中央値で埋める</td>
+<td>分布のばらつきや変数間の関係を変えてしまう</td>
+</tr>
+<tr class="odd">
+<td>前後の時点からの補間</td>
+<td>同じ企業の前後の値から欠けた値を推定する</td>
+<td>時間的な変化を仮定するため、急変や倒産後の値には安易に使えない</td>
+</tr>
+<tr class="even">
+<td>モデルによる補完</td>
+<td>他の変数との関係を使って値を推定する</td>
+<td>モデルの仮定に依存し、推定した値には不確実性がある</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="欠損を含む行の削除" class="level4">
+<h4 class="anchored" data-anchor-id="欠損を含む行の削除">欠損を含む行の削除</h4>
+<p>今回はシミュレーション・データであり、欠損を含む行も1行だけなので、最も簡単な方法として、その行を削除する。</p>
+<p>tidyrの<code>drop_na()</code>は、欠損を含む行を除く関数である。列を指定しない場合はすべての列が対象となり、どこか一つでも欠損がある行を除く。<a href="https://tidyr.tidyverse.org/reference/drop_na.html">tidyr：drop_na()</a></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>financial_clean <span class="ot">&lt;-</span> financial_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="co"># 列を指定しない場合は、どの列にも欠損がない行だけを残す</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(financial_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7920</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(financial_clean)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7919</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(financial_clean))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       year     firm_ID industry_ID       sales          OX         NFE 
+          0           0           0           0           0           0 
+          X          OA          FA          OL          FO 
+          0           0           0           0           0 </code></pre>
+</div>
+</div>
+<p>行数は7,920行から7,919行となり、各列の欠損数はすべて0になる。削除されるのは企業ID 1の2015年の行だけであり、同じ企業の他年度の行は残る。削除前の表は<code>financial_data</code>、元のCSVを読み込んだ表は<code>financial_raw</code>に残しているため、処理前後を比較できる。元のCSVファイル自体は変更されない。</p>
+<p>対象列を限定する場合は、<code>drop_na(NFE)</code>のように指定する。今回のデータでは同じ1行が除かれるが、他の列にも欠損がある場合は結果が異なる。売上高だけを分析するなら、<code>NFE</code>の欠損を理由に行を除く必要はない。実際には、分析に使う変数に応じて削除対象を決める。</p>
+</section>
+</section>
+</section>
+<section id="chapter-4データの抽出とヒストグラムによる可視化" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4データの抽出とヒストグラムによる可視化">Chapter 4｜データの抽出とヒストグラムによる可視化</h2>
+<p>欠損値の有無を確認できたので、今度は特定のデータの分布をヒストグラムで視覚化する方法を学習する。ここでは、全データのうち初年度のデータのみを抽出し、売上の分布を図示めすることを目標としよう。</p>
+<section id="条件に合うデータの抽出" class="level3">
+<h3 class="anchored" data-anchor-id="条件に合うデータの抽出">1. 条件に合うデータの抽出</h3>
+<p>分析したい年度や産業に合わせて行を絞り、必要な列を選ぶことで、比較の対象をそろえられる。ここでは、これまで学んだ抽出と並べ替えを組み合わせる。</p>
+<p>欠損行を削除した<code>financial_clean</code>から、まず2015年のデータを取り出す。さらに産業2に絞り、必要な列を残して売上高の大きい順に並べる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>financial_2015 <span class="ot">&lt;-</span> financial_clean <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2015</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>industry_2_2015 <span class="ot">&lt;-</span> financial_2015 <span class="sc">|&gt;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(industry_ID <span class="sc">==</span> <span class="st">"2"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, sales, OX, X) <span class="sc">|&gt;</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sales))</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(industry_2_2015)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  firm_ID    sales      OX       X
+  &lt;fct&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 264     2985178.  83608.  83884.
+2 246     2893663. 109059. 107838.
+3 252     2383142.  88528.  87630.
+4 258     1546048. -68785. -60945.
+5 256     1482852.  27985.  26419.
+6 263      964245.  29477.  31412.</code></pre>
+</div>
+</div>
+<p><code>filter()</code>、<code>select()</code>、<code>arrange()</code>の役割は第6回と同じである。産業IDはカテゴリの値として<code>"2"</code>と指定する。</p>
+<p><strong>練習1：</strong> 2020年の産業7について、企業ID、売上高、当期純利益を取り出し、売上高の大きい順に表示しなさい。抽出元には、全年度を含む<code>financial_clean</code>を使う。</p>
+<details>
+<summary>
+解答例
+</summary>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>financial_clean <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>, industry_ID <span class="sc">==</span> <span class="st">"7"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, sales, X) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sales))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>filter()</code>で年度と産業を絞り、<code>select()</code>で必要な3列を取り出す。<code>arrange(desc(sales))</code>で売上高の大きい順に並べる。</p>
+</details>
+</section>
+<section id="ヒストグラムによる可視化" class="level3">
+<h3 class="anchored" data-anchor-id="ヒストグラムによる可視化">2. ヒストグラムによる可視化</h3>
+<p><strong>ヒストグラム</strong>は、数値を区間に分け、各区間に含まれる観測数を棒の高さで表した図である。第6回の<code>geom_col()</code>は計算済みの値を描いたが、<code>geom_histogram()</code>は元の観測から区間ごとの度数を数える。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot()のdataとmappingの引数名を省略し、横軸に売上高を指定する</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sales_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(financial_2015, <span class="fu">aes</span>(<span class="at">x =</span> sales)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_col()と異なり、yを指定せず、区間ごとの観測数を自動で数える</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">30</span>,        <span class="co"># 売上高を分ける区間数</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="co"># 棒の内側の色</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"white"</span>  <span class="co"># 棒の枠線の色</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sales"</span>, <span class="at">y =</span> <span class="st">"Number of firms"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sales_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-sales-raw-07" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sales-raw-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-sales-raw-07-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sales-raw-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;1: 2015年の売上高分布
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>bins = 30</code>は区間数の指定である。この表は2015年に絞っており、一行が一社に対応するため、縦軸は企業数となる。売上高の小さい側に多くの企業が集中し、右側には少数の大きな値がある。</p>
+</section>
+<section id="対数変換と分布の可視化" class="level3">
+<h3 class="anchored" data-anchor-id="対数変換と分布の可視化">3. 対数変換と分布の可視化</h3>
+<p>値の幅が大きい正の変数は、自然対数に変換する(<strong>対数変換</strong>)と分布を捉えやすくなることがある。<code>log()</code>は自然対数を求める関数であり、例えば<code>log(100)</code>は約4.61、<code>log(10000)</code>は約9.21となる。元の値の100倍という差が、対数では約4.61の差になる。</p>
+<p>売上高がすべて正であることを確かめ、新しい列<code>log_sales</code>を作る。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(financial_2015<span class="sc">$</span>sales <span class="sc">&lt;=</span> <span class="dv">0</span>) <span class="co"># 対数を取れない0以下の売上高がないか確認する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>financial_2015 <span class="ot">&lt;-</span> financial_2015 <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_sales =</span> <span class="fu">log</span>(sales)) <span class="co"># 売上高の自然対数を新しい列に保存する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>log_sales_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(financial_2015, <span class="fu">aes</span>(<span class="at">x =</span> log_sales)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Log sales"</span>, <span class="at">y =</span> <span class="st">"Number of firms"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(log_sales_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-sales-log-07" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sales-log-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-sales-log-07-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sales-log-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2: 2015年の対数売上高分布
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>図を見ると、自然対数を取った売上高は、元の売上高に比べて左右の偏りが小さくなり、正規分布に近い釣鐘型の形状を示している。元の図では左端に集中していた観測が広がり、分布の中心や全体的な傾向を捉えやすくなっている。ただし、対数を取れば必ず正規分布になるわけではない。</p>
+<p>対数変換は観測を削除する操作ではなく、値の尺度を変える操作である。元の売上高も<code>sales</code>列に残している。横軸が金額ではなく対数になった点に注意して読む。0や負の値には同じ方法をそのまま適用できないため、赤字を含む利益のデータでは別の扱いが必要となる。</p>
+<p>今回の売上高のように分布が極端に歪んでいる場合、元の金額だけで分析を進めると、平均値などがごく少数の大規模企業の影響を強く受け、典型的な企業の姿を捉えにくくなることがある。</p>
+<p>こうした財務データの分析では、対数変換に加え、売上高や利益を総資産などの企業規模を表す変数で割って<strong>基準化</strong>する方法や、複数の財務項目を組み合わせた<strong>財務比率</strong>を用いる方法も広く使われる。金額の大小だけでなく、企業規模に対する相対的な水準を比較するためである。ただし、比率にすれば極端な値の影響が必ずなくなるわけではなく、分母の大きさや意味にも注意が必要となる。</p>
+</section>
+<section id="図の保存" class="level3">
+<h3 class="anchored" data-anchor-id="図の保存">4. 図の保存</h3>
+<p>分布を示す図を保存しておくと、レポートに使ったり、別の年度の図と見比べたりできる。ここでは第6回と同じ<code>ggsave()</code>を使い、2015年の対数売上高の図を保存する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"output/log-sales-2015.png"</span>,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> log_sales_plot,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fl">4.5</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>同名のファイルは上書きされる。Filesペインで保存した画像を開き、<code>script/lesson07.R</code>も保存する。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lessons/06/index.html" class="pagination-link" aria-label="第6回：tidyverse流による財務・株式データ分析">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">第6回：tidyverse流による財務・株式データ分析</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
