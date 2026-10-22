@@ -303,7 +303,7 @@ window.Quarto = {
 <p>同じ100万円でも、今日受け取る100万円と1年後に受け取る100万円は、通常同じ価値ではない。今日受け取った資金はすぐに利用または運用できる一方、将来の資金を受け取るまでには時間がかかり、不確実性も存在する。この考え方を<span class="key-term">お金の時間価値</span>という。</p>
 <p>投資や事業に伴う資金の受取りと支払いを、<span class="key-term">キャッシュフロー（cash flow: CF）</span>という。投資を行う側から見て、受取りを正、支払いを負の金額で表す。</p>
 <p>例えば、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を考える。この投資では、現在に−100万円、1年後に60万円、2年後に60万円のキャッシュフローが発生する。受取額の合計は120万円であり、支払額を20万円上回る。ただし、この差額は、支払いから受取りまでの時間を考慮していない。</p>
-<div id="fig-cash-flow-timeline" class="quarto-float quarto-figure quarto-figure-center anchored" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。" data-fig-align="center">
+<div id="fig-cash-flow-timeline" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cash-flow-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/cash-flow-timeline.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="現在に100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資のキャッシュフロー。時点0の矢印は下向き、時点1と2の矢印は上向き。">
@@ -345,7 +345,7 @@ PV(CF_t)=\frac{CF_t}{(1+r)^t}
 \tag{2}\]</span></span></p>
 <p>である。割引率が正のとき、期間が長いほど<span class="math inline">\((1+r)^t\)</span>が大きくなるため、同じ受取額でも現在価値は小さくなる。</p>
 <p><a href="#fig-cash-flow-timeline" class="quarto-xref">図&nbsp;<span>1</span></a> の「現在100万円を支払い、1年後と2年後に60万円ずつ受け取る投資」で考えてみよう。割引率を<strong>年8%</strong>とすると、1年後の60万円は1年分、2年後の60万円は2年分を割り引き、どちらも現在（<span class="math inline">\(t=0\)</span>）の価値に換算する。</p>
-<div id="fig-cash-flow-present-value" class="quarto-float quarto-figure quarto-figure-center anchored" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。" data-fig-align="center">
+<div id="fig-cash-flow-present-value" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cash-flow-present-value-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/cash-flow-present-value.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="1年後の60万円を1.08で割ると現在価値は約55.56万円、2年後の60万円を1.08の二乗で割ると約51.44万円となる。両方を現在へ割り引く矢印を示したキャッシュフロー図。">
@@ -498,7 +498,7 @@ NPV(0.08)
 P_0=\sum_{t=1}^{\infty}\frac{D_t}{(1+r)^t}
 \tag{6}\]</span></span></p>
 <p>と表される。投資案の評価では事業のキャッシュフローを割り引いたが、DDMでは株主が受け取る配当を割り引く。</p>
-<div id="fig-ddm-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。" data-fig-align="center">
+<div id="fig-ddm-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ddm-cash-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ddm-cash-flow.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="1期後のD1、2期後のD2、3期後のD3と将来の配当を現在へ割り引き、理論価値P0を求める時間軸。">
@@ -513,7 +513,7 @@ P_0=\sum_{t=1}^{\infty}\frac{D_t}{(1+r)^t}
 P_0=\frac{D_1}{r-g},\qquad r&gt;g
 \tag{7}\]</span></span></p>
 <p>とまとめられる。これを<strong>定率成長モデル（ゴードン成長モデル）</strong>という。<span class="math inline">\(D_1\)</span>は、すでに支払われた配当ではなく、<strong>1年後に受け取ると予想される配当</strong>である。この式は、必要収益率と配当成長率が一定で、必要収益率が配当成長率を上回る場合に使える。</p>
-<div id="fig-ddm-growth-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。" data-fig-align="center">
+<div id="fig-ddm-growth-cash-flow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ddm-growth-cash-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ddm-growth-cash-flow.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="配当がD1、D1(1+g)、D1(1+g)の二乗と成長し、必要収益率rで現在へ割り引かれる時間軸。">
@@ -541,9 +541,9 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <h3 class="anchored" data-anchor-id="キャッシュフローをベクトルで表す">1. キャッシュフローをベクトルで表す</h3>
 <p>冒頭の例と同じく、現在100万円を支払い、1年後と2年後にそれぞれ60万円を受け取る投資を扱う。第3回で学んだベクトルを使い、時点とキャッシュフローを表す。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>periods <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cash_flows <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">60</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>periods <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>                 <span class="co"># 初期投資の時点を0とする</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cash_flows <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">60</span>)   <span class="co"># 支出は負、収入は正で記録する</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>discount_rate <span class="ot">&lt;-</span> <span class="fl">0.08</span>          <span class="co"># 8%は計算用に0.08とする</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>periods</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -559,17 +559,18 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <h3 class="anchored" data-anchor-id="各キャッシュフローの現在価値">2. 各キャッシュフローの現在価値</h3>
 <p>各時点の現在価値は、ベクトル化された計算で一度に求められる。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>discount_factors <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>periods</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>present_values <span class="ot">&lt;-</span> cash_flows <span class="sc">*</span> discount_factors</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pv_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> periods,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cash_flow =</span> cash_flows,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">discount_factor =</span> discount_factors,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">present_value =</span> present_values</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>pv_table</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 時点ごとに割引係数を求め、対応するキャッシュフローに掛ける</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>discount_factors <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>periods</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>present_values <span class="ot">&lt;-</span> cash_flows <span class="sc">*</span> discount_factors</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pv_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">period =</span> periods,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">cash_flow =</span> cash_flows,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">discount_factor =</span> discount_factors,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">present_value =</span> present_values</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>pv_table</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  period cash_flow discount_factor present_value
 1      0      -100       1.0000000    -100.00000
@@ -579,7 +580,7 @@ P_0=\frac{D}{r},\qquad r&gt;0
 </div>
 <p>時点0の割引因子は1であり、初期投資<code>-100</code>はそのまま現在価値となる。NPVは<code>present_value</code>列の合計である。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pv_table<span class="sc">$</span>present_value)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pv_table<span class="sc">$</span>present_value) <span class="co"># 時点0の初期投資も含めて合計し、NPVを求める</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.995885</code></pre>
 </div>
@@ -589,11 +590,12 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <h3 class="anchored" data-anchor-id="npv関数を作る">3. NPV関数を作る</h3>
 <p>第4回で学んだ<code>function()</code>を使い、キャッシュフロー、割引率、時点を受け取ってNPVを返す関数を作る。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>calculate_npv <span class="ot">&lt;-</span> <span class="cf">function</span>(cash_flows, discount_rate,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">periods =</span> <span class="fu">seq_along</span>(cash_flows) <span class="sc">-</span> <span class="dv">1</span>) {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  present_values <span class="ot">&lt;-</span> cash_flows <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>periods</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(present_values)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># seq_along()は要素数に応じて1, 2, …を作る。1を引いて時点を0から始める</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>calculate_npv <span class="ot">&lt;-</span> <span class="cf">function</span>(cash_flows, discount_rate,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">periods =</span> <span class="fu">seq_along</span>(cash_flows) <span class="sc">-</span> <span class="dv">1</span>) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  present_values <span class="ot">&lt;-</span> cash_flows <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> discount_rate)<span class="sc">^</span>periods</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(present_values)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>seq_along(cash_flows)</code>は要素数に応じて<code>1, 2, …</code>という連番を作るため、1を引くと現在から始まる時点<code>0, 1, …</code>になる。<code>periods</code>を省略した場合は、この時点を使う。</p>
 <p>関数内では、各キャッシュフローを対応する時点で割り引き、<code>sum()</code>で合計する。最後の計算結果が返り値となるため、<code>return()</code>は省略している。</p>
@@ -608,12 +610,13 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <p>結果は約7.00万円であり、Chapter 1の手計算と一致する。キャッシュフローが現在、2年後、4年後に発生する場合などは、<code>periods = c(0, 2, 4)</code>のように時点を明示する。</p>
 <p>割引率を変更して再計算する。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_5_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.05</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_8_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.08</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_15_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.15</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_20_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.20</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c()の各値に名前を付け、割引率ごとの結果を区別する</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_5_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.05</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_8_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.08</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_15_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.15</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">NPV_20_percent =</span> <span class="fu">calculate_npv</span>(cash_flows, <span class="fl">0.20</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> NPV_5_percent  NPV_8_percent NPV_15_percent NPV_20_percent 
      11.564626       6.995885      -2.457467      -8.333333 </code></pre>
@@ -636,8 +639,9 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(<span class="at">f =</span> f, <span class="at">interval =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>result<span class="sc">$</span>root</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># uniroot()で、指定区間内にあるf(x) = 0の解を探す</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(<span class="at">f =</span> f, <span class="at">interval =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>result<span class="sc">$</span>root <span class="co"># 戻り値のリストから解を取り出す</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.414213</code></pre>
 </div>
@@ -645,17 +649,18 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <p>結果はリストで返され、<code>$root</code>で解を取り出せる。この例では、<span class="math inline">\(\sqrt{2}\)</span>に近い約1.4142が得られる。</p>
 <p>IRRも同じ方法で求められる。割引率を受け取ってNPVを返す関数を<code>uniroot()</code>に渡し、NPVが0になる割引率を探す。</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>npv_equation <span class="ot">&lt;-</span> <span class="cf">function</span>(rate) {</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate_npv</span>(cash_flows, rate, periods)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>irr_result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> npv_equation,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.99</span>, <span class="dv">1</span>),</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">tol =</span> <span class="fl">1e-10</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>irr_result<span class="sc">$</span>root</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># キャッシュフローを固定し、割引率だけを引数にしたNPVの関数を作る</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>npv_equation <span class="ot">&lt;-</span> <span class="cf">function</span>(rate) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate_npv</span>(cash_flows, rate, periods)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>irr_result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">f =</span> npv_equation,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.99</span>, <span class="dv">1</span>), <span class="co"># 解を探す割引率の範囲</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">tol =</span> <span class="fl">1e-10</span>            <span class="co"># 解の探索精度を指定する（10の-10乗）</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>irr_result<span class="sc">$</span>root</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1306624</code></pre>
 </div>
@@ -664,7 +669,7 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <p>結果はリストで返され、<code>$root</code>で求めた解を取り出せる。この例では約0.1307、百分率で約13.07%となる。NPV関数に代入して、NPVがほぼ0になることを確認する。</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>irr <span class="ot">&lt;-</span> irr_result<span class="sc">$</span>root</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_npv</span>(cash_flows, irr, periods)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">calculate_npv</span>(cash_flows, irr, periods) <span class="co"># 求めたIRRでNPVがほぼ0になるか確認する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.00000000000002842171</code></pre>
 </div>
@@ -678,17 +683,18 @@ P_0=\frac{D}{r},\qquad r&gt;0
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>calculate_irr <span class="ot">&lt;-</span> <span class="cf">function</span>(cash_flows,</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">periods =</span> <span class="fu">seq_along</span>(cash_flows) <span class="sc">-</span> <span class="dv">1</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.99</span>, <span class="dv">1</span>)) {</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  npv_function <span class="ot">&lt;-</span> <span class="cf">function</span>(rate) {</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">calculate_npv</span>(cash_flows, rate, periods)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">f =</span> npv_function,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">interval =</span> interval,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">tol =</span> <span class="fl">1e-10</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  result<span class="sc">$</span>root</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 関数内にNPVの関数を作り、引数で受け取ったデータを使う</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  npv_function <span class="ot">&lt;-</span> <span class="cf">function</span>(rate) {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">calculate_npv</span>(cash_flows, rate, periods)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">f =</span> npv_function,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">interval =</span> interval,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">tol =</span> <span class="fl">1e-10</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  result<span class="sc">$</span>root</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>periods</code>の既定値はNPV関数と同じである。関数内の<code>npv_function()</code>は、受け取ったキャッシュフローと時点を使い、割引率<code>rate</code>に応じたNPVを返す。これを<code>uniroot()</code>に渡し、<code>result$root</code>を返り値とする。</p>
 <div class="cell" data-layout-align="center">
