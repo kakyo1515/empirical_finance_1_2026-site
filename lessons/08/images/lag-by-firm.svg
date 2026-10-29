@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" role="img" aria-labelledby="title desc">
+  <title id="title">企業を区別した前期値の取得</title>
+  <desc id="desc">A社のBEは2019年100、2020年120、B社は2019年200、2020年220。企業を区別しないlagはB社2019年にA社の120を入れる。企業別ならそこはNAとなる。</desc>
+  <rect width="1000" height="340" rx="12" fill="white"/>
+  <rect x="25" y="74" width="950" height="98" rx="6" fill="#f0f6f5"/>
+  <rect x="25" y="184" width="950" height="98" rx="6" fill="#f0f6f5"/>
+  <g font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="21" text-anchor="middle" fill="#123F45">
+    <text x="85" y="43">企業</text><text x="225" y="43">年度</text><text x="365" y="43">BE</text>
+    <text x="600" y="43">企業を区別しない lag</text><text x="855" y="43">企業別の lag</text>
+    <text x="85" y="109">A</text><text x="225" y="109">2019</text><text x="365" y="109">100</text><text x="600" y="109">NA</text><text x="855" y="109">NA</text>
+    <text x="85" y="155">A</text><text x="225" y="155">2020</text><text x="365" y="155">120</text><text x="600" y="155">100</text><text x="855" y="155">100</text>
+    <text x="85" y="219">B</text><text x="225" y="219">2019</text><text x="365" y="219">200</text><text x="600" y="219" fill="#B24C3D" font-weight="bold">120 ← A社の値</text><text x="855" y="219" font-weight="bold">NA</text>
+    <text x="85" y="265">B</text><text x="225" y="265">2020</text><text x="365" y="265">220</text><text x="600" y="265">200</text><text x="855" y="265">200</text>
+    <text x="500" y="319" font-size="18">arrange(firm_ID, year) → group_by(firm_ID) → mutate(lagged_BE = lag(BE))</text>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="title desc">
+  <title id="title">株主資本の計算と列の追加</title>
+  <desc id="desc">資産合計OAとFAから負債合計OLとFOを差し引いて株主資本BEを求め、mutateで元のデータにBE列を追加する。</desc>
+  <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#007c73"/></marker></defs>
+  <rect width="1000" height="260" rx="12" fill="white"/>
+  <g font-family="Hiragino Sans, Yu Gothic, Noto Sans JP, sans-serif" text-anchor="middle" fill="#123f45">
+    <rect x="20" y="40" width="400" height="160" rx="8" fill="#f0f6f5" stroke="#007c73" stroke-width="2"/>
+    <text x="220" y="88" font-size="24" font-weight="700">資産合計 − 負債合計</text>
+    <text x="220" y="145" font-size="24">BE = (OA + FA) − (OL + FO)</text>
+    <path d="M445 120H555" stroke="#007c73" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="580" y="40" width="400" height="160" rx="8" fill="#f0f6f5" stroke="#007c73" stroke-width="2"/>
+    <text x="780" y="88" font-size="24" font-weight="700">元の表にBE列を追加</text>
+    <text x="780" y="132" font-family="SFMono-Regular, Menlo, monospace" font-size="21">mutate(BE = (OA + FA)</text>
+    <text x="780" y="166" font-family="SFMono-Regular, Menlo, monospace" font-size="21">- (OL + FO))</text>
+    <text x="220" y="235" font-size="20">株主資本を求める</text>
+    <text x="780" y="235" font-size="20">financial_with_beとして保存</text>
+  </g>
+</svg>

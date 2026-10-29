@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第8回：財務データ分析 II – 応用ファイナンス1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lessons/07/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37294f0e61b532b0f7ebd5ccc0471b30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c2e880a5cb14d7a116eba1e73095a7f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/08/index.html">第8回：財務データ分析 II</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">応用ファイナンス1</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ガイダンス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第1回：Rの基本操作 I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第2回：Rの基本操作 II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第3回：Rの基本操作 III</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第4回：Rの基本操作 IV</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：Rの基本操作：演習</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第7回：財務データ分析 I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/08/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">第8回：財務データ分析 II</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
+  <li><a href="#chapter-1年度別の集計と可視化" id="toc-chapter-1年度別の集計と可視化" class="nav-link" data-scroll-target="#chapter-1年度別の集計と可視化">Chapter 1｜年度別の集計と可視化</a>
+  <ul class="collapse">
+  <li><a href="#年度別の企業数の集計" id="toc-年度別の企業数の集計" class="nav-link" data-scroll-target="#年度別の企業数の集計">1. 年度別の企業数の集計</a></li>
+  <li><a href="#企業数の推移の可視化" id="toc-企業数の推移の可視化" class="nav-link" data-scroll-target="#企業数の推移の可視化">2. 企業数の推移の可視化</a></li>
+  </ul></li>
+  <li><a href="#chapter-2株主資本とroeの計算" id="toc-chapter-2株主資本とroeの計算" class="nav-link" data-scroll-target="#chapter-2株主資本とroeの計算">Chapter 2｜株主資本とROEの計算</a>
+  <ul class="collapse">
+  <li><a href="#roeの意味と定義" id="toc-roeの意味と定義" class="nav-link" data-scroll-target="#roeの意味と定義">1. ROEの意味と定義</a></li>
+  <li><a href="#株主資本の計算と列の追加" id="toc-株主資本の計算と列の追加" class="nav-link" data-scroll-target="#株主資本の計算と列の追加">2. 株主資本の計算と列の追加</a></li>
+  <li><a href="#企業別の前期値の取得" id="toc-企業別の前期値の取得" class="nav-link" data-scroll-target="#企業別の前期値の取得">3. 企業別の前期値の取得</a></li>
+  <li><a href="#roeの計算" id="toc-roeの計算" class="nav-link" data-scroll-target="#roeの計算">4. ROEの計算</a></li>
+  </ul></li>
+  <li><a href="#chapter-3roeの分布と産業内順位" id="toc-chapter-3roeの分布と産業内順位" class="nav-link" data-scroll-target="#chapter-3roeの分布と産業内順位">Chapter 3｜ROEの分布と産業内順位</a>
+  <ul class="collapse">
+  <li><a href="#同一年度におけるroeの比較" id="toc-同一年度におけるroeの比較" class="nav-link" data-scroll-target="#同一年度におけるroeの比較">1. 同一年度におけるROEの比較</a></li>
+  <li><a href="#産業別roe平均値の棒グラフ" id="toc-産業別roe平均値の棒グラフ" class="nav-link" data-scroll-target="#産業別roe平均値の棒グラフ">2. 産業別ROE平均値の棒グラフ</a></li>
+  <li><a href="#roeの分布の可視化" id="toc-roeの分布の可視化" class="nav-link" data-scroll-target="#roeの分布の可視化">3. ROEの分布の可視化</a></li>
+  <li><a href="#産業内の順位付け" id="toc-産業内の順位付け" class="nav-link" data-scroll-target="#産業内の順位付け">4. 産業内の順位付け</a></li>
+  <li><a href="#分析結果の保存" id="toc-分析結果の保存" class="nav-link" data-scroll-target="#分析結果の保存">5. 分析結果の保存</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第8回：財務データ分析 II</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="到達目標" class="level2">
+<h2 class="anchored" data-anchor-id="到達目標">到達目標</h2>
+<ul>
+<li>財務データの集計を通じて、企業や産業の特徴を把握できる。</li>
+<li>ROEの意味を理解し、計算できる。</li>
+</ul>
+</section>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
+<p>今回は、第7回でIDをカテゴリ変数に変換し、欠損を含む1行を削除した<code>financial_clean</code>を引き続き使う。</p>
+<ol type="1">
+<li><code>empirical_finance.Rproj</code>を開く。</li>
+<li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson08.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
+<li>結果の保存先となる<code>output</code>フォルダを確認する。前回の処理済みデータを保存していない場合は、再読み込みに使う<code>data/data_lesson07.csv</code>も用意する。手元にない場合は、<a href="../../data/lesson07/data_lesson07.csv" download="data_lesson07.csv">data_lesson07.csv をダウンロード</a>し、Project内の<code>data</code>フォルダに保存する。</li>
+</ol>
+<p>前回の処理済みデータを使う場合も、パッケージは改めて読み込む。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>第7回の<code>financial_clean</code>がEnvironmentに残っている場合は、そのまま利用する。</p>
+<p>前回のデータを保存しておらず、<code>financial_clean</code>が残っていない場合は、以下のコードでCSVを読み直し、IDの変換と欠損を含む1行の削除を行う。処理済みデータを引き継げた場合、この再読み込みは不要である。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>financial_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson07.csv"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>financial_clean <span class="ot">&lt;-</span> financial_raw <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">firm_ID =</span> <span class="fu">as.factor</span>(firm_ID),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">industry_ID =</span> <span class="fu">as.factor</span>(industry_ID)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="co"># 第7回と同じく、欠損を含む1行を削除する</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>どちらの場合も、次のコードでデータの大きさを確認する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(financial_clean)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7919   11</code></pre>
+</div>
+</div>
+<p>処理済みデータは7,919行・11列となる。</p>
+</section>
+<section id="chapter-1年度別の集計と可視化" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1年度別の集計と可視化">Chapter 1｜年度別の集計と可視化</h2>
+<section id="年度別の企業数の集計" class="level3">
+<h3 class="anchored" data-anchor-id="年度別の企業数の集計">1. 年度別の企業数の集計</h3>
+<p>企業の売上高の平均が前年より増えていても、集計対象に大企業が加わっただけかもしれない。まず年度ごとの企業数と売上高の平均値・中央値を求め、比較するデータの範囲と特徴を確かめる。</p>
+<p>第7回では、一つの年度に絞って売上高の分布を調べた。今回は、第6回の投資案別集計と同様に、<code>group_by()</code>で集計単位を年度に指定し、<code>summarise()</code>で結果を一行ずつにまとめる。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/group-summary.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%" alt="企業と年度の表を年度ごとに分け、各年度一行の集計表を作る流れ"></p>
+</figure>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 年度別に集計し、1年度につき1行の表を作る</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>firms_by_year <span class="ot">&lt;-</span> financial_clean <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_firms =</span> <span class="fu">n_distinct</span>(firm_ID),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sales =</span> <span class="fu">mean</span>(sales),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_sales =</span> <span class="fu">median</span>(sales), <span class="co"># median()で中央値を求める</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span>             <span class="co"># 集計結果のグループ化を解除する</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>firms_by_year</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   year n_firms mean_sales median_sales
+  &lt;dbl&gt;   &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+1  2015    1265    173615.       42827.
+2  2016    1293    173360.       41955.
+3  2017    1319    170011.       40748.
+4  2018    1323    157995.       38749.
+5  2019    1356    160928.       39549.
+6  2020    1363    161044.       39457.</code></pre>
+</div>
+</div>
+<p><code>n_distinct(firm_ID)</code>は企業IDの種類数を数える。<code>n()</code>は行数であり、今回は一社・一年度につき一行なので両者は一致する。<code>.groups = "drop"</code>は集計後のグループ化を解除する指定である。</p>
+<p>結果は年度ごとに一行、合計6行となる。2015年の企業数は1,265社、2020年は1,363社である。</p>
+</section>
+<section id="企業数の推移の可視化" class="level3">
+<h3 class="anchored" data-anchor-id="企業数の推移の可視化">2. 企業数の推移の可視化</h3>
+<p>企業データベースでは、収録対象の追加や企業の退出などによって、分析できる企業数が年度ごとに変わることがある。ここでは企業数を折れ線グラフにし、対象が大きく増減した年度がないかを確認する。</p>
+<p>集計表をggplot2へ渡し、年度を横軸、企業数を縦軸として描く。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>firms_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(firms_by_year, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_firms)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Number of firms"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(firms_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-firms-by-year-08" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-firms-by-year-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-firms-by-year-08-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-firms-by-year-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;1: データに収録された年度別の企業数
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>年度によって収録企業数が異なる。売上高の平均値が変化しても、各企業の売上高が変化したとは限らず、集計対象の企業が入れ替わった可能性もある。時点間の比較では、数値の変化と対象の変化を区別する。</p>
+</section>
+</section>
+<section id="chapter-2株主資本とroeの計算" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2株主資本とroeの計算">Chapter 2｜株主資本とROEの計算</h2>
+<p>これまでは、読み込んだ財務データの特徴を、集計やグラフを通じて確認してきた。ここからは、複数の財務項目を組み合わせて、新しい分析指標を作成する。ここでは、株主の投資に対する会計上の収益性を表すROEを取り上げる。</p>
+<section id="roeの意味と定義" class="level3">
+<h3 class="anchored" data-anchor-id="roeの意味と定義">1. ROEの意味と定義</h3>
+<p>利益が100の企業と10の企業があっても、利益額だけでは、株主の資本を効率よく使っているのがどちらかは判断できない。ここでは利益を株主資本の大きさと対応させ、企業規模の異なる企業の収益性を比べる指標であるROEの考え方を学ぶ。</p>
+<section id="株主から見た投資額と投資の成果" class="level4">
+<h4 class="anchored" data-anchor-id="株主から見た投資額と投資の成果">株主から見た投資額と投資の成果</h4>
+<p><strong>株主資本（BE）</strong>は株主の投資額、<strong>当期純利益（X）</strong>はその投資から得られた当期の成果を表す。投資額と成果を対応させることで、企業規模の異なる企業も比べられる。</p>
+<p><strong>ROE（Return on Equity、自己資本利益率）</strong>は、株主に帰属する資本に対して、どれだけの当期純利益を生み出したかを表す指標である。</p>
+<p>ここでは、期首の株主資本を当期の利益と対応させ、次のように計算する。</p>
+<p><span class="math display">\[
+ROE_t = \frac{X_t}{BE_{t-1}}
+\]</span></p>
+<p><span class="math inline">\(X_t\)</span>は当期純利益、<span class="math inline">\(BE_{t-1}\)</span>は期首、すなわち前期末の株主資本である。例えば、期首株主資本が1,000、当期純利益が80なら、ROEは0.08、百分率では8%となる。これは会計上の収益性を表すものであり、株価の上昇率ではない。</p>
+</section>
+<section id="roeを評価する基準株式資本コスト" class="level4">
+<h4 class="anchored" data-anchor-id="roeを評価する基準株式資本コスト">ROEを評価する基準：株式資本コスト</h4>
+<p>ROEの高低を評価する際には、株主が期待するリターン、すなわち企業にとっての<strong>株式資本コスト</strong>との比較が必要になる。</p>
+<p>2014年8月に経済産業省が公表した<a href="https://www.meti.go.jp/policy/economy/keiei_innovation/kigyoukaikei/pdf/itoreport.pdf">「伊藤レポート」</a>は、日本企業の持続的な成長に向けて、企業と投資家の望ましい関係を検討した報告書である。投資家から評価されるための第一歩として、企業は<strong>最低限8%を上回るROE</strong>を目指すべきだと提言した。</p>
+<p>ただし、8%を達成すればどの企業でも十分というわけではない。株式資本コストは企業ごとに異なるため、自社の資本コストを上回るROEを目指す必要がある。</p>
+</section>
+</section>
+<section id="株主資本の計算と列の追加" class="level3">
+<h3 class="anchored" data-anchor-id="株主資本の計算と列の追加">2. 株主資本の計算と列の追加</h3>
+<p>今回のデータには株主資本<code>BE</code>の列がないため、資産合計（<code>OA + FA</code>）から負債合計（<code>OL + FO</code>）を差し引いて求める。<code>OA</code>は事業資産、<code>FA</code>は金融資産、<code>OL</code>は事業負債、<code>FO</code>は金融負債を表す。</p>
+<p><span class="math display">\[
+BE_t = \underbrace{(OA_t + FA_t)}_{\textcolor{red}{\scriptstyle\text{資産}}}
+     - \underbrace{(OL_t + FO_t)}_{\textcolor{red}{\scriptstyle\text{負債}}}
+\]</span></p>
+<p>この式を使い、<code>mutate()</code>で<code>BE</code>の列を追加する。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mutate-equity.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="資産合計OAとFAから負債合計OLとFOを差し引いてBEを求め、mutateで列を追加する流れ"></p>
+</figure>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>financial_with_be <span class="ot">&lt;-</span> financial_clean <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BE =</span> (OA <span class="sc">+</span> FA) <span class="sc">-</span> (OL <span class="sc">+</span> FO)) <span class="co"># 資産合計から負債合計を差し引く</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>financial_with_be <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, firm_ID, OA, OL, FA, FO, BE) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+   year firm_ID     OA    OL     FA     FO     BE
+  &lt;dbl&gt; &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1  2016 1       13866. 4534.  4642.  3960. 10014.
+2  2017 1       13953. 5111.  7744.  6159. 10426.
+3  2018 1       18818. 5137.  7285. 10124. 10842.
+4  2019 1       18190  5488.  9735. 11362. 11075.
+5  2020 1       20463. 5371. 10274. 13772. 11594.
+6  2015 2        2978. 1840.  2258.  2341.  1055.</code></pre>
+</div>
+</div>
+<p><code>mutate()</code>は各行で計算し、年度末の株主資本を新しい列として加える。企業ID 1の2016年末の株主資本は10,013.82となる。</p>
+</section>
+<section id="企業別の前期値の取得" class="level3">
+<h3 class="anchored" data-anchor-id="企業別の前期値の取得">3. 企業別の前期値の取得</h3>
+<p>ROEの分母に使うのは、期首、すなわち<strong>前期末の株主資本<span class="math inline">\(BE_{t-1}\)</span></strong>である。例えば、2020年のROEには2019年末のBEを使う。先ほど作った<code>BE</code>列には各年度末の値が入っているため、同じ企業の前年のBEを取り出し、当年の利益と同じ行に並べる操作が必要になる。</p>
+<p>dplyrの<code>lag()</code>は、ベクトルを一つ後ろへずらし、各位置に一つ前の値を置く関数である。最初の位置は、前の値がないため<code>NA</code>となる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lag</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">150</span>)) <span class="co"># 各位置に一つ前の値を置く。最初の位置はNAになる</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  NA 100 120</code></pre>
+</div>
+</div>
+<p>結果は<code>NA, 100, 120</code>となる。例えば、A社の当期純利益<code>X</code>と期末株主資本<code>BE</code>が次の値であるとき、<code>lag(BE)</code>を加えると、当年の利益と前年末の株主資本が同じ行にそろう。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>企業</th>
+<th>年度</th>
+<th style="text-align: right;">X：当期純利益</th>
+<th style="text-align: right;">BE：当期末株主資本</th>
+<th style="text-align: right;">lag(BE)：前期末株主資本</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>2019</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;"><code>NA</code></td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>2020</td>
+<td style="text-align: right;"><strong>10</strong></td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;"><strong>100</strong></td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>2021</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">120</td>
+</tr>
+</tbody>
+</table>
+<p><code>X</code>は当年の行に残したまま、<code>lag()</code>で前年末のBEをその行に並べる。2019年のBE（100）は2020年の行に、2020年のBE（120）は2021年の行に、一行ずつ下へずれて入る。2019年の行は、その前の年のデータがないため<code>NA</code>となる。</p>
+<p>太字の2020年の行では、<strong>当年の利益10と前年末のBE 100</strong>がそろい、ROEを<span class="math inline">\(10/100=10\%\)</span>と計算できる。2021年も同じ行の18と120を使い、<span class="math inline">\(18/120=15\%\)</span>となる。</p>
+<p>ただし、<code>lag()</code>は前の行の値を取るだけで、企業の違いを自動的に判別しない。複数の企業が並ぶ表にそのまま適用すると、企業の境目で別の企業の値が入り込んでしまう。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/lag-by-firm.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="二社二年度の例。企業を区別しないlagではB社にA社の値が入るが、企業別のlagではB社の先頭はNAになる"></p>
+</figure>
+</div>
+<p>図の「企業を区別しない lag」を見ると、B社の2019年の行に、直前の行にある<strong>A社の2020年のBE（120）</strong>が入っている。これはB社自身の前年末の株主資本ではなく、この値でROEを計算すると誤った結果になる。</p>
+<p>一方、<code>group_by(firm_ID)</code>で企業別に分けてから<code>lag()</code>を使うと、値の取得は各企業の中だけで行われる。図の右列では、B社の最初の年である2019年は前期値がないため<code>NA</code>となり、2020年には<strong>B社自身の2019年のBE（200）</strong>が正しく入る。</p>
+<p>したがって、まず<code>arrange(firm_ID, year)</code>で企業・年度順に並べ、<code>group_by(firm_ID)</code>で企業別に分けてから、前の年度と株主資本を取り出す。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>financial_with_lag <span class="ot">&lt;-</span> financial_with_be <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(firm_ID, year) <span class="sc">|&gt;</span> <span class="co"># 企業ごとに年度の古い順に並べる</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(firm_ID) <span class="sc">|&gt;</span>     <span class="co"># 別の企業の値が混ざらないよう企業別に処理する</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">previous_year =</span> <span class="fu">lag</span>(year), <span class="co"># 前の行の年度を残し、前年かどうかを後で確かめる</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lagged_BE =</span> <span class="fu">lag</span>(BE)        <span class="co"># 同じ企業の前の行から期末株主資本を取り出す</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># 前期値を作った後は、企業別のグループ化を解除する</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>financial_with_lag <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(firm_ID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"1"</span>, <span class="st">"2"</span>)) <span class="sc">|&gt;</span> <span class="co"># %in%で指定した値のいずれかに一致するかを判定する</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, year, BE, previous_year, lagged_BE)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 5
+   firm_ID  year     BE previous_year lagged_BE
+   &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
+ 1 1        2016 10014.            NA       NA 
+ 2 1        2017 10426.          2016    10014.
+ 3 1        2018 10842.          2017    10426.
+ 4 1        2019 11075.          2018    10842.
+ 5 1        2020 11594.          2019    11075.
+ 6 2        2015  1055.            NA       NA 
+ 7 2        2016  1082.          2015     1055.
+ 8 2        2017  1135.          2016     1082.
+ 9 2        2018  1184.          2017     1135.
+10 2        2019  1237.          2018     1184.
+11 2        2020  1280.          2019     1237.</code></pre>
+</div>
+</div>
+<p><code>arrange()</code>は企業内の年度順を整え、<code>group_by()</code>は企業の境界を指定する。<code>ungroup()</code>は、前期値を作った後のグループ化を解除する。各企業の最初の観測では、前期値が<code>NA</code>になる。</p>
+<p><code>lag()</code>が取得するのは「前の行」であり、必ずしも「前年」ではない。例えば2018年の次が2020年なら、その行の前期値は2年前の値になる。<code>previous_year</code>も残し、ROEを計算する際に年度が連続しているかを判定する。<a href="https://dplyr.tidyverse.org/reference/lead-lag.html">dplyr：lag()</a></p>
+</section>
+<section id="roeの計算" class="level3">
+<h3 class="anchored" data-anchor-id="roeの計算">4. ROEの計算</h3>
+<p>当期純利益<code>X</code>と前期末株主資本<code>lagged_BE</code>がそろったので、先ほどの式<span class="math inline">\(ROE_t = X_t / BE_{t-1}\)</span>に従ってROEを計算する。</p>
+<p>ここでは、前年の株主資本が確認でき、かつ正である観測を比較対象とする。0の株主資本では割り算ができず、負の株主資本では利益率の通常の解釈が難しくなるためである。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>roe_data <span class="ot">&lt;-</span> financial_with_lag <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">==</span> previous_year <span class="sc">+</span> <span class="dv">1</span>, <span class="co"># 前の観測がちょうど前年であることを確認する</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(lagged_BE),         <span class="co"># 期首株主資本を取得できた行を残す</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    lagged_BE <span class="sc">&gt;</span> <span class="dv">0</span>              <span class="co"># 分母が0以下の行を除く</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE =</span> X <span class="sc">/</span> lagged_BE, <span class="co"># 当期純利益を同じ企業の期首株主資本で割る</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE_percent =</span> ROE <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(financial_with_lag)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7919</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(roe_data)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6404</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>roe_data <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, year, X, lagged_BE, ROE_percent) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  firm_ID  year     X lagged_BE ROE_percent
+  &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 1        2017 662.     10014.        6.61
+2 1        2018 665.     10426.        6.38
+3 1        2019 660.     10842.        6.09
+4 1        2020 844.     11075.        7.62
+5 2        2016  49.4     1055.        4.68
+6 2        2017  75.9     1082.        7.02</code></pre>
+</div>
+</div>
+<p><code>filter()</code>は条件が<code>TRUE</code>の行を残す。今回のデータでは、各企業の最初の観測1,515行が対象外となり、6,404行についてROEを計算できる。企業ID 1の2017年のROEは約6.61%である。計算対象外の行も、元の<code>financial_with_lag</code>には残っている。</p>
+</section>
+</section>
+<section id="chapter-3roeの分布と産業内順位" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3roeの分布と産業内順位">Chapter 3｜ROEの分布と産業内順位</h2>
+<section id="同一年度におけるroeの比較" class="level3">
+<h3 class="anchored" data-anchor-id="同一年度におけるroeの比較">1. 同一年度におけるROEの比較</h3>
+<p>ある企業のROEが高くても、同じ年の他社も高ければ、その企業だけが好調とは言い切れない。ここでは2020年にそろえてROEの概要と産業別の平均値・中央値を求め、同じ時期の企業や産業の収益性を比べる。</p>
+<p>全年度のデータから前期株主資本とROEを計算した後で、比較する年度を絞る。先に2020年だけにしてしまうと、<code>lag()</code>に必要な2019年の値を失う。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>roe_2020 <span class="ot">&lt;-</span> roe_data <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(roe_2020)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1322</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(roe_2020<span class="sc">$</span>ROE_percent)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-28.657   4.661   7.409   8.018  11.173  56.418 </code></pre>
+</div>
+</div>
+<p>2020年の収録企業は1,363社だが、ROEを計算できるのは1,322社である。この違いは、集計対象の一部について前年の株主資本を取得できないことによる。</p>
+<p>産業ごとにROEの平均値と中央値も求める。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>roe_by_industry <span class="ot">&lt;-</span> roe_2020 <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry_ID) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_firms =</span> <span class="fu">n_distinct</span>(firm_ID),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_ROE =</span> <span class="fu">mean</span>(ROE_percent),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_ROE =</span> <span class="fu">median</span>(ROE_percent),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>roe_by_industry</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   industry_ID n_firms mean_ROE median_ROE
+   &lt;fct&gt;         &lt;int&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+ 1 1               187     7.38       7.03
+ 2 2                37    10.8       10.6 
+ 3 3               300     8.12       7.42
+ 4 4                27     6.92       6.54
+ 5 5                57     8.86       7.75
+ 6 6                20     7.88       6.98
+ 7 7               225     7.78       6.89
+ 8 8                69     8.80       8.44
+ 9 9               116     8.05       7.71
+10 10              284     7.89       7.32</code></pre>
+</div>
+</div>
+<p>ここでの平均値は、各企業のROEを同じ重みで平均した値である。産業全体の利益合計を株主資本合計で割った値とは異なる。</p>
+</section>
+<section id="産業別roe平均値の棒グラフ" class="level3">
+<h3 class="anchored" data-anchor-id="産業別roe平均値の棒グラフ">2. 産業別ROE平均値の棒グラフ</h3>
+<p>産業ごとの収益性の違いを見比べるため、先ほどの集計表を棒グラフにする。横軸に産業ID、縦軸にROEの平均値を取り、どの産業の平均値が高いかを確認する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>industry_roe_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(roe_by_industry, <span class="fu">aes</span>(<span class="at">x =</span> industry_ID, <span class="at">y =</span> mean_ROE)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span> <span class="co"># 計算済みの平均値を棒の高さにする</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Industry ID"</span>, <span class="at">y =</span> <span class="st">"Mean ROE (%)"</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(industry_roe_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-industry-mean-roe-08" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-industry-mean-roe-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-industry-mean-roe-08-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-industry-mean-roe-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2: 2020年の産業別ROE平均値
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>縦軸の10は平均ROEが10%であることを示す。平均値が高い産業でも、すべての企業のROEが高いとは限らないため、次に個々の企業の分布を確認する。</p>
+</section>
+<section id="roeの分布の可視化" class="level3">
+<h3 class="anchored" data-anchor-id="roeの分布の可視化">3. ROEの分布の可視化</h3>
+<p>ROEの平均値だけでは、多くの企業がその近くに集まっているのか、少数の極端な値に引っ張られているのかは分からない。ここではヒストグラムを描き、企業が集中する水準、赤字企業の存在、極端に高いROEを持つ企業の有無を確認する。</p>
+<p>第7回と同じ<code>geom_histogram()</code>を使い、横軸には百分率の<code>ROE_percent</code>を指定する。値が10ならROEは10%である。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>roe_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(roe_2020, <span class="fu">aes</span>(<span class="at">x =</span> ROE_percent)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"ROE (%)"</span>, <span class="at">y =</span> <span class="st">"Number of firms"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(roe_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-roe-distribution-08" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-roe-distribution-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-roe-distribution-08-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roe-distribution-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3: 2020年のROE分布（期首株主資本を使用）
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>期首株主資本が正の企業を対象としているため、負のROEは当期純損失を示す。一方、高いROEには利益の大きさだけでなく、分母の株主資本の小ささも影響する。極端な値がある場合は、<code>X</code>と<code>lagged_BE</code>に戻って確かめる。</p>
+</section>
+<section id="産業内の順位付け" class="level3">
+<h3 class="anchored" data-anchor-id="産業内の順位付け">4. 産業内の順位付け</h3>
+<p>企業を評価するときには、市場全体での比較に加え、事業の特徴が近い同業他社の中での位置も知りたい。ここでは産業ごとにROEの高い順に順位を付け、収益性が相対的に高い企業を探す。</p>
+<p><code>min_rank()</code>は値に順位を付ける関数である。<code>desc()</code>を組み合わせると、大きい値が1位になる。例えば、値が<code>20, 20, 10</code>なら、順位は<code>1, 1, 3</code>となる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>roe_ranking_2020 <span class="ot">&lt;-</span> roe_2020 <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry_ID) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 大きいROEを1位にする。同じ値は同順位になり、次の順位は飛ぶ（例：1, 1, 3）</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">roe_rank =</span> <span class="fu">min_rank</span>(<span class="fu">desc</span>(ROE))) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(industry_ID, roe_rank) <span class="sc">|&gt;</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(industry_ID, firm_ID, X, lagged_BE, ROE_percent, roe_rank)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>roe_ranking_2020 <span class="sc">|&gt;</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(roe_rank <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   industry_ID firm_ID       X lagged_BE ROE_percent roe_rank
+   &lt;fct&gt;       &lt;fct&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;    &lt;int&gt;
+ 1 1           8         2678.     6896.        38.8        1
+ 2 2           242      15299.    40799.        37.5        1
+ 3 3           475       1762.     3542.        49.8        1
+ 4 4           619       7927.    53156.        14.9        1
+ 5 5           661       9490.    35500.        26.7        1
+ 6 6           719     217263.  1527838.        14.2        1
+ 7 7           929        454.      804.        56.4        1
+ 8 8           1042       290.     1132.        25.6        1
+ 9 9           1167     47069.   200614.        23.5        1
+10 10          1380      2008.     8039.        25.0        1</code></pre>
+</div>
+</div>
+<p><code>group_by(industry_ID)</code>を使うため、順位は産業ごとに付く。<code>summarise()</code>と異なり、<code>mutate()</code>は企業ごとの行を残したまま、順位の列を加えている。同じ1位でもROEの水準は産業によって異なるため、順位と元の数値を合わせて読む。</p>
+</section>
+<section id="分析結果の保存" class="level3">
+<h3 class="anchored" data-anchor-id="分析結果の保存">5. 分析結果の保存</h3>
+<p>企業比較の結果をレポートで示したり、別の年度の結果と見比べたりできるよう、順位表と分布の図をファイルに保存する。表は数値の確認や再利用に、図はROEの分布を伝えるために使う。</p>
+<p>順位表は<code>write_csv()</code>、分布の図は<code>ggsave()</code>で<code>output</code>フォルダへ保存する。<code>write_csv()</code>はreadrの関数で、行番号の列を付けずにCSVを書き出す。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(roe_ranking_2020, <span class="st">"output/roe-ranking-2020.csv"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"output/roe-distribution-2020.png"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> roe_plot,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fl">4.5</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>同名のファイルは上書きされる。保存した表と図をFilesペインで確認し、<code>script/lesson08.R</code>も保存する。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lessons/07/index.html" class="pagination-link" aria-label="第7回：財務データ分析 I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">第7回：財務データ分析 I</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="title desc">
+  <title id="title">年度別のグループ化と集計</title>
+  <desc id="desc">企業と年度のデータをgroup_by(year)で年度別に分け、summariseで年度ごとの企業数を求める。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#007C73"/></marker></defs>
+  <rect width="1000" height="260" rx="12" fill="white"/>
+  <g font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="20" text-anchor="middle" fill="#123F45">
+    <rect x="20" y="75" width="230" height="130" rx="8" fill="#f0f6f5" stroke="#007C73"/>
+    <text x="135" y="112">financial_clean</text><text x="135" y="148">一行＝企業 × 年度</text><text x="135" y="183">7,919行</text>
+    <text x="365" y="50" font-size="18">group_by(year)</text>
+    <path d="M260 135H448" stroke="#007C73" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="465" y="75" width="150" height="40" rx="5" fill="#f0f6f5" stroke="#007C73"/><text x="540" y="102">2015年</text>
+    <rect x="465" y="125" width="150" height="40" rx="5" fill="#f0f6f5" stroke="#007C73"/><text x="540" y="152">2016年</text>
+    <text x="540" y="190">…</text>
+    <rect x="465" y="205" width="150" height="40" rx="5" fill="#f0f6f5" stroke="#007C73"/><text x="540" y="232">2020年</text>
+    <text x="717" y="50" font-size="18">summarise()</text>
+    <path d="M630 95H795M630 145H795M630 225H795" stroke="#007C73" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="895" y="102">1,265社</text><text x="895" y="152">1,293社</text><text x="895" y="190">…</text><text x="895" y="232">1,363社</text>
+  </g>
+</svg>
