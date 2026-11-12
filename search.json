@@ -654,7 +654,7 @@
     "href": "lessons/10/index.html#作業の準備",
     "title": "第10回：財務データ分析 III",
     "section": "作業の準備",
-    "text": "作業の準備\n今回は、第7・8回と同じ企業データを使い、ROEを事業活動と金融活動に分けて分析する。\n\nempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、script/lesson10.Rとして保存する。すでに作成している場合は、そのファイルを開く。\n第7回のdata_lesson07.csvをProject内のdataフォルダに用意する。保存済みのファイルはそのまま使う。結果の保存先となるoutputフォルダも確認する。\n\ntidyverseは、新しいRセッションごとに読み込む。\n\nlibrary(tidyverse)\n\n第7・8回で作成した、全年度を含むfinancial_dataがEnvironmentに残っている場合は、以下のデータの読込みと型の変換を省略できる。新しいRセッションでfinancial_dataがない場合は、以下のコードを実行する。\n\nfinancial_data &lt;- read_csv(\n  \"data/data_lesson07.csv\",\n  na = c(\"\", \"NA\"),\n  show_col_types = FALSE\n) |&gt;\n  mutate(\n    firm_ID = as.factor(firm_ID),\n    industry_ID = as.factor(industry_ID)\n  )",
+    "text": "作業の準備\n\nempirical_finance.Rprojを開く。\nFile → New File → R ScriptからRスクリプトを新規作成し、script/lesson10.Rとして保存する。すでに作成している場合は、そのファイルを開く。\n第7回のdata_lesson07.csvをProject内のdataフォルダに用意する。保存済みのファイルはそのまま使う。結果の保存先となるoutputフォルダも確認する。\n\ntidyverseは、新しいRセッションごとに読み込む。\n\nlibrary(tidyverse)\n\n第7・8回で作成した、全年度を含むfinancial_dataがEnvironmentに残っている場合は、以下のデータの読込みと型の変換を省略できる。新しいRセッションでfinancial_dataがない場合は、以下のコードを実行する。\n\nfinancial_data &lt;- read_csv(\n  \"data/data_lesson07.csv\",\n  na = c(\"\", \"NA\"),\n  show_col_types = FALSE\n) |&gt;\n  mutate(\n    firm_ID = as.factor(firm_ID),\n    industry_ID = as.factor(industry_ID)\n  )",
     "crumbs": [
       "第10回：財務データ分析 III"
     ]
