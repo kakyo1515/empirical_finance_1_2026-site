@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 720" role="img" aria-labelledby="title desc">
+  <title id="title">箱ひげ図の各部分と読み方</title>
+  <desc id="desc">縦向きの箱ひげ図。箱の下端が第1四分位数Q1、上端が第3四分位数Q3、箱内の線が中央値Q2。箱の高さはIQRで、中央50%のデータを含む。判定の境界はQ1−1.5×IQRとQ3＋1.5×IQR。ひげの先端は境界内の最小値と最大値。境界の外にある点は外れ値（異常値）。</desc>
+  <defs>
+    <marker id="axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#61757a"/></marker>
+  </defs>
+  <rect width="1120" height="720" rx="14" fill="white"/>
+  <g font-family="Hiragino Sans, Yu Gothic, Noto Sans JP, sans-serif" fill="#20343a">
+    <text x="560" y="37" text-anchor="middle" font-size="28" font-weight="700">箱ひげ図の読み方</text>
+
+    <path d="M105 686 V114" fill="none" stroke="#61757a" stroke-width="2" marker-end="url(#axis-arrow)"/>
+    <text transform="translate(68 400) rotate(-90)" text-anchor="middle" font-size="22" fill="#61757a">値が大きい</text>
+
+    <!-- Box and whiskers: IQR = 100 SVG units; fences extend 1.5 IQR from each hinge. -->
+    <path d="M420 215 V340 M420 440 V540" fill="none" stroke="#007c73" stroke-width="4"/>
+    <path d="M370 215 H470 M370 540 H470" fill="none" stroke="#007c73" stroke-width="4"/>
+    <rect x="350" y="340" width="140" height="100" fill="#e7f4f1" stroke="#007c73" stroke-width="3"/>
+    <line x1="350" y1="390" x2="490" y2="390" stroke="#007c73" stroke-width="6"/>
+
+    <!-- Actual observations beyond the fences. -->
+    <circle cx="420" cy="130" r="8" fill="#ad7811"/>
+    <circle cx="420" cy="650" r="8" fill="#ad7811"/>
+    <path d="M433 130 H610 L670 113" fill="none" stroke="#ad7811" stroke-width="1.6"/>
+    <text x="695" y="112" font-size="23" font-weight="700" fill="#93650c">外れ値（異常値）</text>
+
+    <!-- Classification fences, distinct from observed whisker endpoints. -->
+    <path d="M310 190 H590 M310 590 H590" fill="none" stroke="#ad7811" stroke-width="2" stroke-dasharray="7 6"/>
+    <text x="620" y="203" font-size="22" fill="#93650c">上側の境界：Q3 + 1.5 × IQR</text>
+    <text x="620" y="599" font-size="22" fill="#93650c">下側の境界：Q1 − 1.5 × IQR</text>
+
+    <!-- Quartile and median labels. -->
+    <g text-anchor="middle">
+      <text x="215" y="329" font-size="23" font-weight="700">第3四分位数 Q3</text>
+      <text x="215" y="357" font-size="20" fill="#61757a">75%点</text>
+      <text x="215" y="398" font-size="23" font-weight="700">中央値（Q2）</text>
+      <text x="215" y="449" font-size="23" font-weight="700">第1四分位数 Q1</text>
+      <text x="215" y="477" font-size="20" fill="#61757a">25%点</text>
+    </g>
+    <path d="M310 340 H343 M310 390 H343 M310 440 H343" fill="none" stroke="#61757a" stroke-width="1.5"/>
+
+    <!-- Whisker labels point to the actual extrema within the fences. -->
+    <g text-anchor="middle">
+      <text x="215" y="224" font-size="22" font-weight="700">上側のひげの先端</text>
+      <text x="215" y="253" font-size="20" fill="#61757a">境界内の最大値</text>
+      <text x="215" y="549" font-size="22" font-weight="700">下側のひげの先端</text>
+      <text x="215" y="578" font-size="20" fill="#61757a">境界内の最小値</text>
+    </g>
+    <path d="M322 215 H362 M322 540 H362" fill="none" stroke="#61757a" stroke-width="1.5"/>
+
+    <!-- Interquartile range. -->
+    <path d="M525 340 H547 M536 340 V440 M525 440 H547" fill="none" stroke="#7c5499" stroke-width="2.5"/>
+    <text x="585" y="379" font-size="24" font-weight="700" fill="#7c5499">箱の高さ：IQR = Q3 − Q1</text>
+    <text x="585" y="413" font-size="22">中央50%のデータの広がり</text>
+
+  </g>
+</svg>

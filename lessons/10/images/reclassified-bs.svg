@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 455" role="img" aria-labelledby="title desc">
+  <title id="title">事業と金融を区別した組替B/S</title>
+  <desc id="desc">左は事業資産OAと金融資産FAを、事業負債OL、金融負債FO、株主資本BEと対応させた貸借対照表。右ではOAからOLを差し引いた純事業資産NOAを、FOからFAを差し引いた純金融負債NFOと株主資本BEに対応させる。NOAはNFOとBEの合計に等しい。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#61757a"/></marker>
+  </defs>
+  <rect width="1120" height="455" rx="14" fill="white"/>
+  <g font-family="Hiragino Sans, Yu Gothic, Noto Sans JP, sans-serif" text-anchor="middle" fill="#20343a">
+    <text x="245" y="39" font-size="26" font-weight="700">資産・負債を四つに区分</text>
+    <text x="875" y="39" font-size="26" font-weight="700">差額で整理する</text>
+    <text x="125" y="99" font-size="21" font-weight="700">資産</text>
+    <text x="355" y="99" font-size="21" font-weight="700">負債・株主資本</text>
+    <text x="762" y="99" font-size="21" font-weight="700">事業の箱</text>
+    <text x="987" y="99" font-size="21" font-weight="700">資金の提供者</text>
+
+    <rect x="25" y="120" width="200" height="180" fill="#e7f4f1" stroke="#007c73" stroke-width="2"/>
+    <text x="125" y="199" font-size="23" font-weight="700">事業資産 OA</text>
+    <text x="125" y="232" font-size="18">売掛金・設備など</text>
+    <rect x="25" y="300" width="200" height="90" fill="#fff3d8" stroke="#ad7811" stroke-width="2"/>
+    <text x="125" y="337" font-size="23" font-weight="700">金融資産 FA</text>
+    <text x="125" y="367" font-size="17">運用目的の債券など</text>
+
+    <rect x="250" y="120" width="210" height="90" fill="#e7f4f1" stroke="#007c73" stroke-width="2"/>
+    <text x="355" y="157" font-size="23" font-weight="700">事業負債 OL</text>
+    <text x="355" y="187" font-size="18">買掛金など</text>
+    <rect x="250" y="210" width="210" height="90" fill="#fff3d8" stroke="#ad7811" stroke-width="2"/>
+    <text x="355" y="247" font-size="23" font-weight="700">金融負債 FO</text>
+    <text x="355" y="277" font-size="18">借入金・社債など</text>
+    <rect x="250" y="300" width="210" height="90" fill="#f1eaf8" stroke="#7c5499" stroke-width="2"/>
+    <text x="355" y="337" font-size="23" font-weight="700">株主資本 BE</text>
+    <text x="355" y="367" font-size="18">株主の投資額</text>
+
+    <path d="M493 252 H612" stroke="#61757a" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="553" y="207" font-size="19">同じ活動の</text>
+    <text x="553" y="232" font-size="19">項目を差引き</text>
+
+    <rect x="660" y="120" width="205" height="270" fill="#e7f4f1" stroke="#007c73" stroke-width="2"/>
+    <text x="762" y="220" font-size="24" font-weight="700">純事業資産</text>
+    <text x="762" y="260" font-size="28" font-weight="700">NOA</text>
+    <text x="762" y="303" font-size="23">OA − OL</text>
+    <text x="762" y="344" font-size="18">事業への正味の投資額</text>
+    <rect x="890" y="120" width="205" height="135" fill="#fff3d8" stroke="#ad7811" stroke-width="2"/>
+    <text x="992" y="150" font-size="18">債権者の箱</text>
+    <text x="992" y="186" font-size="23" font-weight="700">純金融負債 NFO</text>
+    <text x="992" y="224" font-size="23">FO − FA</text>
+    <rect x="890" y="255" width="205" height="135" fill="#f1eaf8" stroke="#7c5499" stroke-width="2"/>
+    <text x="992" y="288" font-size="18">株主の箱</text>
+    <text x="992" y="327" font-size="24" font-weight="700">株主資本 BE</text>
+    <text x="992" y="363" font-size="23">NOA − NFO</text>
+
+    <text x="245" y="432" font-size="22">OA + FA = OL + FO + BE</text>
+    <text x="875" y="432" font-size="25" font-weight="700">NOA = NFO + BE</text>
+  </g>
+</svg>

@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第10回：財務データ分析 III – 応用ファイナンス1</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../lessons/09/index.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37294f0e61b532b0f7ebd5ccc0471b30.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2ca91016776c58decb83f80a962514dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../lessons/10/index.html">第10回：財務データ分析 III</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">応用ファイナンス1</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ガイダンス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第1回：Rの基本操作 I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第2回：Rの基本操作 II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第3回：Rの基本操作 III</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第4回：Rの基本操作 IV</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第5回：Rの基本操作：演習</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第6回：tidyverse流による財務・株式データ分析</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第7回：財務データ分析 I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第8回：財務データ分析 II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">第9回：休講</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lessons/10/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">第10回：財務データ分析 III</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#到達目標" id="toc-到達目標" class="nav-link active" data-scroll-target="#到達目標">到達目標</a></li>
+  <li><a href="#作業の準備" id="toc-作業の準備" class="nav-link" data-scroll-target="#作業の準備">作業の準備</a></li>
+  <li><a href="#chapter-1会計上のリターンの決定要因" id="toc-chapter-1会計上のリターンの決定要因" class="nav-link" data-scroll-target="#chapter-1会計上のリターンの決定要因">Chapter 1｜会計上のリターンの決定要因</a>
+  <ul class="collapse">
+  <li><a href="#事業活動と金融活動とを区別したbsとpl" id="toc-事業活動と金融活動とを区別したbsとpl" class="nav-link" data-scroll-target="#事業活動と金融活動とを区別したbsとpl">1. 事業活動と金融活動とを区別したB/SとP/L</a></li>
+  <li><a href="#投資と成果を対応させリターンを求める" id="toc-投資と成果を対応させリターンを求める" class="nav-link" data-scroll-target="#投資と成果を対応させリターンを求める">2. 投資と成果を対応させ、リターンを求める</a></li>
+  <li><a href="#事業のリターンの決定要因" id="toc-事業のリターンの決定要因" class="nav-link" data-scroll-target="#事業のリターンの決定要因">3. 事業のリターンの決定要因</a></li>
+  <li><a href="#株主のリターンの決定要因1" id="toc-株主のリターンの決定要因1" class="nav-link" data-scroll-target="#株主のリターンの決定要因1">4. 株主のリターンの決定要因（1）</a></li>
+  <li><a href="#株主のリターンの決定要因2" id="toc-株主のリターンの決定要因2" class="nav-link" data-scroll-target="#株主のリターンの決定要因2">5. 株主のリターンの決定要因（2）</a></li>
+  </ul></li>
+  <li><a href="#chapter-2分析用データの作成と検算" id="toc-chapter-2分析用データの作成と検算" class="nav-link" data-scroll-target="#chapter-2分析用データの作成と検算">Chapter 2｜分析用データの作成と検算</a>
+  <ul class="collapse">
+  <li><a href="#純事業資産純金融負債と期首残高の作成" id="toc-純事業資産純金融負債と期首残高の作成" class="nav-link" data-scroll-target="#純事業資産純金融負債と期首残高の作成">1. 純事業資産・純金融負債と期首残高の作成</a></li>
+  <li><a href="#上級モデルの各指標の計算" id="toc-上級モデルの各指標の計算" class="nav-link" data-scroll-target="#上級モデルの各指標の計算">2. 上級モデルの各指標の計算</a></li>
+  <li><a href="#分解結果の検算" id="toc-分解結果の検算" class="nav-link" data-scroll-target="#分解結果の検算">3. 分解結果の検算</a></li>
+  <li><a href="#同業他社のroeの内訳を比較する" id="toc-同業他社のroeの内訳を比較する" class="nav-link" data-scroll-target="#同業他社のroeの内訳を比較する">4. 同業他社のROEの内訳を比較する</a></li>
+  </ul></li>
+  <li><a href="#chapter-3箱ひげ図と散布図による産業別比較" id="toc-chapter-3箱ひげ図と散布図による産業別比較" class="nav-link" data-scroll-target="#chapter-3箱ひげ図と散布図による産業別比較">Chapter 3｜箱ひげ図と散布図による産業別比較</a>
+  <ul class="collapse">
+  <li><a href="#箱ひげ図でpmの分布を比べる" id="toc-箱ひげ図でpmの分布を比べる" class="nav-link" data-scroll-target="#箱ひげ図でpmの分布を比べる">1. 箱ひげ図でPMの分布を比べる</a></li>
+  <li><a href="#散布図と等rnoa曲線でpmatoの関係を見る" id="toc-散布図と等rnoa曲線でpmatoの関係を見る" class="nav-link" data-scroll-target="#散布図と等rnoa曲線でpmatoの関係を見る">2. 散布図と等RNOA曲線でPM・ATOの関係を見る</a></li>
+  </ul></li>
+  <li><a href="#授業外課題" id="toc-授業外課題" class="nav-link" data-scroll-target="#授業外課題">授業外課題</a>
+  <ul class="collapse">
+  <li><a href="#提出方法締切" id="toc-提出方法締切" class="nav-link" data-scroll-target="#提出方法締切">提出方法・締切</a></li>
+  <li><a href="#問1当期純利益による企業の順位付け" id="toc-問1当期純利益による企業の順位付け" class="nav-link" data-scroll-target="#問1当期純利益による企業の順位付け">問1．当期純利益による企業の順位付け</a></li>
+  <li><a href="#問2売上高の推移を折れ線グラフで示す" id="toc-問2売上高の推移を折れ線グラフで示す" class="nav-link" data-scroll-target="#問2売上高の推移を折れ線グラフで示す">問2．売上高の推移を折れ線グラフで示す</a></li>
+  <li><a href="#問3roeの分位点と企業数" id="toc-問3roeの分位点と企業数" class="nav-link" data-scroll-target="#問3roeの分位点と企業数">問3．ROEの分位点と企業数</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第10回：財務データ分析 III</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="到達目標" class="level2">
+<h2 class="anchored" data-anchor-id="到達目標">到達目標</h2>
+<ol type="1">
+<li>会計上のリターン（RNOA・NBC・ROE）の意味を説明できる。</li>
+<li>RNOAの決定要因を説明できる。</li>
+<li>デュポン・モデルを用いて、ROEの決定要因を説明できる。</li>
+<li>Rを用いて各指標を計算し、リターンの分解・分析を行える。</li>
+</ol>
+</section>
+<section id="作業の準備" class="level2">
+<h2 class="anchored" data-anchor-id="作業の準備">作業の準備</h2>
+<p>今回は、第7・8回と同じ企業データを使い、ROEを事業活動と金融活動に分けて分析する。</p>
+<ol type="1">
+<li><code>empirical_finance.Rproj</code>を開く。</li>
+<li><strong>File → New File → R Script</strong>からRスクリプトを新規作成し、<code>script/lesson10.R</code>として保存する。すでに作成している場合は、そのファイルを開く。</li>
+<li>第7回の<a href="../../data/lesson07/data_lesson07.csv" download="data_lesson07.csv">data_lesson07.csv</a>をProject内の<code>data</code>フォルダに用意する。保存済みのファイルはそのまま使う。結果の保存先となる<code>output</code>フォルダも確認する。</li>
+</ol>
+<p><code>tidyverse</code>は、新しいRセッションごとに読み込む。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>第7・8回で作成した、全年度を含む<code>financial_data</code>がEnvironmentに残っている場合は、以下のデータの読込みと型の変換を省略できる。新しいRセッションで<code>financial_data</code>がない場合は、以下のコードを実行する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>financial_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/data_lesson07.csv"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">firm_ID =</span> <span class="fu">as.factor</span>(firm_ID),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">industry_ID =</span> <span class="fu">as.factor</span>(industry_ID)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="chapter-1会計上のリターンの決定要因" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1会計上のリターンの決定要因">Chapter 1｜会計上のリターンの決定要因</h2>
+<p>会計上のリターンは、投じた資金に対してどれだけの成果が得られたかを示す。同じ水準のリターンであっても、その背景にある事業の仕組みや負債の活用状況は企業によって異なる。本章では、投資と成果の関係を整理し、リターンの決定要因を通じて、企業のビジネス・モデルや経営上の特徴を読み解く。</p>
+<section id="事業活動と金融活動とを区別したbsとpl" class="level3">
+<h3 class="anchored" data-anchor-id="事業活動と金融活動とを区別したbsとpl">1. 事業活動と金融活動とを区別したB/SとP/L</h3>
+<p><strong>貸借対照表（B/S）</strong>は、ある時点で企業が保有する資産と、それを支える負債・株主資本を示す。資産を見ると資金が何に使われているか、負債・株主資本を見るとその資金がどこから調達されたかがわかる。</p>
+<p><strong>損益計算書（P/L）</strong>は、1年間などの一定期間に生じた収益と費用、その差額である利益を示す。B/Sがある時点の資金の状態を表すのに対し、P/Lはその資金を使って一定期間にどれだけの利益を得たかを表す。</p>
+<p>商品・サービスの生産や販売に関わる活動を<strong>事業活動</strong>、資金の調達や余剰資金の運用に関わる活動を<strong>金融活動</strong>という。B/SとP/Lの各項目を、この二つに分ける。</p>
+<p>この区分に基づき、同じ活動に属する資産と負債、収益と費用をそれぞれ差し引いて整理したものが、<strong>組替B/S</strong>と<strong>組替P/L</strong>である。これによって、事業に投じられた資金とその成果を、債権者・株主に対応させて捉えられる。</p>
+<section id="組替bs債権者と株主の投資を区別する" class="level4">
+<h4 class="anchored" data-anchor-id="組替bs債権者と株主の投資を区別する">組替B/S：債権者と株主の投資を区別する</h4>
+<p>下の図では、事業資産から事業負債を差し引いた金額を、<strong>純事業資産（NOA）</strong>という。これは、<strong>事業への正味の投資額</strong>を表す。組替B/Sでは、この投資を支える<strong>債権者からの投資</strong>と<strong>株主からの投資</strong>を区別する。債権者からの投資に対応するのが、金融負債から金融資産を差し引いた<strong>純金融負債（NFO）</strong>であり、債権者からの正味の調達額を表す。</p>
+<div id="fig-reclassified-bs-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="事業資産と事業負債の差がNOA、金融負債と金融資産の差がNFOとなり、NOAはNFOとBEの合計に等しい。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reclassified-bs-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reclassified-bs.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="事業資産と事業負債の差がNOA、金融負債と金融資産の差がNFOとなり、NOAはNFOとBEの合計に等しい。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reclassified-bs-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;1: 事業への投資と債権者・株主からの投資を対応させた組替B/S
+</figcaption>
+</figure>
+</div>
+<p>事業への正味の投資額NOAから、債権者の投資に対応するNFOを差し引いた残りが、<strong>株主資本（BE）</strong>となる。BEは、株主の投資額を帳簿上で表したものである。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{株主資本}\,{\scriptstyle(BE_t)}
+&amp;= \underbrace{\bigl(\text{事業資産}\,{\scriptstyle(OA_t)}-\text{事業負債}\,{\scriptstyle(OL_t)}\bigr)}_{\textcolor{red}{\text{純事業資産}\,{\scriptscriptstyle(NOA_t)}}} \\[1em]
+&amp;\quad - \underbrace{\bigl(\text{金融負債}\,{\scriptstyle(FO_t)}-\text{金融資産}\,{\scriptstyle(FA_t)}\bigr)}_{\textcolor{red}{\text{純金融負債}\,{\scriptscriptstyle(NFO_t)}}}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="組替pl債権者と株主に対応する成果を区別する" class="level4">
+<h4 class="anchored" data-anchor-id="組替pl債権者と株主に対応する成果を区別する">組替P/L：債権者と株主に対応する成果を区別する</h4>
+<p>下の図では、事業収益から事業費用を差し引いた<strong>事業利益（OX）</strong>が、事業に投じた資金から1年間に得られた成果を表す。組替P/Lでは、この成果を、<strong>債権者の投資に対応する成果</strong>と<strong>株主の投資に対応する成果</strong>に分けて見る。金融費用から金融収益を差し引いた<strong>純金融費用（NFE）</strong>は、債権者の側から見れば、リスクを負って企業に資金を提供したことへの対価に対応する。企業の側から見れば、負債による資金調達の正味のコストを表す。</p>
+<div id="fig-reclassified-pl-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="事業利益OXは純金融費用NFEと株主に帰属する当期純利益Xに分かれる。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reclassified-pl-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/reclassified-pl.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="事業利益OXは純金融費用NFEと株主に帰属する当期純利益Xに分かれる。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reclassified-pl-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;2: 事業の成果と債権者・株主への配分を示す組替P/L
+</figcaption>
+</figure>
+</div>
+<p>事業の成果OXから、債権者に対応する成果NFEを差し引いた残りが、<strong>株主に帰属する当期純利益（X）</strong>となる。</p>
+<p><span class="math display">\[
+\text{当期純利益}\,{\scriptstyle(X_t)} = \text{事業利益}\,{\scriptstyle(OX_t)} - \text{純金融費用}\,{\scriptstyle(NFE_t)}
+\]</span></p>
+</section>
+</section>
+<section id="投資と成果を対応させリターンを求める" class="level3">
+<h3 class="anchored" data-anchor-id="投資と成果を対応させリターンを求める">2. 投資と成果を対応させ、リターンを求める</h3>
+<p>組替B/Sと組替P/Lを使うと、<strong>事業・債権者・株主それぞれの投資額と、それに対応する1年間の成果</strong>を組み合わせられる。成果を投資額で割れば、「投じた金額に対して、どれだけのリターンが得られたか」を表せる。</p>
+<section id="会計上の事業のリターン" class="level4">
+<h4 class="anchored" data-anchor-id="会計上の事業のリターン">会計上の事業のリターン</h4>
+<p><strong>事業への正味の投資額NOA</strong>に対応する成果は、<strong>事業利益OX</strong>である。OXを期首のNOAで割ると、事業に投じた資金がどれだけの利益を生んだかを示す<strong>純事業資産利益率（RNOA）</strong>が得られる。</p>
+<p><span class="math display">\[
+RNOA_t = \frac{OX_t}{NOA_{t-1}}
+\]</span></p>
+</section>
+<section id="会計上の債権者のリターン" class="level4">
+<h4 class="anchored" data-anchor-id="会計上の債権者のリターン">会計上の債権者のリターン</h4>
+<p><strong>債権者の投資に対応するNFO（正味の調達額）</strong>には、その成果として<strong>純金融費用NFE</strong>を対応させる。NFEを期首のNFOで割ると、債権者に対応するリターンを企業側の資金調達コストとして捉えた<strong>純金融費用率（NBC）</strong>が得られる。</p>
+<p><span class="math display">\[
+NBC_t = \frac{NFE_t}{NFO_{t-1}}
+\]</span></p>
+</section>
+<section id="会計上の株主のリターン" class="level4">
+<h4 class="anchored" data-anchor-id="会計上の株主のリターン">会計上の株主のリターン</h4>
+<p><strong>株主の投資額を表すBE</strong>に対応する成果は、<strong>株主に帰属する利益X</strong>である。Xを期首のBEで割ると、株主の投資に対してどれだけの利益が生じたかを示す<strong>株主資本利益率（ROE）</strong>が得られる。</p>
+<p><span class="math display">\[
+ROE_t = \frac{X_t}{BE_{t-1}}
+\]</span></p>
+<p>次に、まず事業のリターンRNOAが何によって決まるかを調べる。</p>
+</section>
+</section>
+<section id="事業のリターンの決定要因" class="level3">
+<h3 class="anchored" data-anchor-id="事業のリターンの決定要因">3. 事業のリターンの決定要因</h3>
+<p>事業のリターンであるRNOAは、企業が事業で稼ぐ力を反映している。収益性の高い事業やプロジェクトに投資し、投じた資金を有効に活用することで、投資額（純事業資産）に対して多くの成果（事業利益）を生み出す企業ほど、RNOAは高くなる。</p>
+<p>この稼ぐ力を決める要因を調べるために、RNOAの式を次のように分解する。売上高を<span class="math inline">\(Sales\)</span>とする。</p>
+<p><span class="math display">\[
+RNOA_t
+= \frac{OX_t}{NOA_{t-1}}
+= \underbrace{\frac{OX_t}{Sales_t}}_{PM_t}
+\times \underbrace{\frac{Sales_t}{NOA_{t-1}}}_{ATO_t}
+\]</span></p>
+<p>この式は、RNOAが<strong>売上高事業利益率（PM）</strong>と<strong>純事業資産回転率（ATO）</strong>の積で表せることを示している。</p>
+<p><strong>PM（売上高事業利益率）</strong>は、売上高に対する事業利益の割合であり、売上高1円からどれだけ事業利益が残るかを表す。金融活動の損益を切り分けた<strong>事業の収益性</strong>を示す指標である。販売価格や仕入・人件費などの費用が影響する。</p>
+<p><strong>ATO（純事業資産回転率）</strong>は、期首純事業資産の何倍の売上高を1年間で生み出したかを表す。在庫や設備など、事業に投じた資金を売上高につなげる<strong>事業資産の利用効率</strong>を示す指標である。同じ純事業資産から多くの売上高を生むほど高くなる。</p>
+<p>つまり、RNOAは、<strong>事業の収益性（PM）</strong>と、<strong>事業資産の利用効率（ATO）</strong>の組合せによって決まる。</p>
+<p>下の図は、産業ごとのPMとATOの組合せを示したものである。横軸はATOの産業中央値、縦軸はPMの産業中央値を表す。</p>
+<div id="fig-pm-ato-tradeoff-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="元図の点の配置を近似して再描画した模式図。横軸はATOの産業中央値、縦軸はPMの産業中央値。RNOAが5.6%となる右下がりの破線と産業別の点を示す。医薬品・不動産は左上、小売・建設・卸売は右下に位置する。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm-ato-tradeoff-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pm-ato-tradeoff.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="元図の点の配置を近似して再描画した模式図。横軸はATOの産業中央値、縦軸はPMの産業中央値。RNOAが5.6%となる右下がりの破線と産業別の点を示す。医薬品・不動産は左上、小売・建設・卸売は右下に位置する。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pm-ato-tradeoff-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3: PMとATOの組合せと等RNOA曲線
+</figcaption>
+</figure>
+</div>
+<p>図の左上にある医薬品・不動産は<strong>高PM・低ATO</strong>、右下にある小売・建設・卸売は<strong>低PM・高ATO</strong>に位置する。前者は売上高に対して多くの利益を残す一方、後者は事業への投資額に対して多くの売上高を生み出すという特徴が読み取れる。</p>
+<p>破線は、<span class="math inline">\(RNOA=5.6\%\)</span>となるPMとATOの組合せを示す<strong>等RNOA曲線</strong>（<span class="math inline">\(PM=0.056/ATO\)</span>）である。同じRNOAであっても、それを実現する利益率と回転率の組合せは異なる。</p>
+<p>このように、RNOAを決定づけるPMとATOを合わせて見ることで、ある産業や企業がどのように利益を生み出しているかという、<strong>ビジネス・モデルの一端をつかむことができる</strong>。</p>
+</section>
+<section id="株主のリターンの決定要因1" class="level3">
+<h3 class="anchored" data-anchor-id="株主のリターンの決定要因1">4. 株主のリターンの決定要因（1）</h3>
+<p>株主のリターンであるROEは、企業がどれだけ利益を生み出すかに加え、資産をどのような資金で支えているかによっても変わる。その要因を調べるために、ROEの式を次のように分解する。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{株主資本利益率}\,{\scriptstyle(ROE_t)}
+&amp;= \frac{\text{当期純利益}\,{\scriptstyle(X_t)}}{\text{期首株主資本}\,{\scriptstyle(BE_{t-1})}} \\[1em]
+&amp;= \underbrace{\frac{\text{当期純利益}\,{\scriptstyle(X_t)}}{\text{売上高}\,{\scriptstyle(Sales_t)}}}_{\text{売上高純利益率}}
+\times \underbrace{\frac{\text{売上高}\,{\scriptstyle(Sales_t)}}{\text{期首総資産}\,{\scriptstyle(TA_{t-1})}}}_{\text{総資産回転率}} \\[1em]
+&amp;\quad\times \underbrace{\frac{\text{期首総資産}\,{\scriptstyle(TA_{t-1})}}{\text{期首株主資本}\,{\scriptstyle(BE_{t-1})}}}_{\text{総レバレッジ}}
+\end{aligned}
+\]</span></p>
+<p>この式は、ROEが<strong>売上高純利益率</strong>・<strong>総資産回転率</strong>・<strong>総レバレッジ</strong>の積で表せることを示している。この分解を<strong>基本デュポン・モデル</strong>という。</p>
+<p><strong>売上高純利益率</strong>は、売上高に対する当期純利益の割合であり、売上高1円からどれだけ最終的な利益が残るかを表す。金融活動の損益や税金も反映した<strong>企業全体の収益性</strong>を示す指標である。</p>
+<p><strong>総資産回転率</strong>は、期首総資産の何倍の売上高を1年間で生み出したかを表す。金融資産も含む資産を売上高につなげる<strong>資産全体の利用効率</strong>を示す指標である。同じ総資産から多くの売上高を生むほど高くなる。</p>
+<p><strong>総レバレッジ</strong>は、期首株主資本の何倍の総資産を保有しているかを表す。株主資本に対してどれだけ負債を活用して資産を保有しているかという、<strong>負債の活用状況</strong>を示す指標である。数値が高いほど株主資本に対する負債の利用が大きく、返済や利払いの負担を通じて、財務の<strong>安全性</strong>を考える手がかりとなる。</p>
+<p>つまり、ROEは、<strong>企業全体の収益性</strong>・<strong>資産の利用効率</strong>・<strong>負債の活用状況</strong>の組合せによって決まる。</p>
+<p>下の表は、2014年公表資料に基づき、日米欧の企業のROEと、それを構成する三つの指標を比較したものである。</p>
+<div id="tbl-roe-components-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-roe-components-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+表&nbsp;1: 日米欧のROEと三要素の比較
+</figcaption>
+<div aria-describedby="tbl-roe-components-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>地域・対象企業</th>
+<th>区分</th>
+<th style="text-align: right;">ROE（%）</th>
+<th style="text-align: right;">売上高純利益率（%）</th>
+<th style="text-align: right;">総資産回転率（回）</th>
+<th style="text-align: right;">総レバレッジ（倍）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>日本（TOPIX500）</td>
+<td>製造業</td>
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">2.32</td>
+</tr>
+<tr class="even">
+<td>日本（TOPIX500）</td>
+<td>非製造業</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">4.0</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">2.80</td>
+</tr>
+<tr class="odd">
+<td>日本（TOPIX500）</td>
+<td>合計</td>
+<td style="text-align: right;"><strong>5.3</strong></td>
+<td style="text-align: right;"><strong>3.8</strong></td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">2.51</td>
+</tr>
+<tr class="even">
+<td>米国（S&amp;P500）</td>
+<td>製造業</td>
+<td style="text-align: right;">28.9</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">2.47</td>
+</tr>
+<tr class="odd">
+<td>米国（S&amp;P500）</td>
+<td>非製造業</td>
+<td style="text-align: right;">17.6</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">2.88</td>
+</tr>
+<tr class="even">
+<td>米国（S&amp;P500）</td>
+<td>合計</td>
+<td style="text-align: right;"><strong>22.6</strong></td>
+<td style="text-align: right;"><strong>10.5</strong></td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">2.69</td>
+</tr>
+<tr class="odd">
+<td>欧州（BE500）</td>
+<td>製造業</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">2.58</td>
+</tr>
+<tr class="even">
+<td>欧州（BE500）</td>
+<td>非製造業</td>
+<td style="text-align: right;">14.8</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">3.08</td>
+</tr>
+<tr class="odd">
+<td>欧州（BE500）</td>
+<td>合計</td>
+<td style="text-align: right;"><strong>15.0</strong></td>
+<td style="text-align: right;"><strong>8.9</strong></td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">2.86</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>合計を見ると、日本のROEは5.3%であり、米国の22.6%、欧州の15.0%を下回る。総資産回転率は日本0.96回、米国0.96回、欧州0.87回であり、総レバレッジにも大きな差はない。一方、<strong>売上高純利益率</strong>は日本3.8%に対し、米国10.5%、欧州8.9%と差が大きい。この表からは、<strong>日本企業の低いROEを考えるうえで、売上高純利益率の低さが重要な要因である</strong>と読み取れる。</p>
+<p>このように、ROEを構成する三つの指標を合わせて見ることで、企業間のROEの違いがどこから生じているかを捉えられる。利益を残す力、資産の使い方、負債の利用状況を区別して見ることは、<strong>企業の経営上の特徴や課題を理解する手がかりとなる</strong>。</p>
+</section>
+<section id="株主のリターンの決定要因2" class="level3">
+<h3 class="anchored" data-anchor-id="株主のリターンの決定要因2">5. 株主のリターンの決定要因（2）</h3>
+<p>前節では、ROEの高低を決める三つの要素を学んだ。基本モデルの式だけを見ると、負債の活用度を表す総レバレッジを高めればROEも高くなるように見えるため、違和感を覚えるかもしれない。ここでは、レバレッジの持つ意味と、事業活動・金融活動がROEにどう関わるかを整理する。</p>
+そのために、組替B/Sと組替P/Lの関係を使い、ROEの式を次のように変形する。
+<details>
+<summary>
+補足：上級デュポン・モデルの導出
+</summary>
+<p>組替P/Lの<span class="math inline">\(X_t=OX_t-NFE_t\)</span>をROEの定義式に代入し、事業利益と純金融費用を分ける。それぞれに期首のNOA、NFOを掛けて割ると、RNOAとNBCを使って表せる。</p>
+<p><span class="math display">\[
+\begin{aligned}
+ROE_t
+&amp;= \frac{X_t}{BE_{t-1}}
+= \frac{OX_t-NFE_t}{BE_{t-1}} \\
+&amp;= \frac{NOA_{t-1}}{BE_{t-1}}\frac{OX_t}{NOA_{t-1}}
+- \frac{NFO_{t-1}}{BE_{t-1}}\frac{NFE_t}{NFO_{t-1}} \\
+&amp;= (1+FLEV_{t-1})RNOA_t-FLEV_{t-1}NBC_t \\
+&amp;= RNOA_t+FLEV_{t-1}(RNOA_t-NBC_t)
+\end{aligned}
+\]</span></p>
+<p>3行目では、期首の組替B/Sの関係<span class="math inline">\(NOA_{t-1}=BE_{t-1}+NFO_{t-1}\)</span>より、<span class="math inline">\(NOA_{t-1}/BE_{t-1}=1+FLEV_{t-1}\)</span>となることを使っている。最後にFLEVで括ると、上級デュポン・モデルが得られる。</p>
+</details>
+<p><span class="math display">\[
+ROE_t
+= \frac{X_t}{BE_{t-1}}
+= \underbrace{RNOA_t}_{\text{事業の収益性}}
++ \underbrace{FLEV_{t-1}\underbrace{(RNOA_t-NBC_t)}_{\text{事業スプレッド}}}_{\text{金融活動の寄与}}
+\]</span></p>
+<p>この式は、ROEが<strong>事業の収益性</strong>と<strong>金融活動の寄与</strong>の和で表せることを示している。事業のリターンRNOAを基準とし、金融活動によって株主のリターンがどれだけ変わるかを捉える。この分解を<strong>上級デュポン・モデル</strong>という。</p>
+<p><strong>FLEV（財務レバレッジ）</strong>は、期首株主資本に対する期首純金融負債の割合であり、<span class="math inline">\(FLEV_{t-1}=NFO_{t-1}/BE_{t-1}\)</span>で求める。株主の投資額に対して、実質的な借入をどれだけ活用しているかを示す指標である。基本モデルの総レバレッジが総資産を使うのに対し、ここでは金融負債から金融資産を差し引いた純金融負債を使う。</p>
+<p><strong>SPREAD（事業スプレッド）</strong>は、事業のリターンRNOAと借入コストNBCの差であり、<span class="math inline">\(SPREAD_t=RNOA_t-NBC_t\)</span>で求める。事業で得られるリターンが、資金調達のコストをどれだけ上回るかを示す指標である。</p>
+<p><strong>金融活動の寄与（FLEV×SPREAD）</strong>は、ROEが事業のリターンRNOAからどれだけ上がるか、下がるかを表す。つまり、金融活動の寄与は、<strong>借入の活用度（FLEV）</strong>と、<strong>事業のリターンと借入コストの差（SPREAD）</strong>の組合せによって決まる。</p>
+<p>下の図は、この関係をてこの原理になぞらえて示したものである。ここでは、FLEVとSPREADがともに正の場合を考える。</p>
+<div id="fig-leverage-principle-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="支点から力点までの距離がFLEV、力点に加える力が事業スプレッドRNOA−NBCに対応し、作用点でROE−RNOAを持ち上げるてこの図。FLEVとSPREADがともに正の場合を示す模式図。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-leverage-principle-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/leverage-principle.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="支点から力点までの距離がFLEV、力点に加える力が事業スプレッドRNOA−NBCに対応し、作用点でROE−RNOAを持ち上げるてこの図。FLEVとSPREADがともに正の場合を示す模式図。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leverage-principle-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;4: てこの原理とROEの関係
+</figcaption>
+</figure>
+</div>
+<p>図では、支点から力点までの<strong>てこの長さが財務レバレッジ</strong>、力点で下向きに<strong>加える力が事業スプレッド</strong>に対応する。その積に相当する分だけ、作用点で<strong>ROEがRNOAから押し上げられる</strong>。同じ事業スプレッドであっても、財務レバレッジが大きいほど押し上げる効果は大きくなる。</p>
+<p>ただし、財務レバレッジはROEに悪い影響をもたらすときもある。例えば、事業が不調に陥り、事業のリターンが借入コストを下回ると、事業スプレッドは負になる。このとき、財務レバレッジが正であれば、金融活動の寄与も負となり、ROEはRNOAを下回る。てこの長さが効果を増幅するように、財務レバレッジはROEを押し上げる効果だけでなく、押し下げる効果も大きくする。</p>
+<p>このように、上級デュポン・モデルを使うと、<strong>事業で稼ぐ力と、借入の活用がもたらす効果を分けて捉えられる</strong>。負債を活用すれば必ずROEが高まるわけではなく、事業で借入コストを上回るリターンを確保できているかが重要となる。</p>
+</section>
+</section>
+<section id="chapter-2分析用データの作成と検算" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2分析用データの作成と検算">Chapter 2｜分析用データの作成と検算</h2>
+<p>ここからは、Rを用いて企業の財務データからRNOA・NBC・ROEを計算し、前章で学んだ分解を実際のデータで確かめる。企業や産業の比較を通じて、リターンの違いがどこから生じているかを読み取る。以後、収益率や利益率は小数で扱う。</p>
+<section id="純事業資産純金融負債と期首残高の作成" class="level3">
+<h3 class="anchored" data-anchor-id="純事業資産純金融負債と期首残高の作成">1. 純事業資産・純金融負債と期首残高の作成</h3>
+<p>ここではまず、期首の<strong>純事業資産（NOA）、純金融負債（NFO）、株主資本（BE）</strong>を求める。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>financial_components <span class="ot">&lt;-</span> financial_data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">NOA =</span> OA <span class="sc">-</span> OL, <span class="co"># 事業資産から事業負債を差し引く</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">NFO =</span> FO <span class="sc">-</span> FA,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">BE =</span> NOA <span class="sc">-</span> NFO <span class="co"># 先に作ったNOA・NFOを同じmutate()内で使う</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>financial_lagged <span class="ot">&lt;-</span> financial_components <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(firm_ID, year) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(firm_ID) <span class="sc">|&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">previous_year =</span> <span class="fu">lag</span>(year),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">lagged_NOA =</span> <span class="fu">lag</span>(NOA),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">lagged_NFO =</span> <span class="fu">lag</span>(NFO),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">lagged_BE =</span> <span class="fu">lag</span>(BE)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>financial_lagged <span class="sc">|&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(firm_ID <span class="sc">==</span> <span class="st">"1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, NOA, NFO, BE, lagged_NOA, lagged_NFO, lagged_BE)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+   year    NOA    NFO     BE lagged_NOA lagged_NFO lagged_BE
+  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1  2015  8633. -1063.  9695.        NA         NA        NA 
+2  2016  9331.  -682. 10014.      8633.     -1063.     9695.
+3  2017  8841. -1585. 10426.      9331.      -682.    10014.
+4  2018 13681.  2839. 10842.      8841.     -1585.    10426.
+5  2019 12702.  1627. 11075.     13681.      2839.    10842.
+6  2020 15091.  3498. 11594.     12702.      1627.    11075.</code></pre>
+</div>
+</div>
+</section>
+<section id="上級モデルの各指標の計算" class="level3">
+<h3 class="anchored" data-anchor-id="上級モデルの各指標の計算">2. 上級モデルの各指標の計算</h3>
+<p>次に、各企業・各年度について、ROEと上級デュポン・モデルを構成する指標を求める。あわせて、事業のリターンを分解するPM・ATOも計算する。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指標</th>
+<th>計算式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>株主資本利益率（ROE）</td>
+<td><span class="math inline">\(ROE_t=X_t/BE_{t-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>純事業資産利益率（RNOA）</td>
+<td><span class="math inline">\(RNOA_t=OX_t/NOA_{t-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>売上高事業利益率（PM）</td>
+<td><span class="math inline">\(PM_t=OX_t/Sales_t\)</span></td>
+</tr>
+<tr class="even">
+<td>純事業資産回転率（ATO）</td>
+<td><span class="math inline">\(ATO_t=Sales_t/NOA_{t-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>財務レバレッジ（FLEV）</td>
+<td><span class="math inline">\(FLEV_{t-1}=NFO_{t-1}/BE_{t-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>純金融費用率（NBC）</td>
+<td><span class="math inline">\(NBC_t=NFE_t/NFO_{t-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>事業スプレッド（SPREAD）</td>
+<td><span class="math inline">\(SPREAD_t=RNOA_t-NBC_t\)</span></td>
+</tr>
+<tr class="even">
+<td>金融活動の寄与</td>
+<td><span class="math inline">\(FLEV_{t-1}\times SPREAD_t\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>roe_data <span class="ot">&lt;-</span> financial_lagged <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">==</span> previous_year <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    lagged_BE <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ROE =</span> X <span class="sc">/</span> lagged_BE)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="ot">&lt;-</span> roe_data <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    lagged_NOA <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="co"># 正の投資額に対するRNOAを比較するため</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    lagged_NFO <span class="sc">!=</span> <span class="dv">0</span>, <span class="co"># NBCの分母が0になる観測を除く（負のNFOは残す）</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    sales <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(OX), <span class="sc">!</span><span class="fu">is.na</span>(NFE), <span class="sc">!</span><span class="fu">is.na</span>(X)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">RNOA =</span> OX <span class="sc">/</span> lagged_NOA,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">PM =</span> OX <span class="sc">/</span> sales,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATO =</span> sales <span class="sc">/</span> lagged_NOA,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">FLEV =</span> lagged_NFO <span class="sc">/</span> lagged_BE,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">NBC =</span> NFE <span class="sc">/</span> lagged_NFO,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPREAD =</span> RNOA <span class="sc">-</span> NBC,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">financial_effect =</span> FLEV <span class="sc">*</span> SPREAD,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE_DuPont =</span> RNOA <span class="sc">+</span> financial_effect</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="sc">|&gt;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, year, ROE, RNOA, FLEV, NBC, financial_effect) <span class="sc">|&gt;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  firm_ID  year    ROE   RNOA    FLEV     NBC financial_effect
+  &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+1 1        2016 0.0530 0.0654 -0.110  -0.0477         -0.0124 
+2 1        2017 0.0661 0.0741 -0.0682 -0.0433         -0.00800
+3 1        2018 0.0638 0.0850 -0.152  -0.0546         -0.0212 
+4 1        2019 0.0609 0.0701  0.262   0.105          -0.00914
+5 1        2020 0.0762 0.0613  0.147  -0.0402          0.0149 
+6 2        2016 0.0468 0.0451  0.0783  0.0227          0.00175</code></pre>
+</div>
+</div>
+</section>
+<section id="分解結果の検算" class="level3">
+<h3 class="anchored" data-anchor-id="分解結果の検算">3. 分解結果の検算</h3>
+<p>ここでは、<strong>ROEの上級デュポン分解</strong>と、<strong>RNOAのPM・ATOへの分解</strong>をそれぞれ検算する。</p>
+<p>まず、当期純利益を期首株主資本で割った<code>ROE</code>と、事業のリターンに金融活動の寄与を加えた<code>ROE_DuPont</code>を比較する。つまり、次の関係が成り立つかを確認する。</p>
+<p><span class="math display">\[
+ROE_t
+=RNOA_t+FLEV_{t-1}(RNOA_t-NBC_t)
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(dupont_data<span class="sc">$</span>ROE, dupont_data<span class="sc">$</span>ROE_DuPont)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mean relative difference: 4.39789e-06"</code></pre>
+</div>
+</div>
+<p><code>all.equal()</code>関数を用いると、第一引数と第二引数が等しいかを判定できる。完全に等しければ<code>TRUE</code>を返すが、ここでは<code>Mean relative difference: 4.39789e-06</code>と表示されている。</p>
+<p><code>4.39789e-06</code>は、数式では <span class="math inline">\(4.39789 \times 10^{-6}\)</span> と表す。両者の差はごく小さく、上級デュポン・モデルの分解式による計算結果が、定義式から求めたROEとほぼ一致していることを確認できる。</p>
+<p>次に、事業利益を期首純事業資産で割った<code>RNOA</code>と、売上高事業利益率と純事業資産回転率の積<code>PM * ATO</code>を比較する。つまり、次の関係が成り立つかを確認する。</p>
+<p><span class="math display">\[
+RNOA_t
+=PM_t\times ATO_t
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(dupont_data<span class="sc">$</span>RNOA, dupont_data<span class="sc">$</span>PM <span class="sc">*</span> dupont_data<span class="sc">$</span>ATO)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>こちらの<code>all.equal()</code>は<code>TRUE</code>となる。したがって、RNOAの分解式も正しいことが確認できる。</p>
+</section>
+<section id="同業他社のroeの内訳を比較する" class="level3">
+<h3 class="anchored" data-anchor-id="同業他社のroeの内訳を比較する">4. 同業他社のROEの内訳を比較する</h3>
+<p>第8回で高いROEを示した企業について、事業の収益性が高いのか、金融活動の寄与が大きいのかを確かめる。2020年の産業2を例に、ROEの高い3社の内訳を並べる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dupont_2020 <span class="ot">&lt;-</span> dupont_data <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>dupont_2020 <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(industry_ID <span class="sc">==</span> <span class="st">"2"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE)) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, RNOA, FLEV, NBC, financial_effect, ROE) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  firm_ID  RNOA   FLEV     NBC financial_effect   ROE
+  &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt; &lt;dbl&gt;
+1 242     0.590 -0.383  0.0283          -0.215  0.375
+2 233     0.280 -0.112  0.0387          -0.0270 0.253
+3 245     0.459 -0.444 -0.0128          -0.210  0.249</code></pre>
+</div>
+</div>
+<p>この結果から、ROEの高い3社はいずれもFLEVが負で、金融負債より金融資産を多く保有していることがわかる。3社とも金融活動の寄与は負であり、ROEはRNOAを下回っている。したがって、これらの企業の高いROEを支えているのは、事業の高い収益性であることが読み取れる。</p>
+</section>
+</section>
+<section id="chapter-3箱ひげ図と散布図による産業別比較" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3箱ひげ図と散布図による産業別比較">Chapter 3｜箱ひげ図と散布図による産業別比較</h2>
+<section id="箱ひげ図でpmの分布を比べる" class="level3">
+<h3 class="anchored" data-anchor-id="箱ひげ図でpmの分布を比べる">1. 箱ひげ図でPMの分布を比べる</h3>
+<p>上級デュポン・モデルを利用してROEが計算できたので、今度は産業ごとにROEの各決定要因がどう分布しているのか可視化してみたい。まずは箱ひげ図を用いて売上高事業利益率（PM）を産業ごとにプロットしてみよう。</p>
+<p><strong>箱ひげ図</strong>は、中央値・四分位数・分布の広がりをまとめて示す図である。</p>
+<p>各部分の読み方を、下の模式図で確認しよう。</p>
+<div id="fig-boxplot-guide-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="箱の下端はQ1、上端はQ3、箱内の線は中央値Q2。箱の高さはIQRで中央50%のデータを表す。ひげの先端はQ1−1.5×IQRからQ3＋1.5×IQRまでの範囲内にある実際の最小値と最大値。範囲外の点は外れ値（異常値）。">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-guide-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot-guide.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="箱の下端はQ1、上端はQ3、箱内の線は中央値Q2。箱の高さはIQRで中央50%のデータを表す。ひげの先端はQ1−1.5×IQRからQ3＋1.5×IQRまでの範囲内にある実際の最小値と最大値。範囲外の点は外れ値（異常値）。">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-guide-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;5: 箱ひげ図とその読み方
+</figcaption>
+</figure>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pm_box_plot <span class="ot">&lt;-</span> dupont_data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>, industry_ID <span class="sc">%in%</span> <span class="fu">as.character</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)) <span class="sc">|&gt;</span> <span class="co"># 連番を文字列にし、産業IDと比較する</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> industry_ID, <span class="at">y =</span> PM)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span> <span class="co"># 中央値・四分位数・ひげ・外れ値の点を描く</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Industry ID"</span>, <span class="at">y =</span> <span class="st">"PM"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pm_box_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-industry-pm-box-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-industry-pm-box-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-industry-pm-box-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-industry-pm-box-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;6: 2020年の産業別PMの分布（産業2～6）
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>箱の中央線の位置からPMの水準、箱やひげの長さから企業間のばらつきを比べる。縦軸にはPMを小数で表示している。外れ値の点も表示し、極端な企業があるかを確認する。</p>
+<p>この図では、産業2・6のPMの中央値が比較的高く、産業5は低い。産業4は箱が小さく、中央50%の企業のPMが比較的狭い範囲に集中している。一方、産業3では正負両側に外れ値が見られ、同じ産業でも企業間の利益率に大きな差があることがわかる。</p>
+</section>
+<section id="散布図と等rnoa曲線でpmatoの関係を見る" class="level3">
+<h3 class="anchored" data-anchor-id="散布図と等rnoa曲線でpmatoの関係を見る">2. 散布図と等RNOA曲線でPM・ATOの関係を見る</h3>
+<p>続いて、産業ごとに純事業資産回転率（ATO）と売上高事業利益率（PM）の関係を散布図で見てみよう。各産業のPMとATOの中央値を散布図にプロットし、さらに等RNOA曲線を重ねて、その組合せを比較する。財務比率には極端な値が含まれることがあるため、ここでは平均値よりも外れ値の影響を受けにくい中央値を代表値として用いる。</p>
+<p>ここで、まず産業ごとのPMとATOの中央値を計算する。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>industry_components <span class="ot">&lt;-</span> dupont_data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry_ID) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_PM =</span> <span class="fu">median</span>(PM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_ATO =</span> <span class="fu">median</span>(ATO, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>industry_components</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   industry_ID median_PM median_ATO
+   &lt;fct&gt;           &lt;dbl&gt;      &lt;dbl&gt;
+ 1 1              0.0258       3.94
+ 2 2              0.0455       2.41
+ 3 3              0.0493       1.83
+ 4 4              0.0411       1.78
+ 5 5              0.0363       2.51
+ 6 6              0.0591       1.30
+ 7 7              0.0329       2.52
+ 8 8              0.0766       1.07
+ 9 9              0.0442       2.18
+10 10             0.0470       1.96</code></pre>
+</div>
+</div>
+<p>そして、産業ごとのPMとATOの中央値を散布図にプロットする。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pm_ato_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  industry_components,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> median_ATO, <span class="at">y =</span> median_PM)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> industry_ID), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># 産業IDを点の少し上に表示する</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Industry median ATO"</span>, <span class="at">y =</span> <span class="st">"Industry median PM"</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pm_ato_plot)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-pm-ato-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm-ato-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-pm-ato-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pm-ato-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;7: 産業別PM・ATOの中央値（全計算対象年度）
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>このように図示してみると、ATOとPMにはトレードオフの関係があることがわかる。ATOが高い産業はPMが低く、ATOが低い産業はPMが高い傾向にある。</p>
+<p>続いて、前章で見た<strong>等RNOA曲線</strong>を散布図に重ねる。等RNOA曲線は、同じRNOAを実現するPMとATOの組合せを表す。<span class="math inline">\(RNOA=PM\times ATO\)</span>を変形すると、曲線の式は次のようになる。</p>
+<p><span class="math display">\[
+PM=\frac{RNOA}{ATO}
+\]</span></p>
+<p>まず、曲線の基準となるRNOAを求める。ここでは、産業別に集計する前の全計算対象データの中央値を使う。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>median_RNOA <span class="ot">&lt;-</span> <span class="fu">median</span>(dupont_data<span class="sc">$</span>RNOA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>median_RNOA</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0858684</code></pre>
+</div>
+</div>
+<p>この値をRNOAとして固定し、横軸のATOに対応するPMを計算する関数を<code>stat_function()</code>に渡すと、散布図に等RNOA曲線を重ねられる。</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pm_ato_curve <span class="ot">&lt;-</span> pm_ato_plot <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) median_RNOA <span class="sc">/</span> x, <span class="co"># xをATOとしてPMを返す関数</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"longdash"</span>,            <span class="co"># 等RNOA曲線を破線で描く</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"gray40"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pm_ato_curve)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-pm-ato-curve-10" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm-ato-curve-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-pm-ato-curve-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1120">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pm-ato-curve-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;8: 産業別PM・ATOの中央値と等RNOA曲線
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>function(x)</code>は、入力<code>x</code>から値を計算する関数をその場で定義する書き方である。ここでは、ATOの値を受け取り、基準のRNOAを実現するPMを返す。</p>
+<p>この曲線より右上に位置する産業は、平均的なRNOAよりも高いRNOAを実現していることを意味する。逆に、曲線より左下に位置する産業は、平均的なRNOAよりも低いRNOAである。</p>
+<p>最後は<code>script/lesson10.R</code>を保存する。</p>
+</section>
+</section>
+<section id="授業外課題" class="level2 homework">
+<h2 class="homework anchored" data-anchor-id="授業外課題">授業外課題</h2>
+<p>本回と同じ<a href="../../data/lesson07/data_lesson07.csv" download="data_lesson07.csv">data_lesson07.csv</a>を使い、以下の問1～3に取り組みなさい。問1・問3では最終年度（2020年）、問2では全年度のデータを用いる。ROEは小数で扱う。</p>
+<p><strong>File → New File → R Script</strong>から課題用のRスクリプトを新規作成し、<code>script/homework10.R</code>として保存する。冒頭に学籍番号と氏名をコメントで記載し、データの読込みや必要な指標の作成も含め、最初から順に実行できるようにする。</p>
+<section id="提出方法締切" class="level3 homework-notes">
+<h3 class="anchored" data-anchor-id="提出方法締切">提出方法・締切</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>項目</th>
+<th>指示</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>提出先</td>
+<td>LETUSの<strong>「第10回授業外課題（提出）」</strong></td>
+</tr>
+<tr class="even">
+<td>提出物</td>
+<td>問1～3の解答を記載したRスクリプト1ファイル（<code>.R</code>形式）</td>
+</tr>
+<tr class="odd">
+<td>ファイル名</td>
+<td><strong><code>学籍番号_氏名_第10回授業外課題.R</code></strong></td>
+</tr>
+<tr class="even">
+<td>締切</td>
+<td><strong>11月27日（金）23:59まで</strong></td>
+</tr>
+</tbody>
+</table>
+<p>ファイル名の例：<code>1234567_山田太郎_第10回授業外課題.R</code></p>
+<p>学籍番号と氏名は自分のものに置き換え、区切りには半角のアンダースコア（<code>_</code>）を用いる。提出時には、<code>homework10.R</code>のコピーを上記のファイル名で保存する。</p>
+<p><strong>指定されたファイル名に従っていない場合、または提出するファイルを誤った場合は、本課題の評価を一律0点とする。</strong></p>
+<p>各問の解答は、どの設問に対応するかが分かるように整理する。問1・問3の結果がConsoleに表示され、問2の図がPlotsペインに描画されるコードを記載すること。</p>
+<p>保存したRスクリプトをLETUSにアップロードし、提出操作を完了する。提出後は、ファイル名と提出状況を確認すること。</p>
+</section>
+<section id="問1当期純利益による企業の順位付け" class="level3">
+<h3 class="anchored" data-anchor-id="問1当期純利益による企業の順位付け">問1．当期純利益による企業の順位付け</h3>
+<p>最終年度の当期純利益<code>X</code>が大きい順に企業を並べ、<strong>上位3社の企業ID（<code>firm_ID</code>）と当期純利益<code>X</code></strong>を表示しなさい。<code>X</code>が欠損している企業は順位付けの対象から除くこと。</p>
+</section>
+<section id="問2売上高の推移を折れ線グラフで示す" class="level3">
+<h3 class="anchored" data-anchor-id="問2売上高の推移を折れ線グラフで示す">問2．売上高の推移を折れ線グラフで示す</h3>
+<p><strong>企業ID（<code>firm_ID</code>）が350の企業</strong>について、全年度の売上高の推移を折れ線グラフで示しなさい。横軸を年度<code>year</code>、縦軸を売上高<code>sales</code>とし、年度の順に線で結ぶこと。</p>
+</section>
+<section id="問3roeの分位点と企業数" class="level3">
+<h3 class="anchored" data-anchor-id="問3roeの分位点と企業数">問3．ROEの分位点と企業数</h3>
+<p>授業と同じ方法で<code>roe_data</code>を作成し、最終年度のデータを使って以下に答えなさい。ROEは、当期純利益<code>X</code>を期首株主資本<code>lagged_BE</code>で割って計算する。前年の値が確認でき、期首株主資本が正の観測を対象とすること。</p>
+<ol type="1">
+<li>ROEの<strong>20%分位点</strong>を求め、<code>ROE_first_quintile</code>という変数に保存し、値を表示しなさい。</li>
+<li>ROEが<code>ROE_first_quintile</code>より<strong>小さい企業の数</strong>を求め、表示しなさい。ROEが欠損している企業は数えないこと。</li>
+</ol>
+<section id="ヒント分位点の求め方" class="level4">
+<h4 class="anchored" data-anchor-id="ヒント分位点の求め方">ヒント：分位点の求め方</h4>
+<p>分位点を求めるには<code>quantile()</code>を用いる。第一引数には対象の数値ベクトルを指定し、<code>probs</code>には求めたい分位点を0から1までの小数で指定する。20%分位点の場合は<code>0.2</code>を指定する。欠損値を除いて計算するには、<code>na.rm = TRUE</code>を加える。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="at">probs =</span> <span class="fl">0.2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<p>上の<code>x</code>を、対象年度のROEの列に置き換えること。</p>
+<div class="callout callout-style-default callout-important callout-titled" title="警告：生成AIの不正使用">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">重要</span>警告：生成AIの不正使用
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>生成AIの不正使用が認められた場合、本課題の評価は一律0点とする。</strong></p>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../lessons/09/index.html" class="pagination-link" aria-label="第9回：休講">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">第9回：休講</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
