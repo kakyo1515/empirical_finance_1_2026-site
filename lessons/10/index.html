@@ -703,34 +703,30 @@ ROE_t
 </tbody>
 </table>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>roe_data <span class="ot">&lt;-</span> financial_lagged <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="ot">&lt;-</span> financial_lagged <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">==</span> previous_year <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    lagged_BE <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ROE =</span> X <span class="sc">/</span> lagged_BE)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="ot">&lt;-</span> roe_data <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    lagged_NOA <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="co"># 正の投資額に対するRNOAを比較するため</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    lagged_NFO <span class="sc">!=</span> <span class="dv">0</span>, <span class="co"># NBCの分母が0になる観測を除く（負のNFOは残す）</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    sales <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(OX), <span class="sc">!</span><span class="fu">is.na</span>(NFE), <span class="sc">!</span><span class="fu">is.na</span>(X)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">RNOA =</span> OX <span class="sc">/</span> lagged_NOA,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">PM =</span> OX <span class="sc">/</span> sales,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATO =</span> sales <span class="sc">/</span> lagged_NOA,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">FLEV =</span> lagged_NFO <span class="sc">/</span> lagged_BE,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">NBC =</span> NFE <span class="sc">/</span> lagged_NFO,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPREAD =</span> RNOA <span class="sc">-</span> NBC,</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">financial_effect =</span> FLEV <span class="sc">*</span> SPREAD,</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE_DuPont =</span> RNOA <span class="sc">+</span> financial_effect</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="sc">|&gt;</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, year, ROE, RNOA, FLEV, NBC, financial_effect) <span class="sc">|&gt;</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    lagged_BE <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    lagged_NOA <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="co"># 正の投資額に対するRNOAを比較するため</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    lagged_NFO <span class="sc">!=</span> <span class="dv">0</span>, <span class="co"># NBCの分母が0になる観測を除く（負のNFOは残す）</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    sales <span class="sc">&gt;</span> <span class="dv">0</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(OX), <span class="sc">!</span><span class="fu">is.na</span>(NFE), <span class="sc">!</span><span class="fu">is.na</span>(X)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE =</span> X <span class="sc">/</span> lagged_BE,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">RNOA =</span> OX <span class="sc">/</span> lagged_NOA,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">PM =</span> OX <span class="sc">/</span> sales,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ATO =</span> sales <span class="sc">/</span> lagged_NOA,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">FLEV =</span> lagged_NFO <span class="sc">/</span> lagged_BE,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">NBC =</span> NFE <span class="sc">/</span> lagged_NFO,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">SPREAD =</span> RNOA <span class="sc">-</span> NBC,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">financial_effect =</span> FLEV <span class="sc">*</span> SPREAD,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">ROE_DuPont =</span> RNOA <span class="sc">+</span> financial_effect</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>dupont_data <span class="sc">|&gt;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(firm_ID, year, ROE, RNOA, FLEV, NBC, financial_effect) <span class="sc">|&gt;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
   firm_ID  year    ROE   RNOA    FLEV     NBC financial_effect
@@ -983,7 +979,7 @@ PM=\frac{RNOA}{ATO}
 </section>
 <section id="問3roeの分位点と企業数" class="level3">
 <h3 class="anchored" data-anchor-id="問3roeの分位点と企業数">問3．ROEの分位点と企業数</h3>
-<p>授業と同じ方法で<code>roe_data</code>を作成し、最終年度のデータを使って以下に答えなさい。ROEは、当期純利益<code>X</code>を期首株主資本<code>lagged_BE</code>で割って計算する。前年の値が確認でき、期首株主資本が正の観測を対象とすること。</p>
+<p>授業と同じ方法で<code>dupont_data</code>を作成し、最終年度のデータを使って以下に答えなさい。ROEは、当期純利益<code>X</code>を期首株主資本<code>lagged_BE</code>で割って計算する。前年の値が確認でき、期首株主資本が正の観測を対象とすること。</p>
 <ol type="1">
 <li>ROEの<strong>20%分位点</strong>を求め、<code>ROE_first_quintile</code>という変数に保存し、値を表示しなさい。</li>
 <li>ROEが<code>ROE_first_quintile</code>より<strong>小さい企業の数</strong>を求め、表示しなさい。ROEが欠損している企業は数えないこと。</li>
